@@ -82,14 +82,29 @@
 
             {{-- Content --}}
             <div class="row align-items-center">
-                <div class="col-sm-6 col-xl-9">
+                <div class="col-lg-4 col-xl-6">
                     <a href="javascript:void(0);" class="btn btn-dark" data-bs-toggle="modal"
                         data-bs-target="#formCreateModal">Create</a>
                 </div>
 
-                <div class="col-sm-6 col-xl-3 mt-3 mt-sm-0">
-                    <input type="search" name="search" id="search" value="{{ $search }}" class="form-control"
-                        placeholder="Search testimonies?">
+                <div class="col-lg-8 col-xl-6 mt-3 mt-lg-0">
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <select name="product" id="product" class="form-select">
+                                <option value="">Select Product</option>
+                                @foreach ($products as $product)
+                                    <option value="{{ $product->slug }}"
+                                        {{ $productSlug == $product->slug ? 'selected' : '' }}>{{ $product->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <input type="search" name="search" id="search" value="{{ $search }}"
+                                class="form-control" placeholder="Search testimonies?">
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -272,9 +287,6 @@
                         <div id="stars" class="d-flex gap-1"></div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
             </div>
         </div>
     </div>
@@ -413,23 +425,50 @@
                     }
                 });
             </script>
-        @else
+        @endif
+
+        @if (session('open_modal') === 'formEditModal')
             <script>
                 $(document).ready(function() {
-                    $('#formCreateModal').on('show.bs.modal', function(event) {
-                        $('.star-rating i').on('click', function() {
-                            const value = $(this).data('value');
+                    $('#formEditModal').modal('show');
 
-                            $('#stars').val(value);
-                            $('.star-rating i').removeClass('bi-star-fill').addClass('bi-star').css('color',
-                                '');
-                            $('.star-rating i').each(function() {
-                                if ($(this).data('value') <= value) {
-                                    $(this).removeClass('bi-star').addClass('bi-star-fill').css(
-                                        'color',
-                                        'orange');
-                                }
-                            });
+                    const routeName = "{{ session('route_name') }}";
+                    const title = "{{ session('title') }}";
+                    const productId = "{{ session('product_id') }}";
+                    const name = "{{ session('name') }}";
+                    const description = "{{ session('description') }}";
+                    const stars = "{{ session('stars') }}";
+
+                    const modal = $('#formEditModal');
+                    modal.find('#formEditModalLabel').text(`Testimony: ${title}`);
+                    modal.find('form').attr('action', routeName);
+                    modal.find('#product_id').val(productId);
+                    modal.find('#name').val(name);
+                    modal.find('#description').val(description);
+
+                    const starIcons = modal.find('.star-rating i');
+                    starIcons.each(function(index) {
+                        const starValue = index + 1;
+                        if (starValue <= stars) {
+                            $(this).removeClass('bi-star').addClass('bi-star-fill').css('color', 'orange');
+                        } else {
+                            $(this).removeClass('bi-star-fill').addClass('bi-star').css('color', '');
+                        }
+                    });
+
+                    modal.find('#stars').val(stars);
+
+                    modal.find('.star-rating').off('click', 'i').on('click', 'i', function() {
+                        const value = $(this).data('value');
+
+                        modal.find('#stars').val(value);
+                        modal.find('.star-rating i').removeClass('bi-star-fill').addClass('bi-star')
+                            .css('color', '');
+                        modal.find('.star-rating i').each(function() {
+                            if ($(this).data('value') <= value) {
+                                $(this).removeClass('bi-star').addClass('bi-star-fill').css(
+                                    'color', 'orange');
+                            }
                         });
                     });
                 });
@@ -440,7 +479,7 @@
             $(document).ready(function() {
                 let debounceTimeout;
 
-                $('#search').on('input keydown', function(e) {
+                $('#product, #search').on('input keydown', function(e) {
                     if (e.which !== 13) {
                         clearTimeout(debounceTimeout);
 
@@ -459,8 +498,13 @@
 
                 function filter() {
                     const params = {};
+                    const productSlug = $('#product').val();
                     const searchValue = $('#search').val();
                     const url = '{{ route('testimony.index') }}';
+
+                    if (productSlug !== '') {
+                        params.product = productSlug;
+                    }
 
                     if (searchValue.trim() !== '') {
                         params.search = searchValue.trim().replace(/ /g, '+');
@@ -471,6 +515,25 @@
                     const finalUrl = url + '?' + queryString.join('&');
                     window.location.href = finalUrl;
                 }
+
+                // =============================================================================================
+
+                $('#formCreateModal').on('show.bs.modal', function(event) {
+                    $('.star-rating i').on('click', function() {
+                        const value = $(this).data('value');
+
+                        $('#stars').val(value);
+                        $('.star-rating i').removeClass('bi-star-fill').addClass('bi-star').css('color',
+                            '');
+                        $('.star-rating i').each(function() {
+                            if ($(this).data('value') <= value) {
+                                $(this).removeClass('bi-star').addClass('bi-star-fill').css(
+                                    'color',
+                                    'orange');
+                            }
+                        });
+                    });
+                });
 
                 // =============================================================================================
 
@@ -518,6 +581,11 @@
                     modal.find('#product_id').val(productId);
                     modal.find('#name').val(name);
                     modal.find('#description').val(description);
+
+                    modal.find('#product_id').removeClass('is-invalid');
+                    modal.find('#name').removeClass('is-invalid');
+                    modal.find('#description').removeClass('is-invalid');
+                    modal.find('#stars').removeClass('is-invalid');
 
                     const starIcons = modal.find('.star-rating i');
                     starIcons.each(function(index) {

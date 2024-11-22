@@ -16,6 +16,13 @@ class TestimonyController extends Controller
         $products = Product::all();
         $query = Testimony::query();
         $search = $request->input('search');
+        $productSlug = $request->input('product');
+
+        if ($productSlug) {
+            $query->whereHas('product', function ($q) use ($productSlug) {
+                $q->where('slug', $productSlug);
+            });
+        }
 
         if ($search) {
             $query->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($search) . '%']);
@@ -23,7 +30,7 @@ class TestimonyController extends Controller
 
         $testimonies = $query->with('product')->orderByDesc('updated_at')->latest('created_at')->paginate(10);
 
-        return view('admin.pages.testimony.index', compact('products', 'search', 'testimonies'));
+        return view('admin.pages.testimony.index', compact('products', 'productSlug', 'search', 'testimonies'));
     }
 
     public function store(Request $request)
@@ -99,6 +106,12 @@ class TestimonyController extends Controller
 
         if ($validator->fails()) {
             session()->flash('open_modal', 'formEditModal');
+            session()->flash('route_name', route('testimony.update', ['testimony' => $testimony->id]));
+            session()->flash('title', $testimony->name);
+            session()->flash('product_id', $request->input('product_id'));
+            session()->flash('name', $request->input('name'));
+            session()->flash('description', $request->input('description'));
+            session()->flash('stars', $request->input('stars'));
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
