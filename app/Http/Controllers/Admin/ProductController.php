@@ -306,6 +306,12 @@ class ProductController extends Controller
                 $image->delete();
             }
 
+            if ($product->testimonies) {
+                foreach ($product->testimonies as $testimony) {
+                    $testimony->delete();
+                }
+            }
+
             $product->delete();
 
             DB::commit();

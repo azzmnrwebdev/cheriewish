@@ -37,4 +37,9 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class, 'product_id')->where('is_thumbnail', false);
     }
+
+    public function testimonies()
+    {
+        return $this->hasMany(Testimony::class, 'product_id');
+    }
 }

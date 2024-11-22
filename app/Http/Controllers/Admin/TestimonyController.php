@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Exception;
+use App\Models\Product;
 use App\Models\Testimony;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Product;
-use Exception;
 use Illuminate\Support\Facades\Validator;
 
 class TestimonyController extends Controller
@@ -33,7 +32,7 @@ class TestimonyController extends Controller
             'product_id' => 'required|integer|exists:products,id',
             'name' => 'required|string|max:225',
             'description' => 'required|string',
-            'stars' => 'required',
+            'stars' => 'required|integer|min:1|max:5',
         ];
 
         $messages = [
@@ -46,6 +45,9 @@ class TestimonyController extends Controller
             'description.required' => 'Review is required.',
             'description.string' => 'Review must be text.',
             'stars.required' => 'Value is required.',
+            'stars.integer' => 'Value must be a number.',
+            'stars.min' => 'Value must be at least 1.',
+            'stars.max' => 'Value cannot exceed 5.',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -55,8 +57,6 @@ class TestimonyController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        DB::beginTransaction();
-
         try {
             Testimony::create([
                 'product_id' => $request->input('product_id'),
@@ -65,33 +65,65 @@ class TestimonyController extends Controller
                 'stars' => $request->input('stars'),
             ]);
 
-            DB::commit();
-
             return redirect(route('testimony.index'))->with('success', 'Testimony successfully saved.');
         } catch (Exception $e) {
-            DB::rollBack();
-
             return redirect(route('testimony.index'))->with('error', 'An error occurred while saving data.');
         }
     }
 
-    public function show(Testimony $testimony)
-    {
-        //
-    }
-
-    public function edit(Testimony $testimony)
-    {
-        //
-    }
-
     public function update(Testimony $testimony, Request $request)
     {
-        //
+        $rules = [
+            'product_id' => 'required|integer|exists:products,id',
+            'name' => 'required|string|max:225',
+            'description' => 'required|string',
+            'stars' => 'required|integer|min:1|max:5',
+        ];
+
+        $messages = [
+            'product_id.required' => 'You must select one product.',
+            'product_id.integer' => 'Each product must be a valid integer.',
+            'product_id.exists' => 'Selected product does not exist.',
+            'name.required' => 'People name is required.',
+            'name.string' => 'People name must be text.',
+            'name.max' => 'People name should not exceed 225 characters.',
+            'description.required' => 'Review is required.',
+            'description.string' => 'Review must be text.',
+            'stars.required' => 'Value is required.',
+            'stars.integer' => 'Value must be a number.',
+            'stars.min' => 'Value must be at least 1.',
+            'stars.max' => 'Value cannot exceed 5.',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            session()->flash('open_modal', 'formEditModal');
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        try {
+            $testimony->update([
+                'product_id' => $request->input('product_id'),
+                'name' => $request->input('name'),
+                'description' => $request->input('description'),
+                'stars' => $request->input('stars'),
+            ]);
+
+            return redirect(route('testimony.index'))->with('success', 'Testimony successfully updated.');
+        } catch (Exception $e) {
+            return redirect(route('testimony.index'))->with('error', 'An error occurred while updating data.');
+        }
     }
 
-    public function destroy(Testimony $testimony, Request $request)
+    public function destroy(Testimony $testimony)
     {
-        //
+        try {
+            $testimony->delete();
+
+            return redirect(route('testimony.index'))->with('success', 'Testimony successfully deleted.');
+        } catch (Exception $e) {
+            return redirect(route('testimony.index'))->with('error', 'An error occurred while deleting data.');
+        }
     }
 }
