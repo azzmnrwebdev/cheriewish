@@ -42,9 +42,10 @@
         </li>
 
         <li class="sidebar-item">
-            <a href="#" class="sidebar-link">
-                <i class="bi bi-box-fill me-2 fs-5"></i>
-                About
+            <a href="{{ route('company.index') }}"
+                class="sidebar-link {{ request()->routeIs('company.*') ? 'active' : '' }}">
+                <i class="bi bi-building-fill me-2 fs-5"></i>
+                Company
             </a>
         </li>
     </ul>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -46,5 +47,15 @@ Route::prefix('dashboard')->group(function () {
         Route::get('{testimony}/edit', [TestimonyController::class, 'edit'])->name('testimony.edit');
         Route::put('{testimony}', [TestimonyController::class, 'update'])->name('testimony.update');
         Route::delete('{testimony}', [TestimonyController::class, 'destroy'])->name('testimony.destroy');
+    });
+
+    // COMPANY
+    Route::prefix('company')->group(function () {
+        Route::get('/', [CompanyController::class, 'index'])->name('company.index');
+        Route::post('/', [CompanyController::class, 'store'])->name('company.store');
+        Route::get('{company}', [CompanyController::class, 'show'])->name('company.show');
+        Route::get('{company}/edit', [CompanyController::class, 'edit'])->name('company.edit');
+        Route::put('{company}', [CompanyController::class, 'update'])->name('company.update');
+        Route::delete('{company}', [CompanyController::class, 'destroy'])->name('company.destroy');
     });
 });
