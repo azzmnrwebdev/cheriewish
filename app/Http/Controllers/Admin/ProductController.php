@@ -46,6 +46,7 @@ class ProductController extends Controller
             'thumbnail' => 'required|image|mimes:jpg,jpeg,png',
             'name' => 'required|string|max:225',
             'price' => 'required',
+            'url_shopee' => 'required|url',
             'description' => 'required|string',
             'images' => 'required|array|min:1|max:10',
             'images.*' => 'image|mimes:jpg,jpeg,png',
@@ -61,6 +62,8 @@ class ProductController extends Controller
             'name.string' => 'Product name must be text.',
             'name.max' => 'Product name should not exceed 225 characters.',
             'price.required' => 'Product price is required.',
+            'url_shopee.required' => 'Shopee URL is required.',
+            'url_shopee.url' => 'Shopee URL must be a valid URL.',
             'description.required' => 'Product description is required.',
             'description.string' => 'Product description must be text.',
             'images.required' => 'At least one image is required.',
@@ -90,6 +93,7 @@ class ProductController extends Controller
                 'slug' => Str::slug($request->input('name')),
                 'price' => $request->input('price'),
                 'description' => $request->input('description'),
+                'url_shopee' => $request->input('url_shopee'),
             ]);
 
             $product->categories()->attach($request->input('categories'));
@@ -162,6 +166,7 @@ class ProductController extends Controller
             'thumbnail' => 'nullable|image|mimes:jpg,jpeg,png',
             'name' => 'required|string|max:225',
             'price' => 'required',
+            'url_shopee' => 'required|url',
             'description' => 'required|string',
             'images' => 'nullable|array|min:1|max:10',
             'images.*' => 'image|mimes:jpg,jpeg,png',
@@ -177,6 +182,8 @@ class ProductController extends Controller
             'name.string' => 'Product name must be text.',
             'name.max' => 'Product name should not exceed 225 characters.',
             'price.required' => 'Product price is required.',
+            'url_shopee.required' => 'Shopee URL is required.',
+            'url_shopee.url' => 'Shopee URL must be a valid URL.',
             'description.required' => 'Product description is required.',
             'description.string' => 'Product description must be text.',
             'images.required' => 'At least one image is required.',
@@ -213,6 +220,7 @@ class ProductController extends Controller
                 'slug' => $slug,
                 'price' => $request->input('price'),
                 'description' => $request->input('description'),
+                'url_shopee' => $request->input('url_shopee'),
             ]);
 
             $product->categories()->sync($request->input('categories'));

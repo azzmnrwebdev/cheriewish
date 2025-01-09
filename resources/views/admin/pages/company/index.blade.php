@@ -2,35 +2,10 @@
     {{-- CSS Custom --}}
     @prepend('styles')
         <style>
-            tr td.name a {
-                color: #212529;
-                text-decoration: none;
-            }
-
-            tr:hover td {
-                background-color: #f8f8f8;
-            }
-
-            tr:hover td.name a {
-                color: #0d70fc;
-                text-decoration: underline;
-            }
-
-            .btn-primary,
-            .btn-primary:hover,
-            .btn-primary:focus,
-            .btn-primary:active {
-                outline: none;
-                box-shadow: none;
-                color: #0ea5e9 !important;
-                border-color: #0ea5e9 !important;
-                background-color: #e0f2fe !important;
-            }
-
-            .btn-warning.custom,
-            .btn-warning.custom:hover,
-            .btn-warning.custom:focus,
-            .btn-warning.custom:active {
+            .btn-warning,
+            .btn-warning:hover,
+            .btn-warning:focus,
+            .btn-warning:active {
                 outline: none;
                 box-shadow: none;
                 color: #eab308 !important;
@@ -62,8 +37,12 @@
     </nav>
 
     <div class="card mt-4 shadow">
-        <div class="card-header bg-light fw-medium py-3">
-            My Company
+        <div class="card-header bg-white fw-medium py-3">
+            <div class="d-flex align-items-center justify-content-between">
+                My Company
+                <a href="{{ route('company.form') }}" class="btn btn-sm btn-warning custom align-middle">Form<i
+                        class="bi bi-pencil ms-2"></i></a>
+            </div>
         </div>
 
         <div class="card-body p-lg-4">
@@ -80,276 +59,124 @@
                 </div>
             @endif
 
-            {{-- Content --}}
-            <div class="row align-items-center">
-                <div class="col-sm-6 col-xl-9">
-                    <a href="javascript:void(0);" class="btn btn-dark" data-bs-toggle="modal"
-                        data-bs-target="#formCreateModal">Create</a>
+            @if ($company && $about)
+                <h5 class="card-title text-center fw-semibold mt-4">{{ $about->title }}</h5>
+
+                <div class="row mt-3 g-4">
+                    <div class="col-md-5 col-xl-4">
+                        <img src="{{ asset('storage/' . $company->logo) }}" alt="Logo" class="img-fluid">
+                    </div>
+
+                    <div class="col-md-7 col-xl-8">
+                        <div class="table-responsive">
+                            <table class="table table-borderless text-wrap">
+                                <tbody>
+                                    <tr>
+                                        <td class="px-0 pe-3 py-1">Name</td>
+                                        <td class="px-1 py-1">:</td>
+                                        <td class="px-0 py-1">{{ $company->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-0 pe-3 py-1">Email</td>
+                                        <td class="px-1 py-1">:</td>
+                                        <td class="px-0 py-1"><a href="mailto:{{ $company->email }}"
+                                                class="text-decoration-underline">{{ $company->email }}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-0 pe-3 py-1">Whatsapp Number</td>
+                                        <td class="px-1 py-1">:</td>
+                                        <td class="px-0 py-1"><a href="https://wa.me/{{ $company->phone_number }}"
+                                                target="_blank"
+                                                class="text-decoration-underline">{{ $company->phone_number }}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-0 pe-3 py-1">Shopee</td>
+                                        <td class="px-1 py-1">:</td>
+                                        <td class="px-0 py-1"><a href="{{ $company->shopee }}" target="_blank"
+                                                class="text-decoration-underline">{{ $company->shopee }}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-0 pe-3 py-1">Facebook</td>
+                                        <td class="px-1 py-1">:</td>
+                                        <td class="px-0 py-1">
+                                            @if ($company->facebook)
+                                                <a href="{{ $company->facebook }}" target="_blank"
+                                                    class="text-decoration-underline">{{ $company->facebook }}</a>
+                                            @else
+                                                -
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-0 pe-3 py-1">Instagram</td>
+                                        <td class="px-1 py-1">:</td>
+                                        <td class="px-0 py-1">
+                                            @if ($company->instagram)
+                                                <a href="{{ $company->instagram }}" target="_blank"
+                                                    class="text-decoration-underline">{{ $company->instagram }}</a>
+                                            @else
+                                                -
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-0 pe-3 py-1">TikTok</td>
+                                        <td class="px-1 py-1">:</td>
+                                        <td class="px-0 py-1">
+                                            @if ($company->tiktok)
+                                                <a href="{{ $company->tiktok }}" target="_blank"
+                                                    class="text-decoration-underline">{{ $company->tiktok }}</a>
+                                            @else
+                                                -
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-0 pe-3 py-1">Twitter</td>
+                                        <td class="px-1 py-1">:</td>
+                                        <td class="px-0 py-1">
+                                            @if ($company->twitter)
+                                                <a href="{{ $company->twitter }}" target="_blank"
+                                                    class="text-decoration-underline">{{ $company->twitter }}</a>
+                                            @else
+                                                -
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-0 pe-3 py-1">Address</td>
+                                        <td class="px-1 py-1">:</td>
+                                        <td class="px-0 py-1">
+                                            {{ $company->address ?? '-' }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            {{-- Short Description --}}
+                            <h5 class="card-title mt-4">Short Description</h5>
+                            <p class="card-text">{{ $about->short_description }}</p>
+
+                            {{-- Long Description --}}
+                            <h5 class="card-title mt-4">Long Description</h5>
+                            <p class="card-text">{!! $about->description !!}</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            {{-- Table --}}
-        </div>
-    </div>
-
-    <!-- Form Create Modal -->
-    <div class="modal fade" id="formCreateModal" tabindex="-1" aria-labelledby="formCreateModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="formCreateModalLabel">Create Company</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            @else
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <img src="{{ asset('images/empty.png') }}" width="300" class="img-fluid" alt="Empty">
+                    <h5 class="card-title text-center">Data not yet available</h5>
                 </div>
-                <div class="modal-body">
-                    <form action="{{ route('company.store') }}" method="POST">
-                        @csrf
-
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                id="name" name="name" value="{{ old('name') }}"
-                                placeholder="Enter company name">
-
-                            @error('name')
-                                <small class="invalid-feedback"><strong>{{ $message }}</strong></small>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                id="email" name="email" value="{{ old('email') }}"
-                                placeholder="Enter company email">
-
-                            @error('email')
-                                <small class="invalid-feedback"><strong>{{ $message }}</strong></small>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="phone_number" class="form-label">Phone Number</label><br />
-                            <button type="button" class="btn btn-sm btn-dark mb-3" id="add_phone_number">Add Phone
-                                Number</button>
-
-                            <div id="phone_number_container">
-                                <div class="mb-3 d-flex phone-input-wrapper" id="phone_wrapper_1">
-                                    <input type="text"
-                                        class="form-control me-2 phone-number-input @error('phone_number') is-invalid @enderror"
-                                        id="phone_number_1" name="phone_numbers[]" value="{{ old('phone_numbers.0') }}"
-                                        placeholder="Enter company phone number">
-                                    <button type="button" class="btn btn-sm btn-danger remove-phone" data-id="1"><i
-                                            class="bi bi-trash3"></i></button>
-                                </div>
-                            </div>
-
-                            @error('phone_number')
-                                <small class="invalid-feedback"><strong>{{ $message }}</strong></small>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="social_media" class="form-label">Social Media</label><br />
-                            <button type="button" class="btn btn-sm btn-dark mb-3" id="add_social_media">Add Social
-                                Media</button>
-
-                            <div id="social_media_container">
-                                <div class="mb-3 d-flex social-media-wrapper" id="social_media_wrapper_1">
-                                    <div class="row me-2 g-0">
-                                        <div class="col-12 mb-2">
-                                            <select name="social_medias[1][platform]"
-                                                class="form-select platform-input">
-                                                <option value="">Select Platform</option>
-                                                <option value="facebook">Facebook</option>
-                                                <option value="instagram">Instagram</option>
-                                                <option value="tiktok">Tiktok</option>
-                                                <option value="twitter">Twitter</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-12">
-                                            <input type="text" name="social_medias[1][url]"
-                                                class="form-control url-input" placeholder="Enter URL">
-                                        </div>
-                                    </div>
-                                    <button type="button" class="btn btn-sm btn-danger remove-social-media"
-                                        data-id="1">
-                                        <i class="bi bi-trash3"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                            @error('social_media')
-                                <small class="invalid-feedback"><strong>{{ $message }}</strong></small>
-                            @enderror
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="address" class="form-label">Address</label>
-                            <textarea name="address" id="address" rows="5" class="form-control @error('address') is-invalid @enderror"
-                                placeholder="Enter company address">{{ old('address') }}</textarea>
-
-                            @error('address')
-                                <small class="invalid-feedback"><strong>{{ $message }}</strong></small>
-                            @enderror
-                        </div>
-
-                        <button type="submit" class="btn btn-success">Save</button>
-                    </form>
-                </div>
-            </div>
+            @endif
         </div>
     </div>
 
     {{-- JS Custom --}}
     @prepend('scripts')
-        @if (session('open_modal') === 'formCreateModal')
-            <script>
-                $(document).ready(function() {
-                    $('#formCreateModal').modal('show');
-                });
-            </script>
-        @endif
-
         <script>
             $(document).ready(function() {
-                $('#formCreateModal').on('show.bs.modal', function() {
-                    let maxPhoneNumbers = 3;
-                    let phoneNumberCount = 1;
-
-                    function validateNumberInput(input) {
-                        input.value = input.value.replace(/[^0-9]/g, '');
-                    }
-
-                    $('#phone_number_1').on('input', function() {
-                        validateNumberInput(this);
-                    });
-
-                    $('#add_phone_number').on('click', function() {
-                        if (phoneNumberCount < maxPhoneNumbers) {
-                            phoneNumberCount++;
-
-                            $('#phone_number_container').append(`
-                                <div class="mb-3 d-flex phone-input-wrapper" id="phone_wrapper_${phoneNumberCount}">
-                                    <input type="text" class="form-control me-2 phone-number-input"
-                                        id="phone_number_${phoneNumberCount}" name="phone_numbers[]"
-                                        placeholder="Enter company phone number">
-                                    <button type="button" class="btn btn-sm btn-danger remove-phone" data-id="${phoneNumberCount}">
-                                        <i class="bi bi-trash3"></i>
-                                    </button>
-                                </div>
-                            `);
-
-                            $(`#phone_number_${phoneNumberCount}`).on('input', function() {
-                                validateNumberInput(this);
-                            });
-
-                            if (phoneNumberCount === maxPhoneNumbers) {
-                                $(this).prop('disabled', true);
-                            }
-                        }
-                    });
-
-                    $('#phone_number_container').on('click', '.remove-phone', function() {
-                        let id = $(this).data('id');
-
-                        if (id === 1) {
-                            $(this).closest('.phone-input-wrapper').find('input').val('');
-                        } else {
-                            $(`#phone_wrapper_${id}`).remove();
-                            phoneNumberCount--;
-
-                            if (phoneNumberCount < maxPhoneNumbers) {
-                                $('#add_phone_number').prop('disabled', false);
-                            }
-                        }
-                    });
-
-                    // =============================================================================================
-
-                    let maxSocialMedia = 4;
-                    let socialMediaCount = 1;
-
-                    function updatePlatformOptions() {
-                        const selectedPlatforms = [];
-
-                        $('.platform-input').each(function() {
-                            const value = $(this).val();
-                            if (value) selectedPlatforms.push(value);
-                        });
-
-                        $('.platform-input').each(function() {
-                            const currentValue = $(this).val();
-                            $(this).find('option').each(function() {
-                                const optionValue = $(this).attr('value');
-
-                                if (selectedPlatforms.includes(optionValue) && optionValue !==
-                                    currentValue) {
-                                    $(this).hide();
-                                } else {
-                                    $(this).show();
-                                }
-                            });
-                        });
-                    }
-
-                    function disableAddButton() {
-                        $('#add_social_media').prop('disabled', socialMediaCount >= maxSocialMedia);
-                    }
-
-                    $('#add_social_media').on('click', function() {
-                        if (socialMediaCount < maxSocialMedia) {
-                            socialMediaCount++;
-
-                            $('#social_media_container').append(`
-                                <div class="mb-3 d-flex social-media-wrapper" id="social_media_wrapper_${socialMediaCount}">
-                                    <div class="row me-2 g-0">
-                                        <div class="col-12 mb-2">
-                                            <select name="social_medias[${socialMediaCount}][platform]" class="form-select platform-input">
-                                                <option value="">Select Platform</option>
-                                                <option value="facebook">Facebook</option>
-                                                <option value="instagram">Instagram</option>
-                                                <option value="tiktok">Tiktok</option>
-                                                <option value="twitter">Twitter</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-12">
-                                            <input type="text" name="social_medias[${socialMediaCount}][url]" class="form-control url-input"
-                                                placeholder="Enter URL">
-                                        </div>
-                                    </div>
-                                    <button type="button" class="btn btn-sm btn-danger remove-social-media" data-id="${socialMediaCount}">
-                                        <i class="bi bi-trash3"></i>
-                                    </button>
-                                </div>
-                            `);
-
-                            disableAddButton();
-                            updatePlatformOptions();
-                        }
-                    });
-
-                    $(document).on('click', '.remove-social-media', function() {
-                        const id = $(this).data('id');
-
-                        if (id === 1) {
-                            $(`#social_media_wrapper_${id} .platform-input`).val('');
-                            $(`#social_media_wrapper_${id} .url-input`).val('');
-                        } else {
-                            $(`#social_media_wrapper_${id}`).remove();
-                            socialMediaCount--;
-                            disableAddButton();
-                        }
-
-                        updatePlatformOptions();
-                    });
-
-                    $(document).on('change', '.platform-input', function() {
-                        updatePlatformOptions();
-                    });
-
-                    disableAddButton();
-                    updatePlatformOptions();
-                });
+                //
             });
         </script>
     @endprepend

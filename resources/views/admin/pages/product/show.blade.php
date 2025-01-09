@@ -67,11 +67,11 @@
     </nav>
 
     <div class="card mt-4 shadow">
-        <div class="card-header bg-light fw-medium py-3">
+        <div class="card-header bg-white fw-medium py-3">
             <div class="d-flex align-items-center justify-content-between">
                 Product: {{ $product->name }}
                 <a href="{{ route('product.edit', ['product' => $product->slug]) }}"
-                    class="btn btn-sm btn-warning custom align-middle"><i class="bi bi-pencil"></i></a>
+                    class="btn btn-sm btn-warning custom align-middle">Edit<i class="bi bi-pencil ms-2"></i></a>
             </div>
         </div>
 

@@ -13,6 +13,13 @@ class Company extends Model
     protected $fillable = [
         'name',
         'email',
+        'phone_number',
+        'shopee',
+        'facebook',
+        'instagram',
+        'tiktok',
+        'twitter',
         'address',
+        'logo'
     ];
 }

@@ -1,6 +1,7 @@
 <aside id="sidebar" class="d-flex flex-column gap-0">
     <div class="sidebar-logo d-flex align-items-center justify-content-between">
-        <a href="{{ route('dashboard') }}">Cheriewish</a>
+        <a href="{{ route('dashboard') }}">{{ $company ? $company->name : 'Cheriewish' }}</a>
+
         <i class="bi bi-caret-left-fill d-lg-none text-white" id="sidebarToggle"></i>
     </div>
 
@@ -20,7 +21,7 @@
         <li class="sidebar-item">
             <a href="{{ route('category.index') }}"
                 class="sidebar-link {{ request()->routeIs('category.*') ? 'active' : '' }}">
-                <i class="bi bi-grid-fill me-2 fs-5"></i>
+                <i class="bi bi-tags-fill me-2 fs-5"></i>
                 Category
             </a>
         </li>
@@ -36,7 +37,7 @@
         <li class="sidebar-item">
             <a href="{{ route('testimony.index') }}"
                 class="sidebar-link {{ request()->routeIs('testimony.*') ? 'active' : '' }}">
-                <i class="bi-chat-left-quote-fill me-2 fs-5"></i>
+                <i class="bi bi-chat-quote-fill me-2 fs-5"></i>
                 Testimony
             </a>
         </li>

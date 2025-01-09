@@ -18,7 +18,7 @@
     </nav>
 
     <div class="card mt-4 shadow">
-        <div class="card-header bg-light fw-medium py-3">
+        <div class="card-header bg-white fw-medium py-3">
             Category: {{ $category->name }}
         </div>
 
@@ -32,9 +32,10 @@
                         @method('PUT')
 
                         <div class="col-12">
-                            <label for="name" class="form-label">Name</label>
+                            <label for="name" class="form-label"><i class="bi bi-tags-fill me-2"></i>Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                id="name" name="name" value="{{ old('name', $category->name) }}">
+                                id="name" name="name" value="{{ old('name', $category->name) }}"
+                                placeholder="Category name">
 
                             @error('name')
                                 <small class="invalid-feedback"><strong>{{ $message }}</strong></small>
@@ -42,9 +43,10 @@
                         </div>
 
                         <div class="col-12">
-                            <label for="description" class="form-label">Short Description</label>
+                            <label for="description" class="form-label"><i class="bi bi-card-text me-2"></i>Short
+                                Description (optional)</label>
                             <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
-                                rows="5" maxlength="250">{{ old('description', $category->description) }}</textarea>
+                                rows="5" maxlength="250" placeholder="Short description">{{ old('description', $category->description) }}</textarea>
 
                             <div id="charCount" class="form-text">0/250</div>
 

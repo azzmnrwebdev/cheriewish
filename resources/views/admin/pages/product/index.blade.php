@@ -60,6 +60,17 @@
                 border-color: #ef4444 !important;
                 background-color: #fee2e2 !important;
             }
+
+            .btn-info,
+            .btn-info:hover,
+            .btn-info:focus,
+            .btn-info:active {
+                outline: none;
+                box-shadow: none;
+                color: #06b6d4 !important;
+                border-color: #06b6d4 !important;
+                background-color: #cffafe !important;
+            }
         </style>
     @endprepend
 
@@ -74,7 +85,7 @@
     </nav>
 
     <div class="card mt-4 shadow">
-        <div class="card-header bg-light fw-medium py-3">
+        <div class="card-header bg-white fw-medium py-3">
             List Products
         </div>
 
@@ -114,6 +125,7 @@
                             <th class="text-center">Name</th>
                             <th class="text-center">Price</th>
                             <th class="text-center">Category</th>
+                            <th class="text-center">Shopee</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -155,6 +167,11 @@
                                     </div>
                                 </td>
                                 <td class="text-center">
+                                    <a href="{{ $item->url_shopee }}" target="_blank" class="btn btn-sm btn-info">
+                                        <i class="bi bi-shop-window me-2"></i>Visit
+                                    </a>
+                                </td>
+                                <td class="text-center">
                                     <a href="{{ route('product.show', ['product' => $item->slug]) }}"
                                         class="btn btn-sm btn-primary align-middle"><i class="bi bi-eye"></i></a>
                                     <a href="{{ route('product.edit', ['product' => $item->slug]) }}"
@@ -167,7 +184,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="text-center">Data not found</td>
+                                <td colspan="7" class="text-center">Data not found</td>
                             </tr>
                         @endforelse
                     </tbody>

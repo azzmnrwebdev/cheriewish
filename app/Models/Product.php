@@ -15,6 +15,7 @@ class Product extends Model
         'slug',
         'price',
         'description',
+        'url_shopee'
     ];
 
     public function categories()

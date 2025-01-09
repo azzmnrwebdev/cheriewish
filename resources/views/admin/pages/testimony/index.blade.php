@@ -62,7 +62,7 @@
     </nav>
 
     <div class="card mt-4 shadow">
-        <div class="card-header bg-light fw-medium py-3">
+        <div class="card-header bg-white fw-medium py-3">
             List Testimonies
         </div>
 
@@ -196,7 +196,8 @@
                         @csrf
 
                         <div class="mb-3">
-                            <label for="product_id" class="form-label">Product</label>
+                            <label for="product_id" class="form-label"><i
+                                    class="bi bi-box-fill me-2"></i>Product</label>
                             <select name="product_id" id="product_id"
                                 class="form-select @error('product_id') is-invalid @enderror">
                                 <option value="">Select One</option>
@@ -213,9 +214,11 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="name" class="form-label">People Name</label>
+                            <label for="name" class="form-label"><i class="bi bi-person-fill me-2"></i>People
+                                Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                id="name" name="name" value="{{ old('name') }}">
+                                id="name" name="name" value="{{ old('name') }}"
+                                placeholder="People name">
 
                             @error('name')
                                 <small class="invalid-feedback"><strong>{{ $message }}</strong></small>
@@ -223,9 +226,10 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="description" class="form-label">Review</label>
+                            <label for="description" class="form-label"><i
+                                    class="bi bi-chat-quote-fill me-2"></i>Review</label>
                             <textarea name="description" id="description" rows="5"
-                                class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
+                                class="form-control @error('description') is-invalid @enderror" placeholder="Write a review about the product">{{ old('description') }}</textarea>
 
                             @error('description')
                                 <small class="invalid-feedback"><strong>{{ $message }}</strong></small>
@@ -233,7 +237,8 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="stars" class="form-label">Value</label>
+                            <label for="stars" class="form-label"><i
+                                    class="bi bi-bar-chart-fill me-2"></i>Value</label>
                             <input type="hidden" name="stars" id="stars"
                                 class="form-control @error('stars') is-invalid @enderror"
                                 value="{{ old('stars', '') }}">
@@ -268,22 +273,27 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="product_id" class="form-label">Product</label>
+                        <label for="product_id" class="form-label"><i class="bi bi-box-fill me-2"></i>Product</label>
                         <input type="text" class="form-control" id="product_id" value="" disabled>
                     </div>
 
                     <div class="mb-3">
-                        <label for="name" class="form-label">People Name</label>
-                        <input type="text" class="form-control" id="name" value="" disabled>
+                        <label for="name" class="form-label"><i class="bi bi-person-fill me-2"></i>People
+                            Name</label>
+                        <input type="text" class="form-control" id="name" value=""
+                            placeholder="People name" disabled>
                     </div>
 
                     <div class="mb-3">
-                        <label for="description" class="form-label">Review</label>
-                        <textarea id="description" rows="5" class="form-control" disabled></textarea>
+                        <label for="description" class="form-label"><i
+                                class="bi bi-chat-quote-fill me-2"></i>Review</label>
+                        <textarea id="description" rows="5" class="form-control" placeholder="Write a review about the product"
+                            disabled></textarea>
                     </div>
 
                     <div class="mb-0">
-                        <label for="stars" class="form-label">Value</label>
+                        <label for="stars" class="form-label"><i
+                                class="bi bi-bar-chart-fill me-2"></i>Value</label>
                         <div id="stars" class="d-flex gap-1"></div>
                     </div>
                 </div>
@@ -306,7 +316,8 @@
                         @method('PUT')
 
                         <div class="mb-3">
-                            <label for="product_id" class="form-label">Product</label>
+                            <label for="product_id" class="form-label"><i
+                                    class="bi bi-box-fill me-2"></i>Product</label>
                             <select name="product_id" id="product_id"
                                 class="form-select @error('product_id') is-invalid @enderror">
                                 <option value="">Select One</option>
@@ -323,9 +334,11 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="name" class="form-label">People Name</label>
+                            <label for="name" class="form-label"><i class="bi bi-person-fill me-2"></i>People
+                                Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                id="name" name="name" value="{{ old('name') }}">
+                                id="name" name="name" value="{{ old('name') }}"
+                                placeholder="People name">
 
                             @error('name')
                                 <small class="invalid-feedback"><strong>{{ $message }}</strong></small>
@@ -333,9 +346,10 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="description" class="form-label">Review</label>
+                            <label for="description" class="form-label"><i
+                                    class="bi bi-chat-quote-fill me-2"></i>Review</label>
                             <textarea name="description" id="description" rows="5"
-                                class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
+                                class="form-control @error('description') is-invalid @enderror" placeholder="Write a review about the product">{{ old('description') }}</textarea>
 
                             @error('description')
                                 <small class="invalid-feedback"><strong>{{ $message }}</strong></small>
@@ -343,7 +357,8 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="stars" class="form-label">Value</label>
+                            <label for="stars" class="form-label"><i
+                                    class="bi bi-bar-chart-fill me-2"></i>Value</label>
                             <input type="hidden" name="stars" id="stars"
                                 class="form-control @error('stars') is-invalid @enderror"
                                 value="{{ old('stars', '') }}">
@@ -626,7 +641,7 @@
 
                     $('#deleteForm').attr('action', deleteUrl);
                     $('#deleteModalMessage').html(
-                        `Are you sure you want to delete data? <b>'${name}'</b> ?`
+                        `Are you sure you want to delete data <b>'${name}'</b> ?`
                     );
                     $('#deleteModal').modal('show');
                 });

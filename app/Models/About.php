@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class PhoneNumber extends Model
+class About extends Model
 {
     use HasFactory;
 
-    protected $table = 'phone_numbers';
+    protected $table = 'abouts';
     protected $fillable = [
-        'company_id',
-        'phone_number',
+        'title',
+        'description',
+        'short_description'
     ];
 }

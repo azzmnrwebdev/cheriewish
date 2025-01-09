@@ -13,7 +13,11 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     {{-- Title --}}
-    <title>Dashboard Cheriewish</title>
+    @php
+        $company = App\Models\Company::latest()->first();
+    @endphp
+
+    <title>{{ $company ? 'Dashboard ' . $company->name : 'Dashboard Cheriewish' }}</title>
 
     {{-- Custom CSS --}}
     <style type="text/css">

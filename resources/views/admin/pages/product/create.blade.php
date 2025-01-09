@@ -61,7 +61,7 @@
 
         {{-- Thumbnail & Images --}}
         <div class="card mt-4 shadow">
-            <div class="card-header bg-light fw-medium py-3">
+            <div class="card-header bg-white fw-medium py-3">
                 Thumbnail & Images
             </div>
 
@@ -71,7 +71,8 @@
                         <div class="row g-3">
                             {{-- Thumbnail --}}
                             <div class="col-12">
-                                <label for="thumbnail" class="form-label">Thumbnail</label>
+                                <label for="thumbnail" class="form-label"><i
+                                        class="bi bi-image me-2"></i>Thumbnail</label>
                                 <input type="file" class="form-control @error('thumbnail') is-invalid @enderror"
                                     id="thumbnail" name="thumbnail" accept="image/*">
 
@@ -96,7 +97,8 @@
 
                             {{-- Number of Images --}}
                             <div class="col-12">
-                                <label for="numberImages" class="form-label">Number of Images</label>
+                                <label for="numberImages" class="form-label"><i
+                                        class="bi bi-plus-slash-minus me-2"></i>Number of Images</label>
                                 <input type="number" min="1" max="10" value="{{ old('numberImages', 1) }}"
                                     class="form-control" name="numberImages" id="numberImages">
                             </div>
@@ -132,7 +134,7 @@
 
         {{-- General Information --}}
         <div class="card mt-4 shadow">
-            <div class="card-header bg-light fw-medium py-3">
+            <div class="card-header bg-white fw-medium py-3">
                 General Information
             </div>
 
@@ -142,7 +144,8 @@
                         <div class="row g-3">
                             {{-- Category --}}
                             <div class="col-12">
-                                <label for="categories" class="form-label">Category</label>
+                                <label for="categories" class="form-label"><i
+                                        class="bi bi-tags-fill me-2"></i>Category</label>
 
                                 <select class="form-select @error('categories') is-invalid @enderror"
                                     name="categories[]" id="multiple-select-clear-field"
@@ -162,9 +165,10 @@
 
                             {{-- Name --}}
                             <div class="col-12">
-                                <label for="name" class="form-label">Name</label>
+                                <label for="name" class="form-label"><i class="bi bi-box-fill me-2"></i>Name</label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                    id="name" name="name" value="{{ old('name') }}">
+                                    id="name" name="name" value="{{ old('name') }}"
+                                    placeholder="Product name">
 
                                 @error('name')
                                     <small class="invalid-feedback"><strong>{{ $message }}</strong></small>
@@ -173,19 +177,34 @@
 
                             {{-- Price --}}
                             <div class="col-12">
-                                <label for="price" class="form-label">Price</label>
+                                <label for="price" class="form-label"><i class="bi bi-cash me-2"></i>Price</label>
                                 <input type="text" class="form-control @error('price') is-invalid @enderror"
-                                    id="price" name="price" value="{{ old('price') }}">
+                                    id="price" name="price" value="{{ old('price') }}"
+                                    placeholder="Product price">
 
                                 @error('price')
                                     <small class="invalid-feedback"><strong>{{ $message }}</strong></small>
                                 @enderror
                             </div>
 
+                            {{-- Shopee URL --}}
+                            <div class="col-12">
+                                <label for="url_shopee" class="form-label"><i class="bi bi-link-45deg me-2"></i>Shopee
+                                    URL</label>
+                                <textarea name="url_shopee" id="url_shopee" rows="5"
+                                    class="form-control @error('url_shopee') is-invalid @enderror" placeholder="Product url">{{ old('url_shopee') }}</textarea>
+
+                                @error('url_shopee')
+                                    <small class="invalid-feedback"><strong>{{ $message }}</strong></small>
+                                @enderror
+                            </div>
+
                             {{-- Description --}}
                             <div class="col-12">
-                                <label for="description" class="form-label">Description</label>
-                                <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
+                                <label for="description" class="form-label"><i
+                                        class="bi bi-body-text me-2"></i>Description</label>
+                                <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror"
+                                    placeholder="Product description">{{ old('description') }}</textarea>
 
                                 @error('description')
                                     <small class="invalid-feedback"><strong>{{ $message }}</strong></small>
@@ -248,7 +267,8 @@
                         const $label = $('<label>')
                             .addClass('form-label')
                             .attr('for', `images-${i}`)
-                            .text(`Image-${i}`);
+                            .append('<i class="bi bi-images me-2"></i>')
+                            .append(`Image-${i}`);
 
                         const $input = $('<input>')
                             .attr({

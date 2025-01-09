@@ -52,10 +52,7 @@ Route::prefix('dashboard')->group(function () {
     // COMPANY
     Route::prefix('company')->group(function () {
         Route::get('/', [CompanyController::class, 'index'])->name('company.index');
+        Route::get('form', [CompanyController::class, 'form'])->name('company.form');
         Route::post('/', [CompanyController::class, 'store'])->name('company.store');
-        Route::get('{company}', [CompanyController::class, 'show'])->name('company.show');
-        Route::get('{company}/edit', [CompanyController::class, 'edit'])->name('company.edit');
-        Route::put('{company}', [CompanyController::class, 'update'])->name('company.update');
-        Route::delete('{company}', [CompanyController::class, 'destroy'])->name('company.destroy');
     });
 });

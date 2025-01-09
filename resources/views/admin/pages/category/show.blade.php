@@ -44,11 +44,11 @@
     </nav>
 
     <div class="card mt-4 shadow">
-        <div class="card-header bg-light fw-medium py-3">
+        <div class="card-header bg-white fw-medium py-3">
             <div class="d-flex align-items-center justify-content-between">
                 Category: {{ $category->name }}
                 <a href="{{ route('category.edit', ['category' => $category->slug]) }}"
-                    class="btn btn-sm btn-warning custom align-middle"><i class="bi bi-pencil"></i></a>
+                    class="btn btn-sm btn-warning custom align-middle">Edit<i class="bi bi-pencil ms-2"></i></a>
             </div>
         </div>
 
@@ -65,13 +65,14 @@
                     {{-- Form --}}
                     <div class="row g-3">
                         <div class="col-12">
-                            <label for="name" class="form-label">Name</label>
+                            <label for="name" class="form-label"><i class="bi bi-tags-fill me-2"></i>Name</label>
                             <input type="text" class="form-control" id="name" value="{{ $category->name }}"
                                 disabled>
                         </div>
 
                         <div class="col-12">
-                            <label for="description" class="form-label">Short Description</label>
+                            <label for="description" class="form-label"><i class="bi bi-card-text me-2"></i>Short
+                                Description</label>
                             <textarea class="form-control" id="description" rows="5" disabled>{{ $category->description ? $category->description : '-' }}</textarea>
                         </div>
                     </div>

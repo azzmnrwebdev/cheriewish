@@ -15,7 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
+            $table->string('phone_number');
+            $table->string('shopee');
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('tiktok')->nullable();
+            $table->string('twitter')->nullable();
             $table->text('address')->nullable();
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }
