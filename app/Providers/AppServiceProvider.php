@@ -45,6 +45,7 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('layouts.guest', 'guest');
         Blade::component('layouts.admin', 'admin');
         Blade::component('components.navbar', 'navbar');
+        Blade::component('components.footer', 'footer');
 
         Paginator::useBootstrapFive();
     }

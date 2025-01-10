@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Admin\TestimonyController;
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('shop', [ShopController::class, 'index'])->name('shop.index');
 Route::get('shop/{slug}', [ShopController::class, 'show'])->name('shop.show');
+Route::get('about', [AboutController::class, 'index'])->name('about');
 
 // DASHBOARD
 Route::prefix('dashboard')->group(function () {
