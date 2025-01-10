@@ -1,6 +1,6 @@
 <aside id="sidebar" class="d-flex flex-column gap-0">
     <div class="sidebar-logo d-flex align-items-center justify-content-between">
-        <a href="{{ route('dashboard') }}">{{ $company ? $company->name : 'Cheriewish' }}</a>
+        <a href="{{ route('home') }}">{{ $company ? $company->name : 'Cheriewish' }}</a>
 
         <i class="bi bi-caret-left-fill d-lg-none text-white" id="sidebarToggle"></i>
     </div>

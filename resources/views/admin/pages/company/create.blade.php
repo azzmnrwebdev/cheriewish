@@ -381,6 +381,17 @@
                 });
 
                 // =============================================================================================
+
+                $('#phone_number').on('input', function() {
+                    let value = $(this).val();
+                    value = value.replace(/[^0-9]/g, '');
+
+                    if (value.startsWith('0')) {
+                        value = '62' + value.slice(1);
+                    }
+
+                    $(this).val(value);
+                });
             });
         </script>
     @endprepend
