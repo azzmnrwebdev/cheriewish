@@ -265,6 +265,19 @@
                     $(this).addClass('active');
                     $('.thumbnail-wrapper img').attr('src', $(this).attr('src'));
                 });
+
+                // =============================================================================================
+
+                $('.product-image-container').each(function() {
+                    let currentIndex = 0;
+                    const $images = $(this).find('.product-image');
+
+                    setInterval(() => {
+                        $images.eq(currentIndex).removeClass('active');
+                        currentIndex = (currentIndex + 1) % $images.length;
+                        $images.eq(currentIndex).addClass('active');
+                    }, 3000);
+                });
             });
         </script>
     @endprepend
