@@ -181,7 +181,7 @@
                     </div>
 
                     <div class="d-block mt-3 mb-4">
-                        <a href="#" class="btn btn-dark">
+                        <a href="{{ $product->url_shopee }}" target="_blank" class="btn btn-dark">
                             <i class="bi bi-bag-fill me-2"></i>Buy Now
                         </a>
                     </div>
