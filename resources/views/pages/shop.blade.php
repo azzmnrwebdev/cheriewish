@@ -172,7 +172,7 @@
                             <form>
                                 <div class="mb-3">
                                     <input type="search" class="form-control bg-transparent" id="search"
-                                        name="search" value="{{ $search }}" placeholder="Search by name">
+                                        name="search" value="{{ $search }}" placeholder="Search...">
                                 </div>
 
                                 <div class="mb-3">
@@ -202,55 +202,60 @@
                 </div>
 
                 <div class="col-12 col-md-8 col-xxl-9">
-                    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xxl-5 g-3">
-                        @foreach ($products as $product)
-                            <a href="{{ route('shop.show', ['slug' => $product->slug]) }}" class="text-decoration-none">
-                                <div class="col">
-                                    <div class="card h-100 border-0 rounded-none bg-transparent">
-                                        <div class="card-body p-0">
-                                            {{-- Image --}}
-                                            <div class="product-image-container">
-                                                <img src="{{ asset('storage/' . $product->thumbnail->path) }}"
-                                                    alt="{{ $product->name }}" class="product-image main-image">
+                    @if ($products->count() > 0)
+                        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xxl-5 g-3">
+                            @foreach ($products as $product)
+                                <a href="{{ route('shop.show', ['slug' => $product->slug]) }}"
+                                    class="text-decoration-none">
+                                    <div class="col">
+                                        <div class="card h-100 border-0 rounded-none bg-transparent">
+                                            <div class="card-body p-0">
+                                                {{-- Image --}}
+                                                <div class="product-image-container">
+                                                    <img src="{{ asset('storage/' . $product->thumbnail->path) }}"
+                                                        alt="{{ $product->name }}" class="product-image main-image">
 
-                                                @foreach ($product->images as $index => $image)
-                                                    <img src="{{ asset('storage/' . $image->path) }}"
-                                                        alt="{{ $product->name }}"
-                                                        class="product-image loop-image {{ $index === 0 ? 'active' : '' }}">
+                                                    @foreach ($product->images as $index => $image)
+                                                        <img src="{{ asset('storage/' . $image->path) }}"
+                                                            alt="{{ $product->name }}"
+                                                            class="product-image loop-image {{ $index === 0 ? 'active' : '' }}">
+                                                    @endforeach
+                                                </div>
+
+                                                {{-- Price --}}
+                                                <h5 class="card-title price">{{ $product->price }}</h5>
+
+                                                {{-- Name --}}
+                                                <h5 class="card-title name mb-3">{{ $product->name }}</h5>
+
+                                                {{-- Category --}}
+                                                @foreach ($product->categories as $category)
+                                                    @php
+                                                        $colors = [
+                                                            ['bg' => '#fce7f3', 'text' => '#ec4899'],
+                                                            ['bg' => '#f3e8ff', 'text' => '#a855f7'],
+                                                            ['bg' => '#e0f2fe', 'text' => '#0ea5e9'],
+                                                            ['bg' => '#ccfbf1', 'text' => '#14b8a6'],
+                                                            ['bg' => '#ffedd5', 'text' => '#f97316'],
+                                                        ];
+
+                                                        $randomColor = $colors[array_rand($colors)];
+                                                    @endphp
+
+                                                    <span class="badge rounded-pill"
+                                                        style="background-color: {{ $randomColor['bg'] }}; color: {{ $randomColor['text'] }};">
+                                                        {{ $category->name }}
+                                                    </span>
                                                 @endforeach
                                             </div>
-
-                                            {{-- Price --}}
-                                            <h5 class="card-title price">{{ $product->price }}</h5>
-
-                                            {{-- Name --}}
-                                            <h5 class="card-title name mb-3">{{ $product->name }}</h5>
-
-                                            {{-- Category --}}
-                                            @foreach ($product->categories as $category)
-                                                @php
-                                                    $colors = [
-                                                        ['bg' => '#fce7f3', 'text' => '#ec4899'],
-                                                        ['bg' => '#f3e8ff', 'text' => '#a855f7'],
-                                                        ['bg' => '#e0f2fe', 'text' => '#0ea5e9'],
-                                                        ['bg' => '#ccfbf1', 'text' => '#14b8a6'],
-                                                        ['bg' => '#ffedd5', 'text' => '#f97316'],
-                                                    ];
-
-                                                    $randomColor = $colors[array_rand($colors)];
-                                                @endphp
-
-                                                <span class="badge rounded-pill"
-                                                    style="background-color: {{ $randomColor['bg'] }}; color: {{ $randomColor['text'] }};">
-                                                    {{ $category->name }}
-                                                </span>
-                                            @endforeach
                                         </div>
                                     </div>
-                                </div>
-                            </a>
-                        @endforeach
-                    </div>
+                                </a>
+                            @endforeach
+                        </div>
+                    @else
+                        <p class="card-text">Sorry, product not found!</p>
+                    @endif
                 </div>
             </div>
         </div>

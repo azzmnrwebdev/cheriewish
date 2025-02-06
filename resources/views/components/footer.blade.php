@@ -4,6 +4,7 @@
             $company = \App\Models\Company::latest()->first();
 
             $socialLinks = [
+                'shopee' => $company->shopee ?? null,
                 'facebook' => $company->facebook ?? null,
                 'instagram' => $company->instagram ?? null,
                 'tiktok' => $company->tiktok ?? null,
@@ -24,7 +25,8 @@
                     @foreach ($socialLinks as $key => $link)
                         <li class="{{ $loop->first ? 'ms-0' : 'ms-3' }}">
                             <a href="{{ $link }}" class="text-body-secondary" target="_blank">
-                                <i class="bi bi-{{ $key }} fs-5"></i>
+                                <i
+                                    class="bi {{ $key === 'shopee' ? 'bi-bag-fill' : ($key === 'twitter' ? 'bi-twitter-x' : 'bi-' . $key) }} fs-5"></i>
                             </a>
                         </li>
                     @endforeach
