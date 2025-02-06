@@ -44,7 +44,6 @@
         @csrf
 
         <input type="hidden" name="companyId" value="{{ $company->id ?? '' }}">
-        <input type="hidden" name="aboutId" value="{{ $about->id ?? '' }}">
 
         {{-- Company Logo --}}
         <div class="card mt-4 shadow">
@@ -184,25 +183,12 @@
                 <div class="row justify-content-md-center">
                     <div class="col-md-10 col-lg-8 col-xl-6">
                         <div class="row g-3">
-                            {{-- Title --}}
-                            <div class="col-12">
-                                <label for="title" class="form-label"><i
-                                        class="bi bi-type-h1 me-2"></i>Title</label>
-                                <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                    id="title" name="title" value="{{ old('title', $about->title ?? '') }}"
-                                    placeholder="Page title">
-
-                                @error('title')
-                                    <small class="invalid-feedback"><strong>{{ $message }}</strong></small>
-                                @enderror
-                            </div>
-
                             {{-- Short Description --}}
                             <div class="col-12">
                                 <label for="short_description" class="form-label"><i
-                                        class="bi bi-card-text me-2"></i>Short Description</label>
+                                        class="bi bi-card-text me-2"></i>Short Description (optional)</label>
                                 <textarea name="short_description" id="short_description" rows="5" class="form-control"
-                                    placeholder="Short description">{{ old('short_description', $about->short_description ?? '') }}</textarea>
+                                    placeholder="Short description">{{ old('short_description', $company->short_description ?? '') }}</textarea>
 
                                 @error('short_description')
                                     <small class="invalid-feedback d-block"><strong>{{ $message }}</strong></small>
@@ -212,9 +198,9 @@
                             {{-- Long Description --}}
                             <div class="col-12">
                                 <label for="description" class="form-label"><i class="bi bi-body-text me-2"></i>Long
-                                    Description</label>
+                                    Description (optional)</label>
                                 <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror"
-                                    placeholder="Long description">{{ old('description', $about->description ?? '') }}</textarea>
+                                    placeholder="Long description">{{ old('description', $company->description ?? '') }}</textarea>
 
                                 @error('description')
                                     <small class="invalid-feedback"><strong>{{ $message }}</strong></small>

@@ -16,17 +16,15 @@ class CompanyController extends Controller
     public function index()
     {
         $company = Company::latest()->first();
-        $about = About::latest()->first();
 
-        return view('admin.pages.company.index', compact('company', 'about'));
+        return view('admin.pages.company.index', compact('company'));
     }
 
     public function form()
     {
         $company = Company::latest()->first();
-        $about = About::latest()->first();
 
-        return view('admin.pages.company.create', compact('company', 'about'));
+        return view('admin.pages.company.create', compact('company'));
     }
 
     public function store(Request $request)
@@ -38,13 +36,12 @@ class CompanyController extends Controller
             'phone_number' => 'required|numeric',
             'shopee' => 'required|url',
             'address' => 'nullable|string',
-            'title' => 'required|string|max:225',
-            'short_description' => 'required|string',
-            'description' => 'required|string',
             'facebook' => 'nullable|url',
             'instagram' => 'nullable|url',
             'tiktok' => 'nullable|url',
             'twitter' => 'nullable|url',
+            'short_description' => 'nullable|string',
+            'description' => 'nullable|string',
         ];
 
         $messages = [
@@ -63,17 +60,12 @@ class CompanyController extends Controller
             'shopee.required' => 'Shopee URL is required.',
             'shopee.url' => 'Shopee URL is invalid.',
             'address.string' => 'Company address must be text.',
-            'title.required' => 'Page title is required.',
-            'title.string' => 'Page title must be text.',
-            'title.max' => 'Page title should not exceed 225 characters.',
-            'short_description.required' => 'Short description is required.',
-            'short_description.string' => 'Short description must be text.',
-            'description.required' => 'Long description is required.',
-            'description.string' => 'Long description must be text.',
             'facebook.url' => 'Facebook URL is invalid.',
             'instagram.url' => 'Instagram URL is invalid.',
             'tiktok.url' => 'TikTok URL is invalid.',
             'twitter.url' => 'Twitter URL is invalid.',
+            'short_description.string' => 'Short description must be text.',
+            'description.string' => 'Long description must be text.',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -82,48 +74,40 @@ class CompanyController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        DB::beginTransaction();
-
         try {
-            if ($request->hasFile('logo')) {
-                Storage::disk('public')->delete(Company::find($request->input('companyId'))->logo);
+            return DB::transaction(function () use ($request) {
+                if ($request->hasFile('logo')) {
+                    if ($request->input('companyId')) {
+                        $company = Company::find($request->input('companyId'));
+                        Storage::disk('public')->delete($company->logo);
+                    }
 
-                $logo = $request->file('logo');
-                $logoName = 'logo_' . sha1(mt_rand(1, 999999) . microtime()) . '.' . $logo->getClientOriginalExtension();
-                $logoPath = $logo->storeAs('logo', $logoName, 'public');
-            }
+                    $logo = $request->file('logo');
+                    $logoName = 'logo_' . sha1(mt_rand(1, 999999) . microtime()) . '.' . $logo->getClientOriginalExtension();
+                    $logoPath = $logo->storeAs('logo', $logoName, 'public');
+                }
 
-            Company::updateOrCreate(
-                ['id' => $request->input('companyId')],
-                [
-                    'name' => $request->input('name'),
-                    'email' => $request->input('email'),
-                    'phone_number' => $request->input('phone_number'),
-                    'shopee' => $request->input('shopee'),
-                    'facebook' => $request->input('facebook'),
-                    'instagram' => $request->input('instagram'),
-                    'tiktok' => $request->input('tiktok'),
-                    'twitter' => $request->input('twitter'),
-                    'address' => $request->input('address'),
-                    'logo' => $logoPath ?? $request->input('old_logo'),
-                ]
-            );
+                Company::updateOrCreate(
+                    ['id' => $request->input('companyId')],
+                    [
+                        'logo' => $logoPath ?? $request->input('old_logo'),
+                        'name' => $request->input('name'),
+                        'email' => $request->input('email'),
+                        'phone_number' => $request->input('phone_number'),
+                        'shopee' => $request->input('shopee'),
+                        'facebook' => $request->input('facebook'),
+                        'instagram' => $request->input('instagram'),
+                        'tiktok' => $request->input('tiktok'),
+                        'twitter' => $request->input('twitter'),
+                        'address' => $request->input('address'),
+                        'short_description' => $request->input('short_description'),
+                        'description' => $request->input('description'),
+                    ]
+                );
 
-            About::updateOrCreate(
-                ['id' => $request->input('aboutId')],
-                [
-                    'title' => $request->input('title'),
-                    'short_description' => $request->input('short_description'),
-                    'description' => $request->input('description'),
-                ]
-            );
-
-            DB::commit();
-
-            return redirect(route('company.index'))->with('success', 'Company successfully saved.');
+                return redirect(route('company.index'))->with('success', 'Company successfully saved.');
+            });
         } catch (Exception $e) {
-            DB::rollBack();
-
             return redirect(route('company.index'))->with('error', 'An error occurred while saving data.');
         }
     }

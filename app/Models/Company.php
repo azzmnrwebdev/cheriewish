@@ -11,6 +11,7 @@ class Company extends Model
 
     protected $table = 'companies';
     protected $fillable = [
+        'logo',
         'name',
         'email',
         'phone_number',
@@ -20,6 +21,7 @@ class Company extends Model
         'tiktok',
         'twitter',
         'address',
-        'logo'
+        'short_description',
+        'description',
     ];
 }

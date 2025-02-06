@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
+            $table->string('logo');
             $table->string('name');
             $table->string('email');
             $table->string('phone_number');
@@ -22,7 +23,8 @@ return new class extends Migration
             $table->string('tiktok')->nullable();
             $table->string('twitter')->nullable();
             $table->text('address')->nullable();
-            $table->string('logo')->nullable();
+            $table->text('short_description')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
