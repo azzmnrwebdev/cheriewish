@@ -6,7 +6,7 @@
     </div>
 
     <div class="sidebar-input my-4">
-        <input type="search" class="form-control" placeholder="Looking for a menu?">
+        <input type="search" class="form-control" placeholder="Search...">
     </div>
 
     <ul class="sidebar-nav h-100 overflow-y-scroll">

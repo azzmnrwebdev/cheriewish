@@ -121,12 +121,12 @@
                                     <div class="alert alert-danger mb-0" role="alert">
                                         <ul class="mb-0">
                                             @foreach ($errors->get('images') as $error)
-                                                <li>{{ $error }}</li>
+                                                <li style="list-style: disc;">{{ $error }}</li>
                                             @endforeach
 
                                             @foreach ($errors->get('images.*') as $imageErrors)
                                                 @foreach ($imageErrors as $error)
-                                                    <li>{{ $error }}</li>
+                                                    <li style="list-style: disc;">{{ $error }}</li>
                                                 @endforeach
                                             @endforeach
                                         </ul>
@@ -138,8 +138,8 @@
                             <div class="col-12" id="imageInputsContainer">
                                 @foreach ($product->imagesWithoutThumbnail as $index => $image)
                                     <div class="col-12 mb-3">
-                                        <label for="images-{{ $index + 1 }}"
-                                            class="form-label"><i class="bi bi-images me-2"></i>Image-{{ $index + 1 }}</label>
+                                        <label for="images-{{ $index + 1 }}" class="form-label"><i
+                                                class="bi bi-images me-2"></i>Image-{{ $index + 1 }}</label>
                                         <input type="file" id="images-{{ $index + 1 }}" name="images[]"
                                             accept="image/*" class="form-control">
                                         <input type="hidden" name="old_images[{{ $index }}]"
@@ -230,6 +230,47 @@
                                 @error('name')
                                     <small class="invalid-feedback"><strong>{{ $message }}</strong></small>
                                 @enderror
+                            </div>
+
+                            {{-- Size --}}
+                            <div class="col-12">
+                                <label for="size" class="form-label"><i
+                                        class="bi bi-bounding-box-circles me-2"></i>Size</label>
+                                <div>
+                                    @php
+                                        $oldSizes = old('size', $selectedSizes);
+                                    @endphp
+
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                                            value="S" name="size[]"
+                                            {{ in_array('S', $oldSizes) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="inlineCheckbox1">S (Small)</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
+                                            value="M" name="size[]"
+                                            {{ in_array('M', $oldSizes) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="inlineCheckbox2">M (Medium)</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
+                                            value="L" name="size[]"
+                                            {{ in_array('L', $oldSizes) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="inlineCheckbox3">L (Large)</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox4"
+                                            value="XL" name="size[]"
+                                            {{ in_array('XL', $oldSizes) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="inlineCheckbox4">XL (Extra Large)</label>
+                                    </div>
+
+                                    @error('size')
+                                        <small
+                                            class="invalid-feedback d-block"><strong>{{ $message }}</strong></small>
+                                    @enderror
+                                </div>
                             </div>
 
                             {{-- Price --}}

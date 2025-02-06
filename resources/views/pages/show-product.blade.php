@@ -174,12 +174,12 @@
                     {{-- Price --}}
                     <h5 class="card-title price my-4">Rp {{ $product->price }}</h5>
 
-                    {{-- Visit Shopee --}}
                     <div class="d-inline-flex align-items-center text-white fw-semibold ps-3 rounded-3"
                         style="height: 42px; width: 258px; background-color: #FF79A2;">
                         Local Product
                     </div>
 
+                    {{-- Visit Shopee --}}
                     <div class="d-block mt-3 mb-4">
                         <a href="{{ $product->url_shopee }}" target="_blank" class="btn btn-dark">
                             <i class="bi bi-bag-fill me-2"></i>Buy Now

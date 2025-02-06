@@ -6,6 +6,7 @@ use Exception;
 use App\Models\Product;
 use App\Models\Testimony;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
@@ -65,14 +66,16 @@ class TestimonyController extends Controller
         }
 
         try {
-            Testimony::create([
-                'product_id' => $request->input('product_id'),
-                'name' => $request->input('name'),
-                'description' => $request->input('description'),
-                'stars' => $request->input('stars'),
-            ]);
+            return DB::transaction(function () use ($request) {
+                Testimony::create([
+                    'product_id' => $request->input('product_id'),
+                    'name' => $request->input('name'),
+                    'description' => $request->input('description'),
+                    'stars' => $request->input('stars'),
+                ]);
 
-            return redirect(route('testimony.index'))->with('success', 'Testimony successfully saved.');
+                return redirect(route('testimony.index'))->with('success', 'Testimony successfully saved.');
+            });
         } catch (Exception $e) {
             return redirect(route('testimony.index'))->with('error', 'An error occurred while saving data.');
         }
@@ -116,14 +119,16 @@ class TestimonyController extends Controller
         }
 
         try {
-            $testimony->update([
-                'product_id' => $request->input('product_id'),
-                'name' => $request->input('name'),
-                'description' => $request->input('description'),
-                'stars' => $request->input('stars'),
-            ]);
+            return DB::transaction(function () use ($request, $testimony) {
+                $testimony->update([
+                    'product_id' => $request->input('product_id'),
+                    'name' => $request->input('name'),
+                    'description' => $request->input('description'),
+                    'stars' => $request->input('stars'),
+                ]);
 
-            return redirect(route('testimony.index'))->with('success', 'Testimony successfully updated.');
+                return redirect(route('testimony.index'))->with('success', 'Testimony successfully updated.');
+            });
         } catch (Exception $e) {
             return redirect(route('testimony.index'))->with('error', 'An error occurred while updating data.');
         }
@@ -132,9 +137,11 @@ class TestimonyController extends Controller
     public function destroy(Testimony $testimony)
     {
         try {
-            $testimony->delete();
+            return DB::transaction(function () use ($testimony) {
+                $testimony->delete();
 
-            return redirect(route('testimony.index'))->with('success', 'Testimony successfully deleted.');
+                return redirect(route('testimony.index'))->with('success', 'Testimony successfully deleted.');
+            });
         } catch (Exception $e) {
             return redirect(route('testimony.index'))->with('error', 'An error occurred while deleting data.');
         }

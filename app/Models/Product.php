@@ -13,6 +13,7 @@ class Product extends Model
     protected $fillable = [
         'name',
         'slug',
+        'size',
         'price',
         'description',
         'url_shopee'

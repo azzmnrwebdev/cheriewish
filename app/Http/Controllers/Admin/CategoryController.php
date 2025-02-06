@@ -55,15 +55,17 @@ class CategoryController extends Controller
         }
 
         try {
-            $slug = Str::slug($request->input('name'));
+            return DB::transaction(function () use ($request) {
+                $slug = Str::slug($request->input('name'));
 
-            $category = Category::create([
-                'name' => $request->input('name'),
-                'slug' => $slug,
-                'description' => $request->input('description'),
-            ]);
+                $category = Category::create([
+                    'name' => $request->input('name'),
+                    'slug' => $slug,
+                    'description' => $request->input('description'),
+                ]);
 
-            return redirect(route('category.show', ['category' => $category->slug]))->with('success', 'Category successfully saved.');
+                return redirect(route('category.show', ['category' => $category->slug]))->with('success', 'Category successfully saved.');
+            });
         } catch (Exception $e) {
             return redirect(route('category.index'))->with('error', 'An error occurred while saving data.');
         }
@@ -111,20 +113,22 @@ class CategoryController extends Controller
         }
 
         try {
-            $newName = $request->input('name');
-            $slug = $category->slug;
+            return DB::transaction(function () use ($request, $category) {
+                $newName = $request->input('name');
 
-            if ($newName !== $category->name) {
-                $slug = Str::slug($newName);
-            }
+                $slug = $category->slug;
+                if ($newName !== $category->name) {
+                    $slug = Str::slug($newName);
+                }
 
-            $category->update([
-                'name' => $newName,
-                'slug' => $slug,
-                'description' => $request->input('description'),
-            ]);
+                $category->update([
+                    'name' => $newName,
+                    'slug' => $slug,
+                    'description' => $request->input('description'),
+                ]);
 
-            return redirect(route('category.show', ['category' => $category->slug]))->with('success', 'Category successfully updated.');
+                return redirect(route('category.show', ['category' => $category->slug]))->with('success', 'Category successfully updated.');
+            });
         } catch (Exception $e) {
             return redirect(route('category.index'))->with('error', 'An error occurred while updating data.');
         }
@@ -136,35 +140,31 @@ class CategoryController extends Controller
             return redirect()->back()->with('error', 'Confirmed name does not match category name.');
         }
 
-        DB::beginTransaction();
-
         try {
-            $products = $category->products;
+            return DB::transaction(function () use ($category) {
+                $category->products;
 
-            $category->products()->detach();
+                $category->products()->detach();
 
-            foreach ($category->products as $product) {
-                $product->categories()->detach();
+                foreach ($category->products as $product) {
+                    $product->categories()->detach();
 
-                Storage::disk('public')->delete($product->thumbnail->path);
-                $product->thumbnail->delete();
+                    Storage::disk('public')->delete($product->thumbnail->path);
+                    $product->thumbnail->delete();
 
-                foreach ($product->images as $image) {
-                    Storage::disk('public')->delete($image->path);
-                    $image->delete();
+                    foreach ($product->images as $image) {
+                        Storage::disk('public')->delete($image->path);
+                        $image->delete();
+                    }
+
+                    $product->delete();
                 }
 
-                $product->delete();
-            }
+                $category->delete();
 
-            $category->delete();
-
-            DB::commit();
-
-            return redirect(route('category.index'))->with('success', 'Category successfully deleted.');
+                return redirect(route('category.index'))->with('success', 'Category successfully deleted.');
+            });
         } catch (Exception $e) {
-            DB::rollBack();
-
             return redirect(route('category.index'))->with('error', 'An error occurred while deleting data.');
         }
     }

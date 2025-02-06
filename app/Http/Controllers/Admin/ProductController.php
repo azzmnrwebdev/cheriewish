@@ -45,6 +45,8 @@ class ProductController extends Controller
             'numberImages' => 'required|integer|min:1|max:10',
             'thumbnail' => 'required|image|mimes:jpg,jpeg,png',
             'name' => 'required|string|max:225',
+            'size' => 'required|array',
+            'size.*' => 'in:S,M,L,XL',
             'price' => 'required',
             'url_shopee' => 'required|url',
             'description' => 'required|string',
@@ -61,6 +63,9 @@ class ProductController extends Controller
             'name.required' => 'Product name is required.',
             'name.string' => 'Product name must be text.',
             'name.max' => 'Product name should not exceed 225 characters.',
+            'size.required' => 'Product size is required.',
+            'size.array' => 'Product size must be an array.',
+            'size.*.in' => 'Invalid size selected. Please choose S, M, L, or XL.',
             'price.required' => 'Product price is required.',
             'url_shopee.required' => 'Shopee URL is required.',
             'url_shopee.url' => 'Shopee URL must be a valid URL.',
@@ -85,52 +90,49 @@ class ProductController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        DB::beginTransaction();
-
         try {
-            $product = Product::create([
-                'name' => $request->input('name'),
-                'slug' => Str::slug($request->input('name')),
-                'price' => $request->input('price'),
-                'description' => $request->input('description'),
-                'url_shopee' => $request->input('url_shopee'),
-            ]);
-
-            $product->categories()->attach($request->input('categories'));
-
-            if ($request->hasFile('thumbnail')) {
-                $thumbnail = $request->file('thumbnail');
-                $slug = str_replace('-', '_', $product->slug);
-                $thumbnailName = 'thumbnail_' . $slug . sha1(mt_rand(1, 999999) . microtime()) . '.' . $thumbnail->getClientOriginalExtension();
-                $thumbnailPath = $thumbnail->storeAs('products/thumbnails', $thumbnailName, 'public');
-
-                ProductImage::create([
-                    'product_id' => $product->id,
-                    'path' => $thumbnailPath,
-                    'is_thumbnail' => true,
+            return DB::transaction(function () use ($request) {
+                $product = Product::create([
+                    'name' => $request->input('name'),
+                    'slug' => Str::slug($request->input('name')),
+                    'size' => implode(',', $request->input('size')),
+                    'price' => $request->input('price'),
+                    'description' => $request->input('description'),
+                    'url_shopee' => $request->input('url_shopee'),
                 ]);
-            }
 
-            if ($request->hasFile('images')) {
-                foreach ($request->file('images') as $image) {
+                $product->categories()->attach($request->input('categories'));
+
+                if ($request->hasFile('thumbnail')) {
+                    $thumbnail = $request->file('thumbnail');
                     $slug = str_replace('-', '_', $product->slug);
-                    $imageName = 'image_' . $slug . sha1(mt_rand(1, 999999) . microtime()) . '.' . $image->getClientOriginalExtension();
-                    $imagePath = $image->storeAs('products/images', $imageName, 'public');
+                    $thumbnailName = 'thumbnail_' . $slug . sha1(mt_rand(1, 999999) . microtime()) . '.' . $thumbnail->getClientOriginalExtension();
+                    $thumbnailPath = $thumbnail->storeAs('products/thumbnails', $thumbnailName, 'public');
 
                     ProductImage::create([
                         'product_id' => $product->id,
-                        'path' => $imagePath,
-                        'is_thumbnail' => false,
+                        'path' => $thumbnailPath,
+                        'is_thumbnail' => true,
                     ]);
                 }
-            }
 
-            DB::commit();
+                if ($request->hasFile('images')) {
+                    foreach ($request->file('images') as $image) {
+                        $slug = str_replace('-', '_', $product->slug);
+                        $imageName = 'image_' . $slug . sha1(mt_rand(1, 999999) . microtime()) . '.' . $image->getClientOriginalExtension();
+                        $imagePath = $image->storeAs('products/images', $imageName, 'public');
 
-            return redirect()->route('product.show', ['product' => $product->slug])->with('success', 'Product successfully saved.');
+                        ProductImage::create([
+                            'product_id' => $product->id,
+                            'path' => $imagePath,
+                            'is_thumbnail' => false,
+                        ]);
+                    }
+                }
+
+                return redirect()->route('product.show', ['product' => $product->slug])->with('success', 'Product successfully saved.');
+            });
         } catch (Exception $e) {
-            DB::rollBack();
-
             return redirect(route('product.index'))->with('error', 'An error occurred while saving data.');
         }
     }
@@ -155,8 +157,9 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::all();
+        $selectedSizes = explode(',', $product->size);
 
-        return view('admin.pages.product.edit', compact('product', 'categories'));
+        return view('admin.pages.product.edit', compact('product', 'categories', 'selectedSizes'));
     }
 
     public function update(Product $product, Request $request)
@@ -165,6 +168,8 @@ class ProductController extends Controller
             'numberImages' => 'required|integer|min:1|max:10',
             'thumbnail' => 'nullable|image|mimes:jpg,jpeg,png',
             'name' => 'required|string|max:225',
+            'size' => 'required|array',
+            'size.*' => 'in:S,M,L,XL',
             'price' => 'required',
             'url_shopee' => 'required|url',
             'description' => 'required|string',
@@ -181,6 +186,9 @@ class ProductController extends Controller
             'name.required' => 'Product name is required.',
             'name.string' => 'Product name must be text.',
             'name.max' => 'Product name should not exceed 225 characters.',
+            'size.required' => 'Product size is required.',
+            'size.array' => 'Product size must be an array.',
+            'size.*.in' => 'Invalid size selected. Please choose S, M, L, or XL.',
             'price.required' => 'Product price is required.',
             'url_shopee.required' => 'Shopee URL is required.',
             'url_shopee.url' => 'Shopee URL must be a valid URL.',
@@ -205,92 +213,89 @@ class ProductController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        DB::beginTransaction();
-
         try {
-            $newName = $request->input('name');
-            $slug = $product->slug;
+            return DB::transaction(function () use ($request, $product) {
+                $newName = $request->input('name');
 
-            if ($newName !== $product->name) {
-                $slug = Str::slug($newName);
-            }
-
-            $product->update([
-                'name' => $newName,
-                'slug' => $slug,
-                'price' => $request->input('price'),
-                'description' => $request->input('description'),
-                'url_shopee' => $request->input('url_shopee'),
-            ]);
-
-            $product->categories()->sync($request->input('categories'));
-
-            // Thumbnail
-            if (!$request->input('old_thumbnail')) {
-                $existingThumbnail = ProductImage::where('product_id', $product->id)
-                    ->where('is_thumbnail', true)
-                    ->first();
-
-                if ($existingThumbnail) {
-                    Storage::disk('public')->delete($existingThumbnail->path);
-                    $existingThumbnail->delete();
+                $slug = $product->slug;
+                if ($newName !== $product->name) {
+                    $slug = Str::slug($newName);
                 }
-            }
 
-            if ($request->hasFile('thumbnail')) {
-                $thumbnail = $request->file('thumbnail');
-                $slug = str_replace('-', '_', $product->slug);
-                $thumbnailName = 'thumbnail_' . $slug . sha1(mt_rand(1, 999999) . microtime()) . '.' . $thumbnail->getClientOriginalExtension();
-                $thumbnailPath = $thumbnail->storeAs('products/thumbnails', $thumbnailName, 'public');
-
-                ProductImage::create([
-                    'product_id' => $product->id,
-                    'path' => $thumbnailPath,
-                    'is_thumbnail' => true,
+                $product->update([
+                    'name' => $newName,
+                    'slug' => $slug,
+                    'size' => implode(',', $request->input('size')),
+                    'price' => $request->input('price'),
+                    'description' => $request->input('description'),
+                    'url_shopee' => $request->input('url_shopee'),
                 ]);
-            }
 
-            // Images
-            $oldImages = $request->input('old_images', []);
+                $product->categories()->sync($request->input('categories'));
 
-            $oldImageIds = array_map(function ($json) {
-                $decoded = json_decode($json, true);
-                return $decoded['id'] ?? null;
-            }, $oldImages);
+                // Thumbnail
+                if (!$request->input('old_thumbnail')) {
+                    $existingThumbnail = ProductImage::where('product_id', $product->id)
+                        ->where('is_thumbnail', true)
+                        ->first();
 
-            $oldImageIds = array_filter($oldImageIds);
-
-            $existingImages = ProductImage::where('product_id', $product->id)
-                ->where('is_thumbnail', false)
-                ->get();
-
-            foreach ($existingImages as $existingImage) {
-                if (!in_array($existingImage->id, $oldImageIds)) {
-                    Storage::disk('public')->delete($existingImage->path);
-                    $existingImage->delete();
+                    if ($existingThumbnail) {
+                        Storage::disk('public')->delete($existingThumbnail->path);
+                        $existingThumbnail->delete();
+                    }
                 }
-            }
 
-            if ($request->hasFile('images')) {
-                foreach ($request->file('images') as $image) {
+                if ($request->hasFile('thumbnail')) {
+                    $thumbnail = $request->file('thumbnail');
                     $slug = str_replace('-', '_', $product->slug);
-                    $imageName = 'image_' . $slug . sha1(mt_rand(1, 999999) . microtime()) . '.' . $image->getClientOriginalExtension();
-                    $imagePath = $image->storeAs('products/images', $imageName, 'public');
+                    $thumbnailName = 'thumbnail_' . $slug . sha1(mt_rand(1, 999999) . microtime()) . '.' . $thumbnail->getClientOriginalExtension();
+                    $thumbnailPath = $thumbnail->storeAs('products/thumbnails', $thumbnailName, 'public');
 
                     ProductImage::create([
                         'product_id' => $product->id,
-                        'path' => $imagePath,
-                        'is_thumbnail' => false,
+                        'path' => $thumbnailPath,
+                        'is_thumbnail' => true,
                     ]);
                 }
-            }
 
-            DB::commit();
+                // Images
+                $oldImages = $request->input('old_images', []);
 
-            return redirect(route('product.show', ['product' => $product->slug]))->with('success', 'Product successfully updated.');
+                $oldImageIds = array_map(function ($json) {
+                    $decoded = json_decode($json, true);
+                    return $decoded['id'] ?? null;
+                }, $oldImages);
+
+                $oldImageIds = array_filter($oldImageIds);
+
+                $existingImages = ProductImage::where('product_id', $product->id)
+                    ->where('is_thumbnail', false)
+                    ->get();
+
+                foreach ($existingImages as $existingImage) {
+                    if (!in_array($existingImage->id, $oldImageIds)) {
+                        Storage::disk('public')->delete($existingImage->path);
+                        $existingImage->delete();
+                    }
+                }
+
+                if ($request->hasFile('images')) {
+                    foreach ($request->file('images') as $image) {
+                        $slug = str_replace('-', '_', $product->slug);
+                        $imageName = 'image_' . $slug . sha1(mt_rand(1, 999999) . microtime()) . '.' . $image->getClientOriginalExtension();
+                        $imagePath = $image->storeAs('products/images', $imageName, 'public');
+
+                        ProductImage::create([
+                            'product_id' => $product->id,
+                            'path' => $imagePath,
+                            'is_thumbnail' => false,
+                        ]);
+                    }
+                }
+
+                return redirect(route('product.show', ['product' => $product->slug]))->with('success', 'Product successfully updated.');
+            });
         } catch (Exception $e) {
-            DB::rollBack();
-
             return redirect(route('product.index'))->with('error', 'An error occurred while updating data.');
         }
     }

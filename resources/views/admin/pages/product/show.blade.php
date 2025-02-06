@@ -86,12 +86,12 @@
                     @endif
 
                     {{-- Thumbnail --}}
-                    <div class="thumbnail-wrapper border border-secondary rounded mb-3">
+                    <div class="thumbnail-wrapper mb-3">
                         <img src="{{ asset('storage/' . $product->thumbnail->path) }}" alt="Product Thumbnail">
                     </div>
 
                     {{-- Images --}}
-                    <div class="overflow-x-auto w-100 d-flex">
+                    <div class="overflow-x-auto w-100 d-flex justify-content-center">
                         @foreach ($product->images as $image)
                             <div class="image-box">
                                 <img src="{{ asset('storage/' . $image->path) }}" alt="Product Image"
@@ -107,29 +107,48 @@
                     <p class="card-text">{{ 'Rp ' . $product->price }}</p>
 
                     {{-- Categories --}}
-                    @foreach ($product->categories as $category)
-                        @php
-                            $colors = [
-                                ['bg' => '#fce7f3', 'text' => '#ec4899'],
-                                ['bg' => '#f3e8ff', 'text' => '#a855f7'],
-                                ['bg' => '#e0f2fe', 'text' => '#0ea5e9'],
-                                ['bg' => '#ccfbf1', 'text' => '#14b8a6'],
-                                ['bg' => '#ffedd5', 'text' => '#f97316'],
-                            ];
+                    <div class="mb-3">
+                        @foreach ($product->categories as $category)
+                            @php
+                                $colors = [
+                                    ['bg' => '#fce7f3', 'text' => '#ec4899'],
+                                    ['bg' => '#f3e8ff', 'text' => '#a855f7'],
+                                    ['bg' => '#e0f2fe', 'text' => '#0ea5e9'],
+                                    ['bg' => '#ccfbf1', 'text' => '#14b8a6'],
+                                    ['bg' => '#ffedd5', 'text' => '#f97316'],
+                                ];
 
-                            $randomColor = $colors[array_rand($colors)];
-                        @endphp
+                                $randomColor = $colors[array_rand($colors)];
+                            @endphp
 
-                        <a href="{{ route('category.show', ['category' => $category->slug]) }}">
-                            <span class="badge rounded-pill"
-                                style="background-color: {{ $randomColor['bg'] }}; color: {{ $randomColor['text'] }};">
-                                {{ $category->name }}
-                            </span>
-                        </a>
-                    @endforeach
+                            <a href="{{ route('category.show', ['category' => $category->slug]) }}">
+                                <span class="badge rounded-pill"
+                                    style="background-color: {{ $randomColor['bg'] }}; color: {{ $randomColor['text'] }};">
+                                    {{ $category->name }}
+                                </span>
+                            </a>
+                        @endforeach
+                    </div>
+
+                    {{-- Product Size --}}
+                    @php
+                        $sizes = explode(',', $product->size);
+                        $count = count($sizes);
+
+                        if ($count == 1) {
+                            $formattedSizes = $sizes[0];
+                        } else {
+                            $lastSize = array_pop($sizes);
+                            $formattedSizes = implode(', ', $sizes) . ' & ' . $lastSize;
+                        }
+                    @endphp
+                    <div class="d-inline-flex align-items-center text-white fw-semibold ps-3 rounded-3"
+                        style="height: 42px; width: 258px; background-color: #FF79A2;">
+                        Size: {{ $formattedSizes }}
+                    </div>
 
                     {{-- Product Description --}}
-                    <div class="alert alert-light mt-3 border-0" role="alert">
+                    <div class="alert alert-light mt-3 border-0 py-2" role="alert">
                         <span class="fw-medium fs-5">Product Description</span>
                     </div>
 
