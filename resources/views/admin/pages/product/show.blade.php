@@ -142,6 +142,7 @@
                             $formattedSizes = implode(', ', $sizes) . ' & ' . $lastSize;
                         }
                     @endphp
+
                     <div class="d-inline-flex align-items-center text-white fw-semibold ps-3 rounded-3"
                         style="height: 42px; width: 258px; background-color: #FF79A2;">
                         Size: {{ $formattedSizes }}

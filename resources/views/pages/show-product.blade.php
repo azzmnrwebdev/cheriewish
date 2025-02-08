@@ -106,6 +106,58 @@
                 opacity: 1;
             }
 
+            .btn-primary,
+            .btn-primary:hover,
+            .btn-primary:focus,
+            .btn-primary:active {
+                outline: none;
+                box-shadow: none;
+                color: #e23852 !important;
+                border-color: #e23852 !important;
+                background-color: #fdecef !important;
+            }
+
+            .description-container {
+                overflow: hidden;
+                max-height: 210px;
+            }
+
+            .description-container.expanded {
+                max-height: 100%;
+            }
+
+            .read-more,
+            .read-less {
+                cursor: pointer;
+                color: #AF1040;
+                font-weight: 500;
+                text-decoration: none;
+            }
+
+            .description-container p:nth-last-of-type(1),
+            .description-container p:nth-last-of-type(2) {
+                margin-bottom: 3px;
+            }
+
+            .paginate {
+                position: relative;
+            }
+
+            .paginate.active {
+                color: #AF1040 !important;
+            }
+
+            .paginate.active::after {
+                content: "";
+                left: 0;
+                right: 0;
+                height: 2px;
+                bottom: -4px;
+                margin-top: 2px;
+                position: absolute;
+                background-color: #AF1040;
+            }
+
             @media (min-width: 576px) {
                 /*  */
             }
@@ -189,13 +241,112 @@
                     {{-- Product Description --}}
                     <h5 class="card-title mb-3">Description</h5>
 
-                    <p class="card-text mb-0">
-                        {!! $product->description !!}
-                    </p>
+                    @php
+                        $sizes = explode(',', $product->size);
+                    @endphp
+
+                    @foreach ($sizes as $size)
+                        <button type="button" class="btn btn-sm btn-primary align-middle">Size
+                            {{ trim($size) }}</button>
+                    @endforeach
+
+                    <div class="description-container" id="descriptionContainer">
+                        <p class="card-text mb-0 mt-3">
+                            {!! $product->description !!}
+                        </p>
+                    </div>
+
+                    @if (strlen($product->description) > 200)
+                        <a class="read-more" id="readMore">See More</a>
+                        <a class="read-less" id="readLess" style="display: none;">See Less</a>
+                    @endif
                 </div>
             </div>
 
-            {{-- Other Product --}}
+            {{-- Reviews --}}
+            <div class="mt-5 mb-3 d-flex justify-content-between align-items-center">
+                <h3 class="fw-bold">Reviews</h3>
+                <form>
+                    <select name="sort" id="sort" class="form-select">
+                        <option value="latest" {{ $sort === 'latest' ? 'selected' : '' }}>Latest</option>
+                        <option value="highest" {{ $sort === 'highest' ? 'selected' : '' }}>Highest Rating</option>
+                        <option value="lowest" {{ $sort === 'lowest' ? 'selected' : '' }}>Lowest Rating</option>
+                    </select>
+                </form>
+            </div>
+
+            @if ($totalReviews != 0)
+                <p class="card-text">Showing {{ $reviews->count() }} of {{ $totalReviews }} reviews.</p>
+
+                @if ($reviews->count() > 0)
+                    <div class="row row-cols-1 g-3">
+                        <div class="col-md-8 col-lg-6">
+                            @foreach ($reviews as $review)
+                                <div class="card bg-transparent border-0">
+                                    <div class="card-body p-0">
+                                        <div class="d-flex align-items-center justify-content-start">
+                                            {{-- Stars --}}
+                                            <div>
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    @if ($i <= $review->stars)
+                                                        <i class="bi bi-star-fill fs-6" style="color: orange;"></i>
+                                                    @else
+                                                        <i class="bi bi-star fs-6"></i>
+                                                    @endif
+                                                @endfor
+                                            </div>
+
+                                            {{-- Date --}}
+                                            <p class="card-text text-muted m-0 ms-3">
+                                                {{ \Carbon\Carbon::parse($review->updated_at)->translatedFormat('d F Y') }}
+                                            </p>
+                                        </div>
+
+                                        {{-- Name --}}
+                                        <h5 class="card-title fs-6 fw-semibold mt-2">{{ $review->name }}</h5>
+
+                                        {{-- Description --}}
+                                        <p class="card-text">{{ $review->description }}</p>
+                                    </div>
+                                </div>
+                                <hr />
+                            @endforeach
+                        </div>
+                    </div>
+                @else
+                    <p class="card-text">
+                        No reviews found for this product yet.
+                    </p>
+                @endif
+
+                {{-- Previous --}}
+                @if ($page > 1)
+                    <a href="{{ route('shop.show', ['slug' => $product->slug, 'page' => $page - 1, 'sort' => request()->query('sort')]) }}"
+                        class="text-dark"><i class="bi bi-chevron-left"></i></a>
+                @else
+                    <span class="text-muted"><i class="bi bi-chevron-left"></i></span>
+                @endif
+
+                {{-- Pagination --}}
+                @for ($i = 1; $i <= $totalPages; $i++)
+                    <a href="{{ route('shop.show', ['slug' => $product->slug, 'page' => $i, 'sort' => request()->query('sort')]) }}"
+                        class="paginate {{ $page == $i ? 'active' : '' }} text-decoration-none text-muted px-1">{{ $i }}</a>
+                @endfor
+
+                {{-- Next --}}
+                @if ($page < $totalPages)
+                    <a href="{{ route('shop.show', ['slug' => $product->slug, 'page' => $page + 1, 'sort' => request()->query('sort')]) }}"
+                        class="text-dark"><i class="bi bi-chevron-right"></i></a>
+                @else
+                    <span class="text-muted"><i class="bi bi-chevron-right"></i></span>
+                @endif
+            @else
+                <p class="card-text">
+                    No reviews found for this product yet.
+                </p>
+            @endif
+
+            {{-- Other Products --}}
             <div class="mt-5 mb-3 d-flex justify-content-between align-items-center">
                 <h3 class="fw-bold">Other Products</h3>
                 <a href="{{ route('shop.index') }}" class="text-decoration-none fw-semibold">See All</a>
@@ -265,6 +416,53 @@
                     $(this).addClass('active');
                     $('.thumbnail-wrapper img').attr('src', $(this).attr('src'));
                 });
+
+                // =============================================================================================
+
+                const $readMore = $('#readMore');
+                const $readLess = $('#readLess');
+                const $descriptionContainer = $('#descriptionContainer');
+
+                $readMore.on('click', function() {
+                    $descriptionContainer.addClass('expanded');
+                    $readMore.hide();
+                    $readLess.show();
+                });
+
+                $readLess.on('click', function() {
+                    $descriptionContainer.removeClass('expanded');
+                    $readLess.hide();
+                    $readMore.show();
+                });
+
+                // =============================================================================================
+
+                let debounceTimeout;
+
+                $('#sort').on('input keydown', function(e) {
+                    if (e.which !== 13) {
+                        clearTimeout(debounceTimeout);
+
+                        debounceTimeout = setTimeout(function() {
+                            filter();
+                        }, 1000);
+                    }
+                });
+
+                function filter() {
+                    const params = {};
+                    const sortValue = $('#sort').val();
+                    const url = window.location.origin + window.location.pathname;
+
+                    if (sortValue) {
+                        params.sort = sortValue;
+                    }
+
+                    const queryString = Object.keys(params).map(key => key + '=' + params[key]);
+
+                    const finalUrl = url + '?' + queryString.join('&');
+                    window.location.href = finalUrl;
+                }
 
                 // =============================================================================================
 

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Testimony;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -50,10 +51,30 @@ class ShopController extends Controller
         $product = Product::with(['thumbnail', 'imagesWithoutThumbnail', 'categories'])
             ->where('slug', $slug)->first();
 
+        $perPage = 2;
+        $page = request()->query('page', 1);
+        $sort = request()->query('sort', 'latest');
+
+        $skip = ($page - 1) * $perPage;
+
+        $reviewsQuery = Testimony::where('product_id', $product->id);
+
+        if ($sort === 'highest') {
+            $reviewsQuery->orderBy('stars', 'desc');
+        } elseif ($sort === 'lowest') {
+            $reviewsQuery->orderBy('stars', 'asc');
+        } else {
+            $reviewsQuery->orderBy('updated_at', 'desc');
+        }
+
+        $reviews = $reviewsQuery->skip($skip)->take($perPage)->get();
+        $totalReviews = Testimony::where('product_id', $product->id)->count();
+        $totalPages = ceil($totalReviews / $perPage);
+
         $otherProducts = Product::with(['thumbnail', 'imagesWithoutThumbnail', 'categories'])
             ->where('slug', '!=', $slug)
             ->get();
 
-        return view('pages.show-product', compact('product', 'otherProducts'));
+        return view('pages.show-product', compact('product', 'reviews', 'totalReviews', 'totalPages', 'page', 'otherProducts', 'sort'));
     }
 }
