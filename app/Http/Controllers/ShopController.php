@@ -51,7 +51,7 @@ class ShopController extends Controller
         $product = Product::with(['thumbnail', 'imagesWithoutThumbnail', 'categories'])
             ->where('slug', $slug)->first();
 
-        $perPage = 2;
+        $perPage = 10;
         $page = request()->query('page', 1);
         $sort = request()->query('sort', 'latest');
 

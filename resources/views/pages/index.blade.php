@@ -59,19 +59,43 @@
                 color: #FF8BAA;
             }
 
-            .btn-pink {
-                font-weight: 700;
-                border-width: 3px;
-                border-style: solid;
-                color: #FF8BAA !important;
-                border-color: #ffffff !important;
-                background-color: #ffffff !important;
+            .owl-carousel.products .card-title.name {
+                font-size: 16px;
+                font-weight: 400;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                text-overflow: ellipsis;
+                -webkit-box-orient: vertical;
             }
 
-            .btn-pink:hover,
-            .btn-pink:focus {
-                border-color: #ffffff !important;
-                background-color: #ffffff !important;
+            .owl-carousel.products .card-title.price {
+                font-size: 16px;
+                color: #da1450;
+                font-weight: 800;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                text-overflow: ellipsis;
+                -webkit-box-orient: vertical;
+            }
+
+            .owl-carousel.products .product-image {
+                object-fit: cover;
+                border-radius: 8px;
+            }
+
+            /* About */
+            .img-miring {
+                width: 80%;
+                display: block;
+                margin: 0 auto;
+                transform: rotate(-5deg);
+            }
+
+            /* Testimonials */
+            .owl-carousel.testimony .card {
+                min-height: 250px;
             }
 
             /* Universal */
@@ -136,6 +160,14 @@
                     width: auto;
                     height: 400px;
                 }
+
+                .owl-carousel.testimony .card {
+                    min-height: 300px;
+                }
+
+                .img-miring {
+                    width: 60%;
+                }
             }
 
             @media (min-width: 1200px) {
@@ -145,6 +177,10 @@
 
                 #header .card .card-body h1:nth-child(2) {
                     font-size: 5rem;
+                }
+
+                .owl-carousel.testimony .card {
+                    min-height: 250px;
                 }
             }
         </style>
@@ -180,35 +216,50 @@
     {{-- Main Content --}}
     <section id="feature-products" class="py-5">
         <div class="container">
-            <h1 class="text-uppercase text-center section-title mb-4">
-                Featured Products
+            <h1 class="text-end section-title mb-4">
+                Latest Products 🆕
             </h1>
 
-            <div class="owl-carousel owl-theme">
+            <div class="owl-carousel products owl-theme">
                 @foreach ($products as $product)
                     <div class="item">
-                        <div class="card border-0 rounded-0">
-                            <div class="card-body p-4 text-center" style="background: #FED2E0;">
-                                {{-- Product Image --}}
-                                <div class="ratio ratio-1x1 mb-3">
-                                    <img src="{{ asset($product['image']) }}" class="img-fluid"
-                                        alt="Product Image {{ $product['id'] }}"
-                                        style="object-fit: cover; width: 100%; height: 100%;">
+                        <a href="{{ route('shop.show', ['slug' => $product->slug]) }}" class="text-decoration-none">
+                            <div class="card h-100 border-0 rounded-none">
+                                <div class="card-body p-0">
+                                    {{-- Image --}}
+                                    <div class="ratio ratio-1x1 mb-3">
+                                        <img src="{{ asset('storage/' . $product->thumbnail->path) }}"
+                                            class="img-fluid product-image" alt="{{ $product->name }}">
+                                    </div>
+
+                                    {{-- Category --}}
+                                    @foreach ($product->categories as $category)
+                                        @php
+                                            $colors = [
+                                                ['bg' => '#fce7f3', 'text' => '#ec4899'],
+                                                ['bg' => '#f3e8ff', 'text' => '#a855f7'],
+                                                ['bg' => '#e0f2fe', 'text' => '#0ea5e9'],
+                                                ['bg' => '#ccfbf1', 'text' => '#14b8a6'],
+                                                ['bg' => '#ffedd5', 'text' => '#f97316'],
+                                            ];
+
+                                            $randomColor = $colors[array_rand($colors)];
+                                        @endphp
+
+                                        <span class="badge rounded-pill"
+                                            style="background-color: {{ $randomColor['bg'] }}; color: {{ $randomColor['text'] }};">
+                                            {{ $category->name }}
+                                        </span>
+                                    @endforeach
+
+                                    {{-- Name --}}
+                                    <h5 class="card-title name mt-2 mb-3">{{ $product->name }}</h5>
+
+                                    {{-- Price --}}
+                                    <h5 class="card-title price">{{ $product->price }}</h5>
                                 </div>
-
-                                {{-- Product Title --}}
-                                <h5 class="card-title text-uppercase fs-3 text-ellipsis" style="font-weight: 900;">
-                                    {{ $product['name'] }}
-                                </h5>
-
-                                {{-- Product Price --}}
-                                <p class="card-text fw-semibold">
-                                    {{ 'Rp ' . number_format($product['price'], 0, ',', '.') }}</p>
-
-                                {{-- Product Button --}}
-                                <a href="#" class="btn btn-pink">Shop now</a>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
             </div>
@@ -217,51 +268,132 @@
 
     <section id="about-us" class="py-5">
         <div class="container">
-            <h1 class="text-uppercase text-center text-white section-title">
-                About Us
-            </h1>
+            <div class="row">
+                <div class="col-12 col-md-6 mb-5 mb-md-0">
+                    <div class="card bg-transparent border-0">
+                        <div class="card-body p-0">
+                            {{-- Title --}}
+                            <h1 class="section-title" style="color: #AF1040;">
+                                Our Background 👋
+                            </h1>
 
-            {{--  --}}
+                            {{-- Short Description --}}
+                            <p class="card-text">
+                                {{ $about->short_description }}
+                            </p>
+
+                            {{-- Read More --}}
+                            <a href="{{ route('about') }}" class="card-link text-decoration-none">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 mt-md-3 mt-lg-2">
+                    {{-- Image --}}
+                    <img src="{{ asset('images/group.jpg') }}" class="img-thumbnail img-miring" alt="Cheriewish Group">
+                </div>
+            </div>
         </div>
     </section>
 
+    {{-- Testimony --}}
     <section id="testimonials" class="py-5">
         <div class="container">
-            <h1 class="text-uppercase text-center text-white section-title">
-                Testimonals
+            <h1 class="text-center text-white section-title">
+                What do they say? 👀
             </h1>
 
-            {{--  --}}
+            <div class="owl-carousel testimony owl-theme mt-5">
+                @foreach ($reviews as $item)
+                    <div class="item">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                {{-- Name --}}
+                                <h5 class="card-title fs-6">{{ $item->name }}</h5>
+
+                                {{-- Stars --}}
+                                <div>
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        @if ($i <= $item->stars)
+                                            <i class="bi bi-star-fill fs-6" style="color: orange;"></i>
+                                        @else
+                                            <i class="bi bi-star fs-6"></i>
+                                        @endif
+                                    @endfor
+                                </div>
+
+                                {{-- Sub Ttitle --}}
+                                <h6 class="card-subtitle mt-1 mb-3 text-muted">
+                                    <small>{{ \Carbon\Carbon::parse($item->updated_at)->format('d-m-Y') }} |
+                                        {{ $item->product->name }}</small>
+                                </h6>
+
+                                {{-- Review --}}
+                                <p class="card-text m-0 text-secondary" style="font-size: 15px;">
+                                    {{ $item->description }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </section>
+
+    {{-- Footer --}}
+    <x-footer></x-footer>
 
     @prepend('scripts')
         <script src="{{ asset('owlcarousel/owl.carousel.min.js') }}"></script>
 
         <script>
-            $('.owl-carousel').owlCarousel({
-                items: 1,
-                loop: true,
+            const reviewsCount = {{ $reviews_count }};
+            const productsCount = {{ $products_count }};
+
+            $('.owl-carousel.products').owlCarousel({
+                items: 2,
                 margin: 10,
-                nav: true,
-                dots: false,
+                nav: false,
+                dots: true,
                 autoplay: true,
                 autoplayTimeout: 3000,
+                loop: productsCount >= 6,
                 responsive: {
                     576: {
+                        items: 3,
+                    },
+                    768: {
+                        items: 4,
+                    },
+                    992: {
+                        items: 5,
+                    },
+                    1400: {
+                        items: 6,
+                    },
+                }
+            });
+
+            // =============================================================================================
+
+            $('.owl-carousel.testimony').owlCarousel({
+                items: 1,
+                margin: 10,
+                nav: false,
+                dots: false,
+                autoplay: true,
+                autoHeight: false,
+                autoplayTimeout: 3000,
+                loop: reviewsCount >= 3,
+                responsive: {
+                    768: {
                         items: 2,
-                        center: true
                     },
                     992: {
                         items: 3,
-                        center: true
-                    },
-                    1200: {
-                        items: 4,
-                        center: true
                     },
                 }
-            })
+            });
         </script>
     @endprepend
 </x-guest>

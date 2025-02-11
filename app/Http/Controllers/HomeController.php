@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
+use App\Models\Product;
+use App\Models\Testimony;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function home()
     {
-        $products = [
-            ['id' => 1, 'image' => 'images/products/test.jpg', 'name' => 'Triangle Sunglasses', 'price' => 50000],
-            ['id' => 2, 'image' => 'images/products/test.jpg', 'name' => 'Versatile Sunglasses', 'price' => 68000],
-            ['id' => 3, 'image' => 'images/products/test.jpg', 'name' => 'Pink Thick Sunglasses', 'price' => 100000],
-            ['id' => 3, 'image' => 'images/products/test.jpg', 'name' => 'Tan Tint Sunglasses', 'price' => 100000],
-            ['id' => 3, 'image' => 'images/products/test.jpg', 'name' => 'White Triangle Sunglasses', 'price' => 100000],
-            ['id' => 3, 'image' => 'images/products/test.jpg', 'name' => 'Black Frame Sunglasses', 'price' => 100000],
-        ];
+        $about = Company::latest()->select('short_description')->first();
+        $reviews = Testimony::where('stars', '>=', 4)->orderBy('updated_at', 'desc')->get();
+        $products = Product::with(['thumbnail', 'categories'])->orderBy('updated_at', 'desc')->get();
 
-        return view('pages.index', compact('products'));
+        $reviews_count = $reviews->count();
+        $products_count = $products->count();
+
+        return view('pages.index', compact('products', 'about', 'reviews', 'products_count', 'reviews_count'));
     }
 }
