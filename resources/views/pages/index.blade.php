@@ -8,29 +8,23 @@
             /* Header */
             #header {
                 min-height: 100vh;
-                background-image: url('/images/background.jpg');
-                background-repeat: no-repeat;
                 background-size: cover;
-                background-position: center;
+                background-repeat: no-repeat;
+                background-position: center bottom;
+                background-image: url('/images/background.png');
             }
 
             #header .row .col-12:nth-child(1) {
-                padding-top: 140px;
-                margin-bottom: -20px;
+                padding-top: 58px;
+            }
+
+            #header .row .col-12:nth-child(2) {
+                margin-top: -28px;
             }
 
             #header .card .card-body h1 {
                 font-weight: 900;
-            }
-
-            #header .card .card-body h1:nth-child(1) {
                 font-size: 2rem;
-                margin-bottom: 0;
-            }
-
-            #header .card .card-body h1:nth-child(2) {
-                font-size: 3rem;
-                margin-bottom: 0;
             }
 
             #header img {
@@ -39,19 +33,19 @@
             }
 
             .btn-white-pink {
-                color: #FF8BAA;
+                color: #ffffff;
                 font-weight: 700;
                 border-width: 3px;
                 border-style: solid;
-                background-color: #ffffff;
-                border-color: #ffffff !important;
+                background-color: #f5596c;
+                border-color: #f5596c !important;
             }
 
             .btn-white-pink:hover,
             .btn-white-pink:focus {
                 color: #ffffff !important;
-                border-color: #ffffff !important;
-                background-color: transparent !important;
+                border-color: #f5596c !important;
+                background-color: #f5596c !important;
             }
 
             /* Product */
@@ -71,7 +65,7 @@
 
             .owl-carousel.products .card-title.price {
                 font-size: 16px;
-                color: #da1450;
+                color: #f5596c;
                 font-weight: 800;
                 overflow: hidden;
                 display: -webkit-box;
@@ -129,31 +123,21 @@
                 #header img {
                     height: 300px;
                 }
-
-                #header .row .col-12:nth-child(1) {
-                    padding-top: 100px;
-                    margin-bottom: -20px;
-                }
             }
 
             @media (min-width: 768px) {
-                #header {
-                    background-image: url('/images/background.png');
-                }
-
                 #header .row .col-12:nth-child(1) {
                     padding-top: 0;
-                    margin-bottom: 0;
+                }
+
+                #header .row .col-12:nth-child(2) {
+                    margin-top: 0;
                 }
             }
 
             @media (min-width: 992px) {
-                #header .card .card-body h1:nth-child(1) {
+                #header .card .card-body h1 {
                     font-size: 3rem;
-                }
-
-                #header .card .card-body h1:nth-child(2) {
-                    font-size: 4rem;
                 }
 
                 #header img {
@@ -171,12 +155,8 @@
             }
 
             @media (min-width: 1200px) {
-                #header .card .card-body h1:nth-child(1) {
+                #header .card .card-body h1 {
                     font-size: 4rem;
-                }
-
-                #header .card .card-body h1:nth-child(2) {
-                    font-size: 5rem;
                 }
 
                 .owl-carousel.testimony .card {
@@ -190,22 +170,18 @@
     <header id="header">
         <div class="container min-vh-100">
             <div class="row justify-content-center align-items-center min-vh-100 g-0">
-                <div class="col-12 col-md-6 mb-md-0 order-md-1 text-center text-md-end">
-                    <img src="{{ asset('images/bg_header.png') }}" alt="People">
+                <div class="col-12 col-md-6 order-md-1 text-center text-md-end">
+                    <img src="{{ asset('images/bg_header.png') }}" alt="Background">
                 </div>
 
                 <div class="col-12 col-md-6">
                     <div class="card bg-transparent border-0">
                         <div class="card-body p-0 text-center">
-                            <h1 class="text-uppercase text-white">
-                                Ready To
+                            <h1 class="text-uppercase text-body-secondary">
+                                Elevate Your Wardrobe with Korean Muslim Fashion!
                             </h1>
 
-                            <h1 class="text-uppercase text-white">
-                                Shopping?
-                            </h1>
-
-                            <a href="#" class="btn btn-lg btn-white-pink mt-2">Shop Now</a>
+                            <a href="{{ route('shop.index') }}" class="btn btn-lg btn-white-pink mt-2">Shop Now</a>
                         </div>
                     </div>
                 </div>
@@ -273,7 +249,7 @@
                     <div class="card bg-transparent border-0">
                         <div class="card-body p-0">
                             {{-- Title --}}
-                            <h1 class="section-title" style="color: #AF1040;">
+                            <h1 class="section-title" style="color: #f5596c;">
                                 Our Background 👋
                             </h1>
 
@@ -347,29 +323,33 @@
         <script src="{{ asset('owlcarousel/owl.carousel.min.js') }}"></script>
 
         <script>
-            const reviewsCount = {{ $reviews_count }};
-            const productsCount = {{ $products_count }};
+            const reviewsCount = {!! json_encode($reviews_count) !!};
+            const productsCount = {!! json_encode($products_count) !!};
 
             $('.owl-carousel.products').owlCarousel({
                 items: 2,
                 margin: 10,
                 nav: false,
-                dots: true,
+                dots: false,
                 autoplay: true,
                 autoplayTimeout: 3000,
-                loop: productsCount >= 6,
+                loop: productsCount >= 2,
                 responsive: {
                     576: {
                         items: 3,
+                        loop: productsCount >= 3,
                     },
                     768: {
                         items: 4,
+                        loop: productsCount >= 4,
                     },
                     992: {
                         items: 5,
+                        loop: productsCount >= 5,
                     },
                     1400: {
                         items: 6,
+                        loop: productsCount >= 6,
                     },
                 }
             });
@@ -384,13 +364,15 @@
                 autoplay: true,
                 autoHeight: false,
                 autoplayTimeout: 3000,
-                loop: reviewsCount >= 3,
+                loop: reviewsCount >= 2,
                 responsive: {
                     768: {
                         items: 2,
+                        loop: reviewsCount >= 2,
                     },
                     992: {
                         items: 3,
+                        loop: reviewsCount >= 3,
                     },
                 }
             });

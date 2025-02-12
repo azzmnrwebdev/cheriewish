@@ -64,7 +64,7 @@
 
             .card-title.price {
                 font-size: 16px;
-                color: #da1450;
+                color: #f5596c;
                 font-weight: 800;
                 overflow: hidden;
                 display: -webkit-box;
