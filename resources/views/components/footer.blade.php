@@ -17,7 +17,8 @@
         @if ($company)
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3">
                 <div class="col-12 col-md-6 d-flex align-items-center">
-                    <span class="mb-2 mb-md-0 text-body-secondary">© 2025 {{ $company->name ?? 'Cheriewish' }}. All
+                    <span class="mb-2 mb-md-0 text-body-secondary">© {{ date('Y') }}
+                        {{ $company->name ?? 'Cheriewish' }}. All
                         rights reserved.</span>
                 </div>
 
@@ -35,7 +36,7 @@
         @else
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3">
                 <div class="col-12 d-flex align-items-center">
-                    <span class="text-body-secondary">© 2025 {{ $company->name ?? 'Cheriewish' }}. All
+                    <span class="text-body-secondary">© {{ date('Y') }} {{ $company->name ?? 'Cheriewish' }}. All
                         rights reserved.</span>
                 </div>
             </footer>
