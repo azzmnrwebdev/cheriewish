@@ -98,7 +98,7 @@
                 <div class="col-12 col-md-10 col-lg-8">
                     <div class="card border-0 rounded-none bg-transparent">
                         <div class="card-body p-0">
-                            @if ($company->logo && $company->description)
+                            @if ($company && $company->logo && $company->description)
                                 <img src="{{ asset('storage/' . $company->logo) }}" id="logo"
                                     class="float-sm-start me-sm-3 mb-3 mb-sm-1" style="width: 300px;">
                                 {!! $company->description !!}

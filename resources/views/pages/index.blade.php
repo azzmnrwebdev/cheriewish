@@ -255,11 +255,13 @@
 
                             {{-- Short Description --}}
                             <p class="card-text">
-                                {{ $about->short_description }}
+                                {{ $about->short_description ?? '' }}
                             </p>
 
                             {{-- Read More --}}
-                            <a href="{{ route('about') }}" class="card-link text-decoration-none">Read More</a>
+                            @if ($about && $about->short_description)
+                                <a href="{{ route('about') }}" class="card-link text-decoration-none">Read More</a>
+                            @endif
                         </div>
                     </div>
                 </div>
