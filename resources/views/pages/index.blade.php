@@ -94,7 +94,7 @@
 
             /* Universal */
             #feature-products {
-                background-color: #ffffff;
+                background-color: #fce7f3;
             }
 
             #testimonials {
@@ -200,7 +200,7 @@
                 @foreach ($products as $product)
                     <div class="item">
                         <a href="{{ route('shop.show', ['slug' => $product->slug]) }}" class="text-decoration-none">
-                            <div class="card h-100 border-0 rounded-none">
+                            <div class="card h-100 bg-transparent border-0 rounded-none">
                                 <div class="card-body p-0">
                                     {{-- Image --}}
                                     <div class="ratio ratio-1x1 mb-3">
