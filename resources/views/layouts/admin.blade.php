@@ -135,7 +135,6 @@
         }
 
         a.sidebar-link:hover,
-        a.sidebar-link:focus,
         a.sidebar-link.active {
             background-color: #333a48;
         }
@@ -231,7 +230,7 @@
                 left: -280px;
                 top: 0;
                 height: 100%;
-                z-index: 9999;
+                z-index: 1050;
             }
 
             #sidebar.open {
