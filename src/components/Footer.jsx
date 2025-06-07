@@ -17,7 +17,7 @@ const FooterComponent = () => {
             {/* Shopee */}
             <li className="ms-0">
               <a
-                href="https://shopee.co.id/"
+                href="https://id.shp.ee/4Lyv1me"
                 className="text-body-secondary"
                 target="_blank"
               >
@@ -36,7 +36,7 @@ const FooterComponent = () => {
             {/* Tiktok */}
             <li className="ms-3">
               <a
-                href="https://www.tiktok.com/id-ID/"
+                href="https://www.tiktok.com/@cheriewish.id?_t=ZS-8x03XgB0ccC&_r=1"
                 className="text-body-secondary"
                 target="_blank"
               >
@@ -55,7 +55,7 @@ const FooterComponent = () => {
             {/* Instagram */}
             <li className="ms-3">
               <a
-                href="https://www.instagram.com/"
+                href="https://www.instagram.com/cheriewish.id?igsh=MTNtMXYyaTBhcm02Yg=="
                 className="text-body-secondary"
                 target="_blank"
               >
