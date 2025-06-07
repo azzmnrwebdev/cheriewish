@@ -154,9 +154,9 @@ const App = () => {
               <h1 className="fw-bold title text-white">
                 Team&nbsp;<span style={{ color: "#f5596c" }}>Cheriewish</span>
               </h1>
-              <p className="mb-0 sub-title px-3">
+              <p className="mb-0 sub-title px-3 px-sm-5">
                 Kami adalah tim yang bekerja bersama untuk menciptakan baju dan
-                aksesori yang unik, penuh gaya, dan dibuat dengan sepenuh hati.
+                aksesori yang unik, penuh gaya dan dibuat dengan sepenuh hati.
               </p>
             </div>
 
