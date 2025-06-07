@@ -91,7 +91,7 @@ const NavbarComponent = () => {
             <a
               href="https://wa.me/62895402742488"
               target="_blank"
-              className="btn fs-6 fw-semibold px-4 py-2 border-2 rounded-pill"
+              className="btn fs-6 fw-semibold px-4 py-1 border-2 rounded-pill"
               style={{
                 backgroundColor: "#fce9f1",
                 borderColor: "#f5596c",
