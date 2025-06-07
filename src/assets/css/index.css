@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+*,
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* General */
+.bg-blur {
+  backdrop-filter: blur(10px);
+}
+
+/* Navbar */
+.navbar-brand {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.navbar-toggler {
+  padding: 0 !important;
+  border: none !important;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.navbar-nav .nav-link {
+  color: black !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  /* padding: 0.25rem 1rem !important; */
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: #f5596c !important;
+}
+
+/* Custom Container */
+@media (min-width: 1200px) {
+  .container {
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    padding-left: 5rem !important;
+    padding-right: 5rem !important;
+  }
+}
