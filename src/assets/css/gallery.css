@@ -1,0 +1,55 @@
+section#gallery ~ .footer {
+  display: none !important;
+}
+
+section#gallery {
+  display: flex;
+  min-height: 100vh;
+  padding-top: 80px;
+  align-items: center;
+}
+
+section#gallery img {
+  height: auto;
+  max-width: 300px;
+}
+
+section#gallery .title {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+section#gallery .description {
+  font-size: 14px;
+  color: #3e3f66;
+}
+
+@media (min-width: 576px) {
+  section#gallery img {
+    max-width: 400px;
+  }
+}
+
+@media (min-width: 768px) {
+  section#gallery {
+    min-height: calc(100vh - 58.4px);
+  }
+
+  section#gallery img {
+    max-width: 100%;
+  }
+
+  section#gallery .title {
+    font-size: 30px;
+  }
+
+  section#gallery .description {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 992px) {
+  section#gallery .title {
+    font-size: 40px;
+  }
+}
