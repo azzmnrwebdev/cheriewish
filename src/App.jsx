@@ -64,8 +64,8 @@ const App = () => {
             </div>
 
             <p className="mb-0 sub-title text-start mt-2">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.
+              Baru dirilis! Pilihan fashion terkini untuk tampil lebih percaya
+              diri.
             </p>
 
             <Splide
@@ -154,9 +154,9 @@ const App = () => {
               <h1 className="fw-bold title text-white">
                 Team&nbsp;<span style={{ color: "#f5596c" }}>Cheriewish</span>
               </h1>
-              <p className="mb-0 sub-title">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry.
+              <p className="mb-0 sub-title px-3">
+                Kami adalah tim yang bekerja bersama untuk menciptakan baju dan
+                aksesori yang unik, penuh gaya, dan dibuat dengan sepenuh hati.
               </p>
             </div>
 
@@ -191,7 +191,10 @@ const App = () => {
         >
           <Container>
             <div className="row align-items-lg-center g-0 g-lg-4">
-              <div className="col-12 col-lg-6 order-lg-1 mb-lg-0" style={{ marginBottom: '2rem' }}>
+              <div
+                className="col-12 col-lg-6 order-lg-1 mb-lg-0"
+                style={{ marginBottom: "2rem" }}
+              >
                 <h1 className="fw-bold title text-dark mb-3">
                   Our&nbsp;<span style={{ color: "#f5596c" }}>Background</span>
                 </h1>
