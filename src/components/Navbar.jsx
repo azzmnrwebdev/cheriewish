@@ -3,10 +3,12 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import logo from "../assets/images/logo.png";
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 
 const NavbarComponent = () => {
+  const navbarRef = useRef();
+
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -18,6 +20,19 @@ const NavbarComponent = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+        setExpanded(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   const isActive = (path, exact = false) => {
@@ -36,8 +51,11 @@ const NavbarComponent = () => {
     ? "bg-blur"
     : "";
 
+  const handleNavClick = () => setExpanded(false);
+
   return (
     <Navbar
+      ref={navbarRef}
       id="navbar"
       expand="lg"
       expanded={expanded}
@@ -59,6 +77,7 @@ const NavbarComponent = () => {
             <Nav.Link
               as={Link}
               to="/"
+              onClick={handleNavClick}
               className={`px-lg-3 ${isActive("/", true)}`}
             >
               Home
@@ -66,6 +85,7 @@ const NavbarComponent = () => {
             <Nav.Link
               as={Link}
               to="/catalog"
+              onClick={handleNavClick}
               className={`px-lg-3 ${isActive("/catalog")}`}
             >
               Catalog
@@ -73,6 +93,7 @@ const NavbarComponent = () => {
             <Nav.Link
               as={Link}
               to="/gallery"
+              onClick={handleNavClick}
               className={`px-lg-3 pe-0 ${isActive("/gallery")}`}
             >
               Gallery
@@ -82,6 +103,7 @@ const NavbarComponent = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="px-lg-3 d-lg-none"
+              onClick={handleNavClick}
             >
               Contact
             </Nav.Link>
