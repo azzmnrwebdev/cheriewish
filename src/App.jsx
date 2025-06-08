@@ -45,14 +45,14 @@ const App = () => {
 
       <main>
         <section
-          id="latest-product"
+          id="our-product"
           className="py-5"
           style={{ backgroundColor: "#fdbfd5" }}
         >
           <Container>
             <div className="d-flex justify-content-between align-items-center">
               <h1 className="mb-0 fw-bold title" style={{ color: "#f5596c" }}>
-                Latest Product
+                Our Product
               </h1>
 
               <Link
@@ -64,8 +64,7 @@ const App = () => {
             </div>
 
             <p className="mb-0 sub-title text-start mt-2">
-              Baru dirilis! Pilihan fashion terkini untuk tampil lebih percaya
-              diri.
+              Pilihan produk terpercaya untuk gaya hidup modern.
             </p>
 
             <Splide
