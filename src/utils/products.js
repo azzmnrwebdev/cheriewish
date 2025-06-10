@@ -48,6 +48,16 @@ import CherieBloomOuterPitaBiru from "../assets/images/products/cherie-bloom-out
 import CherieBloomOuterBungaCream from "../assets/images/products/cherie-bloom-outer-bunga-cream.webp";
 import CherieBloomOuterBungaAbu from "../assets/images/products/cherie-bloom-outer-bunga-abu.webp";
 
+import MichiDress1 from "../assets/images/products/michi-dress-1.webp";
+import MichiDress2 from "../assets/images/products/michi-dress-2.webp";
+import MichiDress3 from "../assets/images/products/michi-dress-3.webp";
+import MichiDress4 from "../assets/images/products/michi-dress-4.webp";
+import MichiDress5 from "../assets/images/products/michi-dress-5.webp";
+import MichiDress6 from "../assets/images/products/michi-dress-6.webp";
+import MichiDress7 from "../assets/images/products/michi-dress-7.webp";
+import MichiDressBiru from "../assets/images/products/michi-dress-biru.webp";
+import MichiDressPink from "../assets/images/products/michi-dress-pink.webp";
+
 const products = [
   {
     id: 1,
@@ -282,7 +292,7 @@ const products = [
     id: 5,
     name: "Cherie Bloom Outer | Outer Lucu | Cardigan",
     slug: "cherie-bloom-outer-outer-lucu-cardigan",
-    size: null,
+    size: ["S", "M", "L", "XL"],
     price: 52000,
     material: "Crinkle",
     motive: null,
@@ -294,7 +304,7 @@ const products = [
       — Cherie Bloom Outer —
       <br />
       Bahan : Crinkle
-      Detail  : 
+      Detail : 
       - Karakteristik kain crinkle adalah kain berkerut permanen, ringan, tidak perlu disetrika, nyaman dipakai, dan cocok untuk gaya kasual atau feminin.
       - Model Tali dibagian Depan
       - Pergelangan tangan karet
@@ -346,6 +356,143 @@ const products = [
       { color: "Bunga Abu", image: CherieBloomOuterBungaAbu },
     ],
     created_at: "2025-06-09T19:00:00Z",
+  },
+  {
+    id: 6,
+    name: "Michi Dress | Oneset Korean Style | Dress Lebaran",
+    slug: "michi-dress-oneset-korean-style-dress-lebaran",
+    size: ["S", "M", "L", "XL"],
+    price: 150000,
+    material: null,
+    motive: null,
+    description: `<p>
+      ‼️SEBELUM MEMBELI CHECK DESKRIPSI PRODUK TERLEBIH DAHULU☺️‼️
+      <br />
+      New Product 
+      <br />
+      — Michi Dress —
+      <br />
+      Bahan : Crinkle Plisket + Knit Bostman
+      <br />
+      Detail : 
+      <br />
+      - Bahan Dress : Crinkle Plisket
+      <br />
+      - Bahan Outer : Knit Bostman
+      <br />
+      - Terdapat tali pinggang
+      <br />
+      - Tidak menerawang
+      <br />
+      - Ukuran : S, M, L, XL
+      <br />
+      - Warna : Biru, Pink
+      <br />
+      Ukuran Outher One Set : 
+      <br />
+      Ukuran S 
+      <br />
+      Bahu : 37cm
+      <br />
+      Lengan : 54cm
+      <br />
+      LD : 90cm
+      <br />
+      Panjang : 42cm
+      <br />
+      Ukuran M
+      <br />
+      Bahu : 39cm
+      <br />
+      Lengan : 57cm
+      <br />
+      LD : 96cm
+      <br />
+      Panjang : 46cm
+      <br />
+      Ukuran L
+      <br />
+      Bahu : 41cm
+      <br />
+      Lengan : 57cm
+      <br />
+      LD : 102cm
+      <br />
+      Panjang : 47cm
+      <br />
+      Ukuran XL 
+      <br />
+      Bahu : 43cm
+      <br />
+      Lengan : 58cm
+      <br />
+      LD : 108cm
+      <br />
+      Panjang : 50cm
+      <br />
+      Ukuran Dress : 
+      <br />
+      Ukuran S 
+      <br />
+      P : 125cm
+      <br />
+      LD : 86-94cm
+      <br />
+      Pinggang : 82-90cm
+      <br />
+      PL : 56cm
+      <br />
+      Ukuran M
+      <br />
+      P : 128cm
+      <br />
+      LD : 88-98cm
+      <br />
+      Pinggang : 83-92cm
+      <br />
+      PL : 56,5cm
+      <br />
+      Ukuran L
+      <br />
+      P : 131cm
+      <br />
+      LD : 90-102cm
+      <br />
+      Pinggang : 85-98cm
+      <br />
+      PL : 57cm
+      <br />
+      Ukuran XL
+      <br />
+      P : 134cm
+      <br />
+      LD : 90-102cm
+      <br />
+      Pinggang : 86-99cm
+      <br />
+      PL : 57,5cm
+      <br />
+      Buka Senin - Sabtu, Minggu Libur
+      <br />
+      Happy Shopping ‼️
+      <br />
+      #oneset #dress #bajulebaran #dresskoreanstyle #onesetlucu
+    </p>`,
+    categories: [{ name: "Dress Muslim" }],
+    files: [
+      { thumbnail: true, type: "image", path: MichiDress1 },
+      { thumbnail: false, type: "image", path: MichiDress2 },
+      { thumbnail: false, type: "image", path: MichiDress3 },
+      { thumbnail: false, type: "image", path: MichiDress4 },
+      { thumbnail: false, type: "image", path: MichiDress5 },
+      { thumbnail: false, type: "image", path: MichiDress6 },
+      { thumbnail: false, type: "image", path: MichiDress7 },
+    ],
+    variants: [
+      { color: "Biru", image: MichiDressBiru },
+      { color: "Pink", image: MichiDressPink },
+    ],
+    created_at: "2025-06-10T10:00:00Z",
   },
 ];
 
