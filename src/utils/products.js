@@ -35,6 +35,19 @@ import ViolettaDressWhite from "../assets/images/products/violetta-dress-wwhite.
 import ViolettaDressBabyBlueGaris from "../assets/images/products/violetta-dress-baby-blue-garis.webp";
 import ViolettaDressFullMotifBunga from "../assets/images/products/violetta-dress-full-motif-bunga.webp";
 
+import CherieBloomOuter1 from "../assets/images/products/cherie-bloom-outer-1.webp";
+import CherieBloomOuter2 from "../assets/images/products/cherie-bloom-outer-2.webp";
+import CherieBloomOuter3 from "../assets/images/products/cherie-bloom-outer-3.webp";
+import CherieBloomOuter4 from "../assets/images/products/cherie-bloom-outer-4.webp";
+import CherieBloomOuter5 from "../assets/images/products/cherie-bloom-outer-5.webp";
+import CherieBloomOuter6 from "../assets/images/products/cherie-bloom-outer-6.webp";
+import CherieBloomOuter7 from "../assets/images/products/cherie-bloom-outer-7.webp";
+import CherieBloomOuter8 from "../assets/images/products/cherie-bloom-outer-8.webp";
+import CherieBloomOuterPitaPink from "../assets/images/products/cherie-bloom-outer-pita-pink.webp";
+import CherieBloomOuterPitaBiru from "../assets/images/products/cherie-bloom-outer-pita-biru.webp";
+import CherieBloomOuterBungaCream from "../assets/images/products/cherie-bloom-outer-bunga-cream.webp";
+import CherieBloomOuterBungaAbu from "../assets/images/products/cherie-bloom-outer-bunga-abu.webp";
+
 const products = [
   {
     id: 1,
@@ -264,6 +277,75 @@ const products = [
       { color: "Full Motif Bunga", image: ViolettaDressFullMotifBunga },
     ],
     created_at: "2025-06-09T15:00:00Z",
+  },
+  {
+    id: 5,
+    name: "Cherie Bloom Outer | Outer Lucu | Cardigan",
+    slug: "cherie-bloom-outer-outer-lucu-cardigan",
+    size: null,
+    price: 52000,
+    material: "Crinkle",
+    motive: null,
+    description: `<p>
+      ‼️SEBELUM MEMBELI CHECK DESKRIPSI PRODUK TERLEBIH DAHULU☺️‼️
+      <br />
+      <br />
+      New Product 
+      — Cherie Bloom Outer —
+      <br />
+      Bahan : Crinkle
+      Detail  : 
+      - Karakteristik kain crinkle adalah kain berkerut permanen, ringan, tidak perlu disetrika, nyaman dipakai, dan cocok untuk gaya kasual atau feminin.
+      - Model Tali dibagian Depan
+      - Pergelangan tangan karet
+      - Ukuran : S - XL
+      - Motif : Pita Pink, Pita Biru, Bunga Cream, Bunga Abu
+      <br />
+      <br />
+      Size : 
+      <br />
+      S = 
+      LD : 85
+      PB : 48
+      <br />
+      M =
+      LD : 90
+      PB : 48
+      <br />
+      L = 
+      LD : 100
+      PB : 50
+      <br />
+      XL =
+      LD : 104
+      PB : 50
+      <br />
+      catatan = 
+      LD  : Lingkar Dada
+      PB  : Panjang Badan
+      <br />
+      Buka Senin - Sabtu, Minggu Libur
+      <br />
+      Happy Shopping
+    </p>`,
+    categories: [{ name: "Outerwear" }],
+    files: [
+      { thumbnail: true, type: "image", path: CherieBloomOuter1 },
+      { thumbnail: false, type: "image", path: CherieBloomOuter2 },
+      { thumbnail: false, type: "image", path: CherieBloomOuter3 },
+      { thumbnail: false, type: "image", path: CherieBloomOuter4 },
+      { thumbnail: false, type: "image", path: CherieBloomOuter5 },
+      { thumbnail: false, type: "image", path: CherieBloomOuter6 },
+      { thumbnail: false, type: "image", path: CherieBloomOuter7 },
+      { thumbnail: false, type: "image", path: CherieBloomOuter8 },
+    ],
+    variants: [
+      { color: "Pita Pink", image: CherieBloomOuterPitaPink },
+      { color: "Pita Biru", image: CherieBloomOuterPitaBiru },
+      { color: "Bunga Cream", image: CherieBloomOuterBungaCream },
+      { color: "Bunga Abu", image: CherieBloomOuterBungaAbu },
+    ],
+    created_at: "2025-06-09T19:00:00Z",
   },
 ];
 
