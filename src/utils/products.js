@@ -24,6 +24,17 @@ import SassySkirtDenim from "../assets/images/products/sassy-skirt-denim.webp";
 import SassySkirtSoftGreen from "../assets/images/products/sassy-skirt-soft-green.webp";
 import SassySkirtMouve from "../assets/images/products/sassy-skirt-mouve.webp";
 
+import ViolettaDress1 from "../assets/images/products/violetta-dress-1.mp4";
+import ViolettaDress2 from "../assets/images/products/violetta-dress-2.webp";
+import ViolettaDress3 from "../assets/images/products/violetta-dress-3.webp";
+import ViolettaDress4 from "../assets/images/products/violetta-dress-4.webp";
+import ViolettaDressBabyPink from "../assets/images/products/violetta-dress-baby-pink.webp";
+import ViolettaDressBabyBlue from "../assets/images/products/violetta-dress-baby-blue.webp";
+import ViolettaDressHijauTosca from "../assets/images/products/violetta-dress-hijau-tosca.webp";
+import ViolettaDressWhite from "../assets/images/products/violetta-dress-wwhite.webp";
+import ViolettaDressBabyBlueGaris from "../assets/images/products/violetta-dress-baby-blue-garis.webp";
+import ViolettaDressFullMotifBunga from "../assets/images/products/violetta-dress-full-motif-bunga.webp";
+
 const products = [
   {
     id: 1,
@@ -31,6 +42,8 @@ const products = [
     slug: "lily-blouse-blouse-korean-style-blouse-lengan-panjang",
     size: ["XS", "S", "M", "L"],
     price: 90169,
+    material: "Rayon Twill Premium",
+    motive: null,
     description: `<p>
       ‼️SEBELUM MEMBELI CHECK DESKRIPSI PRODUK TERLEBIH DAHULU☺️‼️
       <br />
@@ -105,6 +118,8 @@ const products = [
     slug: "kiwoyo-bros-pin-pita-besar-dobel-layer-bahan-kain-gaya-fashion-korea",
     size: null,
     price: 10000,
+    material: null,
+    motive: null,
     description: `<p>
       ‼️SEBELUM MEMBELI CHECK DESKRIPSI PRODUK TERLEBIH DAHULU‼️
       <br />
@@ -139,6 +154,8 @@ const products = [
     slug: "sassy-skirt-rok-susun-ruffle-crinkle-yoryu",
     size: ["S", "M to L", "L to XL"],
     price: 90169,
+    material: "Crinkle Yoryu, Furing Hyget",
+    motive: "Polos",
     description: `<p>
       ‼️SEBELUM MEMBELI CHECK DESKRIPSI PRODUK TERLEBIH DAHULU☺️‼️
       <br />
@@ -161,7 +178,7 @@ const products = [
       <br />
       Happy Shopping ‼️🛒
     </p>`,
-    categories: [{ name: "Aksesoris Tambahan" }],
+    categories: [{ name: "Bawahan Muslim Wanita" }],
     files: [
       { thumbnail: true, type: "image", path: SassySkirt1 },
       { thumbnail: false, type: "image", path: SassySkirt2 },
@@ -175,6 +192,78 @@ const products = [
       { color: "Mouve", image: SassySkirtMouve },
     ],
     created_at: "2025-06-09T12:00:00Z",
+  },
+  {
+    id: 4,
+    name: "Violetta Dress | Dress Lebaran | Gamis Dewasa Kekinian",
+    slug: "violetta-dress-dress-lebaran-gamis-dewasa-kekinian",
+    size: ["S", "M", "L", "XL"],
+    price: 199000,
+    material: "Cerutty Baby Doll, Shakila",
+    motive: "Bunga",
+    description: `<p>
+      ‼️SEBELUM MEMBELI CHECK DESKRIPSI PRODUK TERLEBIH DAHULU☺️‼️
+      <br />
+      New Product Collection | Dress Lebaran 2025
+      <br />
+      — Violetta Dress —
+      <br />
+      Bahan : Cerutty baby doll + Shakila
+      Detail :
+      - Terdapat Furing (dalaman) sehingga tidak menerawang
+      - Terdapat tali pinggang
+      - Motif Bunga 
+      - Ukuran : S, M, L, XL
+      - Warna : Baby Pink, Baby Blue, Hijau Tosca
+      <br />
+      Detail Ukuran :
+      <br />
+      ▶️ Ukuran S 
+      <br />
+      LD : 86cm
+      PB : 125cm
+      PL : 54cm
+      <br />
+      ▶️ Ukuran M
+      <br />
+      LD : 92cm
+      PB : 128cm
+      PL : 54cm
+      <br />
+      ▶️ Ukuran L
+      <br />
+      LD : 98cm
+      PB : 131cm
+      PL : 55cm
+      <br />
+      ▶️ Ukuran XL
+      <br />
+      LD : 104cm
+      PB : 132cm
+      PL : 55cm
+      <br />
+      Buka Setiap Hari Selama Ramadhan
+      <br />
+      Happy Shopping ‼️
+      <br />
+      #oneset #dress #bajulebaran #dresskoreanstyle #onesetlucu #dresslebaran #lebaran2025readystock
+    </p>`,
+    categories: [{ name: "Dress Muslim" }],
+    files: [
+      { thumbnail: false, type: "video", path: ViolettaDress1 },
+      { thumbnail: true, type: "image", path: ViolettaDress2 },
+      { thumbnail: false, type: "image", path: ViolettaDress3 },
+      { thumbnail: false, type: "image", path: ViolettaDress4 },
+    ],
+    variants: [
+      { color: "Baby Pink", image: ViolettaDressBabyPink },
+      { color: "Baby Blue", image: ViolettaDressBabyBlue },
+      { color: "Hijau Tosca", image: ViolettaDressHijauTosca },
+      { color: "White", image: ViolettaDressWhite },
+      { color: "Baby Blue Garis", image: ViolettaDressBabyBlueGaris },
+      { color: "Full Motif Bunga", image: ViolettaDressFullMotifBunga },
+    ],
+    created_at: "2025-06-09T15:00:00Z",
   },
 ];
 

@@ -101,7 +101,7 @@ const App = () => {
                   >
                     <div className="card h-100 bg-transparent border-0 rounded-0 mt-3">
                       <div className="card-body p-0">
-                        <div className="ratio ratio-1x1 mb-3">
+                        <div className="ratio ratio-1x1 mb-3 position-relative">
                           <img
                             src={
                               product.files.find((img) => img.thumbnail)?.path
@@ -111,19 +111,23 @@ const App = () => {
                             alt="Thumbnail"
                           />
 
-                          {/* <div
-                            className="position-absolute top-0 start-0 py-1 px-2 text-dark"
-                            style={{
-                              fontSize: "12px",
-                              height: "auto",
-                              width: "auto",
-                              borderTopLeftRadius: "0.5rem",
-                              borderBottomRightRadius: "0.5rem",
-                              backgroundColor: "#4fc9a6",
-                            }}
-                          >
-                            {product.variants.length} variants
-                          </div> */}
+                          {product.files.some(
+                            (file) => file.type === "video"
+                          ) && (
+                            <div className="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center bg-dark bg-opacity-50 rounded-3">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="48"
+                                height="48"
+                                fill="white"
+                                className="bi bi-play-circle"
+                                viewBox="0 0 16 16"
+                              >
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445" />
+                              </svg>
+                            </div>
+                          )}
                         </div>
 
                         <h6 className="title mb-2 lh-base">{product.name}</h6>
