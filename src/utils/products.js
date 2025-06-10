@@ -15,6 +15,15 @@ import KiwoyoBrosLayerBiru from "../assets/images/products/kiwoyo-bros-layer-bir
 import KiwoyoBrosLayerPink from "../assets/images/products/kiwoyo-bros-layer-pink.webp";
 import KiwoyoBrosPitaSilk from "../assets/images/products/kiwoyo-bros-pita-silk.webp";
 
+import SassySkirt1 from "../assets/images/products/sassy-skirt-1.webp";
+import SassySkirt2 from "../assets/images/products/sassy-skirt-2.webp";
+import SassySkirt3 from "../assets/images/products/sassy-skirt-3.webp";
+import SassySkirt4 from "../assets/images/products/sassy-skirt-4.webp";
+import SassySkirtBrokenWhite from "../assets/images/products/sassy-skirt-broken-white.webp";
+import SassySkirtDenim from "../assets/images/products/sassy-skirt-denim.webp";
+import SassySkirtSoftGreen from "../assets/images/products/sassy-skirt-soft-green.webp";
+import SassySkirtMouve from "../assets/images/products/sassy-skirt-mouve.webp";
+
 const products = [
   {
     id: 1,
@@ -88,7 +97,7 @@ const products = [
       { color: "Biru Denim", image: LilyBlouseBiruDenim },
       { color: "Hijau Tosca", image: LilyBlouseHijauTosca },
     ],
-    created_at: "2025-06-10T11:00:00Z",
+    created_at: "2025-06-08T11:00:00Z",
   },
   {
     id: 2,
@@ -122,7 +131,50 @@ const products = [
       { color: "Satu Layer Pink", image: KiwoyoBrosLayerPink },
       { color: "Pita Silk", image: KiwoyoBrosPitaSilk },
     ],
-    created_at: "2025-06-10T13:00:00Z",
+    created_at: "2025-06-08T13:00:00Z",
+  },
+  {
+    id: 3,
+    name: "Sassy Skirt | Rok Susun Ruffle Crinkle Yoryu",
+    slug: "sassy-skirt-rok-susun-ruffle-crinkle-yoryu",
+    size: ["S", "M to L", "L to XL"],
+    price: 90169,
+    description: `<p>
+      ‼️SEBELUM MEMBELI CHECK DESKRIPSI PRODUK TERLEBIH DAHULU☺️‼️
+      <br />
+      <br />
+      🎀 New Product 🎀
+      — Sassy Skirt —
+      <br />
+      Bahan : Crinkle Yoryu + Furing Hyget
+      Detail  : 
+      - Bahan Crinkle Yoryu ringan dan nyaman saat digunakan, mudah dirawat dan tidak mudah kusut.
+      - Model rok susun
+      - Pinggang karet 
+      - Terdapat dalaman rok sehingga tidak menerawang
+      - Ukuran : S, M to L, L to XL
+      - Warna : Broken White, Denim, Soft Green, Mouve 
+      <br />
+      <br />
+      🌸 Buka Senin - Sabtu, Minggu Libur 🌸
+      <br />
+      <br />
+      Happy Shopping ‼️🛒
+    </p>`,
+    categories: [{ name: "Aksesoris Tambahan" }],
+    images: [
+      { thumbnail: true, image: SassySkirt1 },
+      { thumbnail: false, image: SassySkirt2 },
+      { thumbnail: false, image: SassySkirt3 },
+      { thumbnail: false, image: SassySkirt4 },
+    ],
+    variants: [
+      { color: "Broken White", image: SassySkirtBrokenWhite },
+      { color: "Denim", image: SassySkirtDenim },
+      { color: "Soft Green", image: SassySkirtSoftGreen },
+      { color: "Mouve", image: SassySkirtMouve },
+    ],
+    created_at: "2025-06-09T12:00:00Z",
   },
 ];
 
