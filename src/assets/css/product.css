@@ -5,12 +5,13 @@ main#product {
   background-image: url("/src/assets/images/background2.png");
 }
 
-main#product .breadcrumb-custom {
-  --bs-breadcrumb-divider: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><path d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/></svg>");
-}
-
-main#product .breadcrumb-item {
-  font-size: 13px;
+main#product .breadcrumb-custom small:last-child {
+  line-clamp: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
 }
 
 main#product .thumbnail-wrapper:hover {

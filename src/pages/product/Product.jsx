@@ -40,31 +40,29 @@ const Product = () => {
     <main id="product">
       <Container>
         {/* BreadCrumbs */}
-        <nav className="breadcrumb-custom mt-3" aria-label="breadcrumb">
-          <ol className="breadcrumb mb-0">
-            <li className="breadcrumb-item">
-              <Link
-                to="/"
-                className="text-decoration-none"
-                style={{ color: "#f5596c" }}
-              >
-                Home
-              </Link>
-            </li>
-            <li className="breadcrumb-item">
-              <Link
-                to="/catalog"
-                className="text-decoration-none"
-                style={{ color: "#f5596c" }}
-              >
-                Catalog
-              </Link>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              {product.name}
-            </li>
-          </ol>
-        </nav>
+        <div className="d-flex justify-content-start align-items-center gap-2 mt-3 breadcrumb-custom">
+          <Link
+            to="/"
+            className="text-decoration-none"
+            style={{ color: "#f5596c" }}
+          >
+            <small>Home</small>
+          </Link>
+          <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8">
+            <path d="M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z" fill="#6c757d" />
+          </svg>
+          <Link
+            to="/catalog"
+            className="text-decoration-none"
+            style={{ color: "#f5596c" }}
+          >
+            <small>Catalog</small>
+          </Link>
+          <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8">
+            <path d="M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z" fill="#6c757d" />
+          </svg>
+          <small className="text-secondary">{product.name}</small>
+        </div>
 
         <div className="row g-4 mt-3">
           <div className="col-12 col-lg-5">
