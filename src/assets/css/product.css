@@ -5,7 +5,17 @@ main#product {
   background-image: url("/src/assets/images/background2.png");
 }
 
+main#product .breadcrumb-custom {
+  overflow: hidden;
+}
+
+main#product .breadcrumb-custom > * {
+  flex-shrink: 0;
+}
+
 main#product .breadcrumb-custom small:last-child {
+  flex-shrink: 1;
+  min-width: 0;
   line-clamp: 1;
   overflow: hidden;
   display: -webkit-box;
