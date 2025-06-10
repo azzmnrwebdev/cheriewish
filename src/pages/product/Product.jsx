@@ -1,6 +1,6 @@
 import DOMPurify from "dompurify";
 import "../../assets/css/product.css";
-import { Container } from "react-bootstrap";
+import { Container, Modal } from "react-bootstrap";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { useState } from "react";
 
@@ -8,6 +8,8 @@ const Product = () => {
   const { slug } = useParams();
   const location = useLocation();
   const { product } = location.state;
+
+  const [showModal, setShowModal] = useState(false);
   const [activeVariant, setActiveVariant] = useState(null);
 
   const [activeFile, setActiveFile] = useState(
@@ -15,6 +17,11 @@ const Product = () => {
       product.files.find((file) => file.thumbnail) ||
       product.files[0]
   );
+
+  const [activeMedia, setActiveMedia] = useState({
+    type: activeVariant ? "image" : activeFile.type,
+    path: activeVariant ? activeVariant.image : activeFile.path,
+  });
 
   const handleFileClick = (file) => {
     setActiveVariant(null);
@@ -67,7 +74,16 @@ const Product = () => {
         <div className="row g-4 mt-3">
           <div className="col-12 col-lg-5">
             {/* Thumbnail */}
-            <div className="thumbnail-wrapper rounded-3 overflow-hidden mb-2 ratio ratio-1x1">
+            <div
+              className="thumbnail-wrapper rounded-3 overflow-hidden mb-2 ratio ratio-1x1"
+              onClick={() => {
+                setShowModal(true);
+                setActiveMedia({
+                  type: activeVariant ? "image" : activeFile.type,
+                  path: activeVariant ? activeVariant.image : activeFile.path,
+                });
+              }}
+            >
               {activeVariant ? (
                 <img src={activeVariant.image} alt="Product Thumbnail" />
               ) : activeFile.type === "video" ? (
@@ -248,6 +264,100 @@ const Product = () => {
             }}
           />
         </div>
+
+        {/* Modal */}
+        <Modal
+          show={showModal}
+          onHide={() => setShowModal(false)}
+          centered
+          size="lg"
+        >
+          <Modal.Body>
+            <div className="row g-3">
+              <div className="col-12 col-lg-7">
+                <div className="rounded-3 overflow-hidden ratio ratio-1x1">
+                  {activeMedia?.type === "video" ? (
+                    <video controls autoPlay>
+                      <source src={activeMedia.path} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  ) : (
+                    <img src={activeMedia?.path} alt="Product Preview" />
+                  )}
+                </div>
+              </div>
+
+              <div className="col-12 col-lg-5">
+                {/* Name */}
+                <h6 className="mb-4 fw-semibold fs-6 lh-base">
+                  {product.name}
+                </h6>
+
+                {/* List File */}
+                <div className="d-flex flex-wrap gap-2">
+                  {product.files
+                    .sort((a) => (a.type === "video" ? -1 : 1))
+                    .map((file, index) => (
+                      <div
+                        key={index}
+                        onClick={() =>
+                          setActiveMedia({
+                            type: file.type,
+                            path: file.path,
+                          })
+                        }
+                        style={{
+                          width: "80px",
+                          height: "80px",
+                          cursor: "pointer",
+                          overflow: "hidden",
+                          boxSizing: "border-box",
+                        }}
+                      >
+                        {file.type === "image" ? (
+                          <img
+                            src={file.path}
+                            alt="Product Image"
+                            className=""
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              display: "block",
+                              objectFit: "cover",
+                              borderRadius: "8px",
+                              border:
+                                activeMedia?.path === file.path
+                                  ? "3px solid #fdba74"
+                                  : "3px solid transparent",
+                            }}
+                          />
+                        ) : (
+                          <video
+                            poster={file.thumbnail ? file.path : undefined}
+                            className=""
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              display: "block",
+                              objectFit: "cover",
+                              borderRadius: "8px",
+                              border:
+                                activeMedia?.path === file.path
+                                  ? "3px solid #fdba74"
+                                  : "3px solid transparent",
+                            }}
+                          >
+                            <source src={file.path} type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>
+                        )}
+                      </div>
+                    ))}
+                </div>
+              </div>
+            </div>
+          </Modal.Body>
+        </Modal>
       </Container>
     </main>
   );
