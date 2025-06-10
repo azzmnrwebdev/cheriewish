@@ -67,49 +67,81 @@ const products = [
     price: 90169,
     material: "Rayon Twill Premium",
     motive: null,
+    url_shopee:
+      "https://shopee.co.id/Lily-Blouse-Blouse-Korean-Style-Blouse-Lengan-Panjang-i.1370682652.29264989098",
     description: `<p>
       ‼️SEBELUM MEMBELI CHECK DESKRIPSI PRODUK TERLEBIH DAHULU☺️‼️
       <br />
       <br />
+      <br />
       🎀 New Product 🎀
+      <br />
       — Lily Blouse —
       <br />
+      <br />
       Bahan : Rayon Twill Premium
+      <br />
       Detail  : 
+      <br />
       - Karakteristik kain rayon twill premium yang bertekstur lembut, halus, dan menyerap keringat sehingga nyaman digunakan
+      <br />
       - Model Ruffle
+      <br />
       - Kerah, dan Berkancing
+      <br />
       - Pergelangan tangan memakai kancing
+      <br />
       - Ukuran : XS - L
+      <br />
       - Warna : Dusty Pink, Biru Denim, Hijau Tosca, Ungu Lavender
       <br />
       <br />
       Size : 
       <br />
       XS = 
+      <br />
       PB : 58
+      <br />
       PL : 52
+      <br />
       LD : 90
       <br />
+      <br />
       S =
+      <br />
       PB : 60
+      <br />
       PL : 55
+      <br />
       LD : 96
       <br />
+      <br />
       M =
+      <br />
       PB : 62
+      <br />
       PL : 57
+      <br />
       LD : 102
       <br />
+      <br />
       L =
+      <br />
       PB : 64
+      <br />
       PL : 57
+      <br />
       LD : 108
       <br />
+      <br />
       catatan = 
+      <br />
       PB  : Panjang Badan
+      <br />
       PL  : Panjang Lengan
+      <br />
       LD  : Lingkar Dada
+      <br />
       <br />
       <br />
       🌸 Buka Senin - Sabtu, Minggu Libur 🌸
@@ -143,16 +175,25 @@ const products = [
     price: 10000,
     material: null,
     motive: null,
+    url_shopee:
+      "https://shopee.co.id/KIWOYO-Bros-Pin-Pita-Besar-Dobel-Layer-Bahan-Kain-Gaya-Fashion-Korea-i.1370682652.28636911864",
     description: `<p>
       ‼️SEBELUM MEMBELI CHECK DESKRIPSI PRODUK TERLEBIH DAHULU‼️
       <br />
       <br />
+      <br />
       New Product
+      <br />
       — Kiwoyo Pita Aksesoris —
       <br />
+      <br />
       Bahan : Katun, Silk & Organza
+      <br />
       Detail  : 
+      <br />
       Gemes bangett bisa dijadiin bros kerudung, atau bisa ditaro dibelakang kerudung
+      <br />
+      <br />
       <br />
       Buka Senin - Sabtu, Minggu Libur
       <br />
@@ -179,21 +220,34 @@ const products = [
     price: 90169,
     material: "Crinkle Yoryu, Furing Hyget",
     motive: "Polos",
+    url_shopee:
+      "https://shopee.co.id/Sassy-Skirt-Rok-Susun-Ruffle-Crinkle-Yoryu-i.1370682652.26267927358",
     description: `<p>
       ‼️SEBELUM MEMBELI CHECK DESKRIPSI PRODUK TERLEBIH DAHULU☺️‼️
       <br />
       <br />
+      <br />
       🎀 New Product 🎀
+      <br />
       — Sassy Skirt —
       <br />
+      <br />
       Bahan : Crinkle Yoryu + Furing Hyget
+      <br />
       Detail  : 
+      <br />
       - Bahan Crinkle Yoryu ringan dan nyaman saat digunakan, mudah dirawat dan tidak mudah kusut.
+      <br />
       - Model rok susun
+      <br />
       - Pinggang karet 
+      <br />
       - Terdapat dalaman rok sehingga tidak menerawang
+      <br />
       - Ukuran : S, M to L, L to XL
+      <br />
       - Warna : Broken White, Denim, Soft Green, Mouve 
+      <br />
       <br />
       <br />
       🌸 Buka Senin - Sabtu, Minggu Libur 🌸
@@ -224,50 +278,84 @@ const products = [
     price: 199000,
     material: "Cerutty Baby Doll, Shakila",
     motive: "Bunga",
+    url_shopee:
+      "https://shopee.co.id/Violetta-Dress-Dress-Lebaran-Gamis-Dewasa-Kekinian-i.1370682652.27129735926",
     description: `<p>
       ‼️SEBELUM MEMBELI CHECK DESKRIPSI PRODUK TERLEBIH DAHULU☺️‼️
       <br />
+      <br />
+      <br />
       New Product Collection | Dress Lebaran 2025
+      <br />
       <br />
       — Violetta Dress —
       <br />
+      <br />
       Bahan : Cerutty baby doll + Shakila
+      <br />
+      <br />
       Detail :
+      <br />
       - Terdapat Furing (dalaman) sehingga tidak menerawang
+      <br />
       - Terdapat tali pinggang
+      <br />
       - Motif Bunga 
+      <br />
       - Ukuran : S, M, L, XL
+      <br />
       - Warna : Baby Pink, Baby Blue, Hijau Tosca
+      <br />
       <br />
       Detail Ukuran :
       <br />
+      <br />
       ▶️ Ukuran S 
       <br />
+      <br />
       LD : 86cm
+      <br />
       PB : 125cm
+      <br />
       PL : 54cm
+      <br />
       <br />
       ▶️ Ukuran M
       <br />
+      <br />
       LD : 92cm
+      <br />
       PB : 128cm
+      <br />
       PL : 54cm
+      <br />
       <br />
       ▶️ Ukuran L
       <br />
+      <br />
       LD : 98cm
+      <br />
       PB : 131cm
+      <br />
       PL : 55cm
+      <br />
       <br />
       ▶️ Ukuran XL
       <br />
+      <br />
       LD : 104cm
+      <br />
       PB : 132cm
+      <br />
       PL : 55cm
+      <br />
+      <br />
       <br />
       Buka Setiap Hari Selama Ramadhan
       <br />
+      <br />
       Happy Shopping ‼️
+      <br />
       <br />
       #oneset #dress #bajulebaran #dresskoreanstyle #onesetlucu #dresslebaran #lebaran2025readystock
     </p>`,
@@ -296,45 +384,74 @@ const products = [
     price: 52000,
     material: "Crinkle",
     motive: null,
+    url_shopee:
+      "https://shopee.co.id/Cherie-Bloom-Outer-Outer-Lucu-Cardigan-i.1370682652.28586123064",
     description: `<p>
       ‼️SEBELUM MEMBELI CHECK DESKRIPSI PRODUK TERLEBIH DAHULU☺️‼️
       <br />
       <br />
+      <br />
       New Product 
+      <br />
       — Cherie Bloom Outer —
       <br />
+      <br />
       Bahan : Crinkle
+      <br />
       Detail : 
+      <br />
       - Karakteristik kain crinkle adalah kain berkerut permanen, ringan, tidak perlu disetrika, nyaman dipakai, dan cocok untuk gaya kasual atau feminin.
+      <br />
       - Model Tali dibagian Depan
+      <br />
       - Pergelangan tangan karet
+      <br />
       - Ukuran : S - XL
+      <br />
       - Motif : Pita Pink, Pita Biru, Bunga Cream, Bunga Abu
       <br />
       <br />
       Size : 
       <br />
+      <br />
       S = 
+      <br />
       LD : 85
+      <br />
       PB : 48
+      <br />
       <br />
       M =
+      <br />
       LD : 90
+      <br />
       PB : 48
       <br />
+      <br />
       L = 
+      <br />
       LD : 100
+      <br />
       PB : 50
+      <br />
       <br />
       XL =
+      <br />
       LD : 104
+      <br />
       PB : 50
       <br />
+      <br />
       catatan = 
+      <br />
       LD  : Lingkar Dada
+      <br />
       PB  : Panjang Badan
       <br />
+      <br />
+      <br />
       Buka Senin - Sabtu, Minggu Libur
+      <br />
       <br />
       Happy Shopping
     </p>`,
@@ -365,14 +482,21 @@ const products = [
     price: 150000,
     material: null,
     motive: null,
+    url_shopee:
+      "https://shopee.co.id/Michi-Dress-Oneset-Korean-Style-Dress-Lebaran-i.1370682652.29672444617",
     description: `<p>
       ‼️SEBELUM MEMBELI CHECK DESKRIPSI PRODUK TERLEBIH DAHULU☺️‼️
       <br />
+      <br />
+      <br />
       New Product 
+      <br />
       <br />
       — Michi Dress —
       <br />
+      <br />
       Bahan : Crinkle Plisket + Knit Bostman
+      <br />
       <br />
       Detail : 
       <br />
@@ -388,9 +512,12 @@ const products = [
       <br />
       - Warna : Biru, Pink
       <br />
+      <br />
       Ukuran Outher One Set : 
       <br />
+      <br />
       Ukuran S 
+      <br />
       <br />
       Bahu : 37cm
       <br />
@@ -400,7 +527,9 @@ const products = [
       <br />
       Panjang : 42cm
       <br />
+      <br />
       Ukuran M
+      <br />
       <br />
       Bahu : 39cm
       <br />
@@ -410,7 +539,9 @@ const products = [
       <br />
       Panjang : 46cm
       <br />
+      <br />
       Ukuran L
+      <br />
       <br />
       Bahu : 41cm
       <br />
@@ -420,7 +551,9 @@ const products = [
       <br />
       Panjang : 47cm
       <br />
+      <br />
       Ukuran XL 
+      <br />
       <br />
       Bahu : 43cm
       <br />
@@ -430,9 +563,12 @@ const products = [
       <br />
       Panjang : 50cm
       <br />
+      <br />
       Ukuran Dress : 
       <br />
+      <br />
       Ukuran S 
+      <br />
       <br />
       P : 125cm
       <br />
@@ -442,7 +578,9 @@ const products = [
       <br />
       PL : 56cm
       <br />
+      <br />
       Ukuran M
+      <br />
       <br />
       P : 128cm
       <br />
@@ -452,7 +590,9 @@ const products = [
       <br />
       PL : 56,5cm
       <br />
+      <br />
       Ukuran L
+      <br />
       <br />
       P : 131cm
       <br />
@@ -462,7 +602,9 @@ const products = [
       <br />
       PL : 57cm
       <br />
+      <br />
       Ukuran XL
+      <br />
       <br />
       P : 134cm
       <br />
@@ -472,9 +614,13 @@ const products = [
       <br />
       PL : 57,5cm
       <br />
+      <br />
+      <br />
       Buka Senin - Sabtu, Minggu Libur
       <br />
+      <br />
       Happy Shopping ‼️
+      <br />
       <br />
       #oneset #dress #bajulebaran #dresskoreanstyle #onesetlucu
     </p>`,

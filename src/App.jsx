@@ -98,6 +98,7 @@ const App = () => {
                   <Link
                     to={`/catalog/product-${product.slug}`}
                     className="text-decoration-none"
+                    state={{ product }}
                   >
                     <div className="card h-100 bg-transparent border-0 rounded-0 mt-3">
                       <div className="card-body p-0">

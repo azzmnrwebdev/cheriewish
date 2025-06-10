@@ -1,0 +1,101 @@
+main#product {
+  padding-top: 80px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("/src/assets/images/background2.png");
+}
+
+main#product .breadcrumb-custom {
+  --bs-breadcrumb-divider: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><path d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/></svg>");
+}
+
+main#product .breadcrumb-item {
+  font-size: 13px;
+}
+
+main#product .product-name {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+main#product .product-price {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+main#product .table-title {
+  width: 130px;
+  flex-shrink: 0;
+}
+
+main#product .table-value {
+  flex: 1;
+  word-break: break-word;
+}
+
+main#product .btn-size:hover {
+  color: #f5596c !important;
+  border-color: #f5596c !important;
+}
+
+main#product .thumbnail-wrapper:hover {
+  cursor: pointer;
+}
+
+.thumbnail-wrapper img,
+.thumbnail-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+main#product .image-box {
+  width: 82px;
+  height: 82px;
+  flex-shrink: 0;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.image-box:last-child {
+  margin-right: 0;
+}
+
+.image-box img,
+.image-box video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.image-box:hover {
+  cursor: pointer !important;
+}
+
+.image-box:hover img,
+.image-box img.active,
+.image-box:hover video,
+.image-box video.active {
+  border-color: #fdba74;
+}
+
+@media (min-width: 576px) {
+  main#product .table-title {
+    width: 180px;
+  }
+}
+
+@media (min-width: 768px) {
+  main#product .product-name {
+    font-size: 20px;
+  }
+
+  main#product .product-price {
+    font-size: 24px;
+    font-weight: 600;
+  }
+}
