@@ -47,14 +47,6 @@ body {
 /* Custom Container */
 @media (min-width: 1200px) {
   .container {
-    padding-left: 4rem !important;
-    padding-right: 4rem !important;
-  }
-}
-
-@media (min-width: 1400px) {
-  .container {
-    padding-left: 5rem !important;
-    padding-right: 5rem !important;
+    max-width: 1170px !important;
   }
 }
