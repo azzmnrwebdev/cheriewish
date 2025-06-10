@@ -2,7 +2,7 @@ import DOMPurify from "dompurify";
 import "../../assets/css/product.css";
 import { Container, Modal } from "react-bootstrap";
 import { Link, useLocation, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Product = () => {
   const { slug } = useParams();
@@ -40,29 +40,6 @@ const Product = () => {
   const handleVariantHover = (variant) => {
     setActiveVariant(variant);
   };
-
-  useEffect(() => {
-    if (showModal) {
-      window.history.pushState({ modalOpen: true }, "");
-
-      const handleBackButton = (event) => {
-        if (showModal) {
-          event.preventDefault();
-          setShowModal(false);
-          window.history.go(-1);
-        }
-      };
-
-      window.addEventListener("popstate", handleBackButton);
-
-      return () => {
-        window.removeEventListener("popstate", handleBackButton);
-        if (window.history.state?.modalOpen) {
-          window.history.go(-1);
-        }
-      };
-    }
-  }, [showModal]);
 
   console.log(slug);
 
