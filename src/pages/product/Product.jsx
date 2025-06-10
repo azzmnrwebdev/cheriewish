@@ -162,8 +162,8 @@ const Product = () => {
             )}
 
             {/* Warna */}
-            <div className="d-flex justify-content-start align-items-start mb-4">
-              <h6 className="mb-0 fw-normal table-title">Warna</h6>
+            <div className="d-flex flex-column flex-md-row justify-content-start align-items-start mb-4">
+              <h6 className="mb-3 fw-normal table-title mb-md-0">Warna</h6>
               <div className="d-flex flex-wrap gap-2">
                 {product.variants.map((variant, index) => (
                   <button
@@ -190,8 +190,8 @@ const Product = () => {
 
             {/* Ukuran */}
             {product.size && (
-              <div className="d-flex justify-content-start align-items-start mb-4">
-                <h6 className="mb-0 fw-normal table-title">Ukuran</h6>
+              <div className="d-flex flex-column flex-md-row justify-content-start align-items-start align-items-md-center mb-4">
+                <h6 className="mb-3 fw-normal table-title mb-md-0">Ukuran</h6>
                 <div className="d-flex flex-wrap gap-2">
                   {product.size.map((size, index) => (
                     <button
