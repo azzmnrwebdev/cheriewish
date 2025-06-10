@@ -11,7 +11,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 const App = () => {
   const latestProducts = products
     .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-    .slice(0, 5);
+    .slice(0, 6);
 
   return (
     <>
@@ -103,7 +103,9 @@ const App = () => {
                       <div className="card-body p-0">
                         <div className="ratio ratio-1x1 mb-3">
                           <img
-                            src={product.thumbnail}
+                            src={
+                              product.images.find((img) => img.thumbnail)?.image
+                            }
                             className="img-fluid object-fit-cover rounded-3"
                             loading="lazy"
                             alt="Thumbnail"
@@ -124,7 +126,7 @@ const App = () => {
                           </div> */}
                         </div>
 
-                        <h6 className="title mb-2">{product.name}</h6>
+                        <h6 className="title mb-2 lh-base">{product.name}</h6>
                         <h6
                           className="fw-bold mb-0"
                           style={{ color: "#f5596c" }}
