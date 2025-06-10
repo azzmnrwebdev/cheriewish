@@ -13,31 +13,6 @@ main#product .breadcrumb-item {
   font-size: 13px;
 }
 
-main#product .product-name {
-  font-size: 16px;
-  font-weight: 500;
-}
-
-main#product .product-price {
-  font-size: 22px;
-  font-weight: 600;
-}
-
-main#product .table-title {
-  width: 130px;
-  flex-shrink: 0;
-}
-
-main#product .table-value {
-  flex: 1;
-  word-break: break-word;
-}
-
-main#product .btn-size:hover {
-  color: #f5596c !important;
-  border-color: #f5596c !important;
-}
-
 main#product .thumbnail-wrapper:hover {
   cursor: pointer;
 }
@@ -81,6 +56,33 @@ main#product .image-box {
 .image-box:hover video,
 .image-box video.active {
   border-color: #fdba74;
+}
+
+main#product .product-name {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+main#product .product-price {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+main#product .table-title {
+  width: 130px;
+  flex-shrink: 0;
+}
+
+main#product .table-value {
+  flex: 1;
+  word-break: break-word;
+}
+
+main#product .btn-size:hover,
+main#product .btn-color:hover,
+main#product .btn-color.active {
+  color: #f5596c !important;
+  border-color: #f5596c !important;
 }
 
 @media (min-width: 576px) {

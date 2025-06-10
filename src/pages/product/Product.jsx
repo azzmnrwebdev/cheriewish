@@ -8,6 +8,7 @@ const Product = () => {
   const { slug } = useParams();
   const location = useLocation();
   const { product } = location.state;
+  const [activeVariant, setActiveVariant] = useState(null);
 
   const [activeFile, setActiveFile] = useState(
     product.files.find((file) => file.type === "video") ||
@@ -16,12 +17,24 @@ const Product = () => {
   );
 
   const handleFileClick = (file) => {
+    setActiveVariant(null);
     setActiveFile(file);
   };
 
   const handleFileHover = (file) => {
+    setActiveVariant(null);
     setActiveFile(file);
   };
+
+  const handleVariantClick = (variant) => {
+    setActiveVariant(variant);
+  };
+
+  const handleVariantHover = (variant) => {
+    setActiveVariant(variant);
+  };
+
+  console.log(slug);
 
   return (
     <main id="product">
@@ -57,7 +70,9 @@ const Product = () => {
           <div className="col-12 col-lg-5">
             {/* Thumbnail */}
             <div className="thumbnail-wrapper rounded-3 overflow-hidden mb-2 ratio ratio-1x1">
-              {activeFile.type === "video" ? (
+              {activeVariant ? (
+                <img src={activeVariant.image} alt="Product Thumbnail" />
+              ) : activeFile.type === "video" ? (
                 <video autoPlay muted loop playsInline src={activeFile.path}>
                   Your browser does not support the video tag.
                 </video>
@@ -149,7 +164,28 @@ const Product = () => {
             {/* Warna */}
             <div className="d-flex justify-content-start align-items-start mb-4">
               <h6 className="mb-0 fw-normal table-title">Warna</h6>
-              <h6 className="mb-0 fw-normal table-value">Warna</h6>
+              <div className="d-flex flex-wrap gap-2">
+                {product.variants.map((variant, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    className={`btn btn-color border-secondary-subtle p-2 rounded-1 d-flex justify-content-between align-items-center gap-2 ${
+                      activeVariant === variant ? "active" : ""
+                    }`}
+                    onClick={() => handleVariantClick(variant)}
+                    onMouseEnter={() => handleVariantHover(variant)}
+                  >
+                    <img
+                      src={variant.image}
+                      width="24"
+                      height="24"
+                      className="object-fit-cover"
+                      alt="Variant Image"
+                    />
+                    <small>{variant.color}</small>
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Ukuran */}
@@ -157,13 +193,13 @@ const Product = () => {
               <div className="d-flex justify-content-start align-items-start mb-4">
                 <h6 className="mb-0 fw-normal table-title">Ukuran</h6>
                 <div className="d-flex flex-wrap gap-2">
-                  {product.size.map((sizeItem, index) => (
+                  {product.size.map((size, index) => (
                     <button
                       key={index}
                       type="button"
                       className="btn btn-size border-secondary-subtle px-4 py-2 rounded-1"
                     >
-                      {sizeItem}
+                      {size}
                     </button>
                   ))}
                 </div>
