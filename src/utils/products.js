@@ -82,11 +82,11 @@ const products = [
       Happy Shopping ‼️🛒
     </p>`,
     categories: [{ name: "Atasan Muslim Wanita" }],
-    images: [
-      { thumbnail: true, image: LilyBlouseImage1 },
-      { thumbnail: false, image: LilyBlouseImage2 },
-      { thumbnail: false, image: LilyBlouseImage3 },
-      { thumbnail: false, image: LilyBlouseImage4 },
+    files: [
+      { thumbnail: true, type: "image", path: LilyBlouseImage1 },
+      { thumbnail: false, type: "image", path: LilyBlouseImage2 },
+      { thumbnail: false, type: "image", path: LilyBlouseImage3 },
+      { thumbnail: false, type: "image", path: LilyBlouseImage4 },
     ],
     variants: [
       { color: "Dusty Pink", image: LilyBlouseDustyPink },
@@ -122,7 +122,7 @@ const products = [
       Happy Shopping
     </p>`,
     categories: [{ name: "Aksesoris Tambahan" }],
-    images: [{ thumbnail: true, image: KiwoyoBros1 }],
+    files: [{ thumbnail: true, type: "image", path: KiwoyoBros1 }],
     variants: [
       { color: "Ungu", image: KiwoyoBrosUngu },
       { color: "Pink", image: KiwoyoBrosPink },
@@ -162,11 +162,11 @@ const products = [
       Happy Shopping ‼️🛒
     </p>`,
     categories: [{ name: "Aksesoris Tambahan" }],
-    images: [
-      { thumbnail: true, image: SassySkirt1 },
-      { thumbnail: false, image: SassySkirt2 },
-      { thumbnail: false, image: SassySkirt3 },
-      { thumbnail: false, image: SassySkirt4 },
+    files: [
+      { thumbnail: true, type: "image", path: SassySkirt1 },
+      { thumbnail: false, type: "image", path: SassySkirt2 },
+      { thumbnail: false, type: "image", path: SassySkirt3 },
+      { thumbnail: false, type: "image", path: SassySkirt4 },
     ],
     variants: [
       { color: "Broken White", image: SassySkirtBrokenWhite },

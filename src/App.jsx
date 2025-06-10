@@ -104,7 +104,7 @@ const App = () => {
                         <div className="ratio ratio-1x1 mb-3">
                           <img
                             src={
-                              product.images.find((img) => img.thumbnail)?.image
+                              product.files.find((img) => img.thumbnail)?.path
                             }
                             className="img-fluid object-fit-cover rounded-3"
                             loading="lazy"
