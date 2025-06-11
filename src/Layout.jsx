@@ -4,6 +4,7 @@ import LoadingScreen from "./components/Loading";
 import NavbarComponent from "./components/Navbar";
 import FooterComponent from "./components/Footer";
 import { Outlet, useLocation } from "react-router-dom";
+import backgroundImage from "./assets/images/background2.png";
 
 const Layout = () => {
   const { pathname } = useLocation();
@@ -17,7 +18,7 @@ const Layout = () => {
       document.body.style.backgroundSize = "cover";
       document.body.style.backgroundRepeat = "no-repeat";
       document.body.style.backgroundPosition = "top center";
-      document.body.style.backgroundImage = 'url("/src/assets/images/background2.png")';
+      document.body.style.backgroundImage = `url(${backgroundImage})`;
     } else {
       document.body.style.backgroundImage = "";
       document.body.style.backgroundSize = "";
