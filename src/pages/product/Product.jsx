@@ -270,11 +270,12 @@ const Product = () => {
           show={showModal}
           onHide={() => setShowModal(false)}
           centered
+          scrollable
           size="lg"
         >
           <Modal.Body>
             <div className="row g-3">
-              <div className="col-12 col-lg-7">
+              <div className="col-12 col-lg-7 position-relative">
                 <div className="rounded-3 overflow-hidden ratio ratio-1x1">
                   {activeMedia?.type === "video" ? (
                     <video controls autoPlay>
@@ -285,11 +286,89 @@ const Product = () => {
                     <img src={activeMedia?.path} alt="Product Preview" />
                   )}
                 </div>
+
+                {/* Previous Button */}
+                <button
+                  onClick={() => {
+                    const currentIndex = product.files.findIndex(
+                      (file) => file.path === activeMedia.path
+                    );
+                    const prevIndex =
+                      (currentIndex - 1 + product.files.length) %
+                      product.files.length;
+                    setActiveMedia({
+                      type: product.files[prevIndex].type,
+                      path: product.files[prevIndex].path,
+                    });
+                  }}
+                  className="position-absolute start-0 top-50 translate-middle-y ms-2"
+                  style={{
+                    zIndex: 1,
+                    width: "40px",
+                    height: "80px",
+                    border: "none",
+                    backgroundColor: "rgba(0,0,0,0.5)",
+                  }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="white"
+                    className="bi bi-chevron-left"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      stroke="white"
+                      strokeWidth="1.5"
+                      fillRule="evenodd"
+                      d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"
+                    />
+                  </svg>
+                </button>
+
+                {/* Next Button */}
+                <button
+                  onClick={() => {
+                    const currentIndex = product.files.findIndex(
+                      (file) => file.path === activeMedia.path
+                    );
+                    const nextIndex = (currentIndex + 1) % product.files.length;
+                    setActiveMedia({
+                      type: product.files[nextIndex].type,
+                      path: product.files[nextIndex].path,
+                    });
+                  }}
+                  className="position-absolute end-0 top-50 translate-middle-y me-2"
+                  style={{
+                    zIndex: 1,
+                    width: "40px",
+                    height: "80px",
+                    border: "none",
+                    backgroundColor: "rgba(0,0,0,0.5)",
+                  }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="white"
+                    className="bi bi-chevron-right"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      stroke="white"
+                      strokeWidth="1.5"
+                      fillRule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
+                    />
+                  </svg>
+                </button>
               </div>
 
               <div className="col-12 col-lg-5">
                 {/* Name */}
-                <h6 className="mb-4 fw-semibold fs-6 lh-base">
+                <h6 className="mb-3 fw-semibold fs-6 lh-base">
                   {product.name}
                 </h6>
 
