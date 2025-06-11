@@ -18,17 +18,17 @@ const App = () => {
       <header>
         <Container>
           <h1 className="title text-body-secondary mb-0 text-center d-sm-none">
-            Elevate Your Wardrobe
+            Tingkatkan Gaya
             <br />
-            with Korean
+            Busanamu dengan
             <br />
-            Muslim Fashion!
+            Busana Muslim Korea!
           </h1>
 
           <h1 className="title text-dark mb-0 text-center d-none d-sm-block">
-            Elevate Your Wardrobe
+            Tingkatkan Gaya Busanamu
             <br />
-            with Korean Muslim Fashion!
+            dengan Busana Muslim Korea!
           </h1>
 
           <div className="text-center">
@@ -161,8 +161,9 @@ const App = () => {
                 Tim&nbsp;<span style={{ color: "#f5596c" }}>Cheriewish</span>
               </h1>
               <p className="mb-0 sub-title px-3 px-sm-5">
-                Kami adalah tim yang bekerja bersama untuk menciptakan pakaian dan
-                aksesori yang unik, penuh gaya dan dibuat dengan sepenuh hati.
+                Kami adalah tim yang bekerja bersama untuk menciptakan pakaian
+                dan aksesori yang unik, penuh gaya dan dibuat dengan sepenuh
+                hati.
               </p>
             </div>
 
@@ -205,17 +206,29 @@ const App = () => {
                   Tentang&nbsp;<span style={{ color: "#f5596c" }}>Kami</span>
                 </h1>
 
-                <p className="mb-0 sub-title text-start">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries, but
-                  also the leap into electronic typesetting, remaining
-                  essentially unchanged. It was popularised in the 1960s with
-                  the release of Letraset sheets containing Lorem Ipsum
-                  passages, and more recently with desktop publishing software
-                  like Aldus PageMaker including versions of Lorem Ipsum.
+                <p className="mb-0 sub-title text-start lh-lg">
+                  Cheriewish merupakan brand fashion yang dirancang khusus untuk
+                  wanita dengan tubuh <i>petite</i> dan cocok bagi yang
+                  berhijab. Selain itu, Cheriewish juga berfokus pada gaya
+                  feminin <i>coquette</i> namun tetap terlihat casual. Brand ini
+                  dikembangkan oleh mahasiswa dari{" "}
+                  <a
+                    href="https://nurulfikri.ac.id/"
+                    target="_blank"
+                    className="text-decoration-none"
+                  >
+                    Sekolah Tinggi Teknologi Terpadu Nurul Fikri
+                  </a>{" "}
+                  yang sedang menjalankan program{" "}
+                  <strong>MBKM (Merdeka Belajar Kampus Merdeka)</strong>. Dalam
+                  program ini, kami ditantang untuk membangun sebuah UMKM guna
+                  mencari solusi yang relevan dengan kebutuhan dunia usaha.
+                  Melalui Cheriewish, kami berupaya menjawab kebutuhan fashion
+                  wanita Muslimah dengan tubuh <i>petite</i> yang menginginkan
+                  pakaian stylish, feminin, dan nyaman dipakai sehari-hari.
+                  Dengan menggabungkan kreativitas dan keterampilan bisnis, kami
+                  berharap dapat memberikan kontribusi positif bagi perkembangan
+                  industri lokal.
                 </p>
 
                 {/* <Link

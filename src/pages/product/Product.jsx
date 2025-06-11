@@ -254,7 +254,7 @@ Pertanyaan: `)}`}
                 className="btn fs-6 fw-normal px-4 py-2 border-2 bg-transparent"
                 style={{ color: "#f5596c", borderColor: "#f5596c" }}
               >
-                Ada pertanyaan ?
+                Ingin Bertanya ?
               </a>
 
               {/* Button Shopee */}
