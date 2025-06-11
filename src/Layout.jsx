@@ -10,6 +10,27 @@ const Layout = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    const isProductPage = /^\/catalog\/[^/]+$/.test(pathname);
+
+    if (isProductPage) {
+      document.body.style.backgroundSize = "cover";
+      document.body.style.backgroundRepeat = "no-repeat";
+      document.body.style.backgroundPosition = "top center";
+      document.body.style.backgroundImage = 'url("/src/assets/images/background2.png")';
+    } else {
+      document.body.style.backgroundImage = "";
+      document.body.style.backgroundSize = "";
+      document.body.style.backgroundRepeat = "";
+      document.body.style.backgroundPosition = "";
+    }
+
+    return () => {
+      document.body.style.backgroundImage = "";
+      document.body.style.backgroundSize = "";
+      document.body.style.backgroundRepeat = "";
+      document.body.style.backgroundPosition = "";
+    };
   }, [pathname]);
 
   return (

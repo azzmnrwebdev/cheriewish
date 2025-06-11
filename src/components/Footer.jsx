@@ -1,6 +1,17 @@
+import { useLocation } from "react-router-dom";
+
 const FooterComponent = () => {
+  const { pathname } = useLocation();
+  const isHomePage = pathname === "/";
+
   return (
-    <div className="footer" style={{ borderTop: "3px solid #f5596c" }}>
+    <div
+      className="footer"
+      style={{
+        borderTop: "3px solid #f5596c",
+        backgroundColor: isHomePage ? "#fce9f1" : "transparent",
+      }}
+    >
       <div className="container">
         <footer className="d-flex flex-wrap justify-content-between align-items-center py-3">
           <div className="col-12 col-md-6 d-flex align-items-center">

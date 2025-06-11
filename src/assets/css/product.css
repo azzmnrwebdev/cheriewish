@@ -1,8 +1,5 @@
 main#product {
   padding-top: 80px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-image: url("/src/assets/images/background2.png");
 }
 
 main#product .breadcrumb-custom {
