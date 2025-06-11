@@ -11,7 +11,7 @@ const Layout = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    const isProductPage = /^\/catalog\/[^/]+$/.test(pathname);
+    const isProductPage = /\/catalog\/[^/]+/.test(pathname);
 
     if (isProductPage) {
       document.body.style.backgroundSize = "cover";
