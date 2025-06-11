@@ -1,22 +1,22 @@
 const team = [
   {
     name: "Syifa Kamila",
-    position: "Leader",
+    position: "Ketua",
     image: null,
   },
   {
     name: "Lovina Aulia",
-    position: "Operations Department",
+    position: "Divisi Operasional",
     image: null,
   },
   {
     name: "Jazillatul Rahmawati",
-    position: "Finance Department",
+    position: "Divisi Keuangan",
     image: null,
   },
   {
     name: "Salwa Sabina",
-    position: "Marketing Department",
+    position: "Divisi Pemasaran",
     image: null,
   },
 ];

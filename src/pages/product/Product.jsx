@@ -273,7 +273,10 @@ const Product = () => {
           scrollable
           size="lg"
         >
-          <Modal.Body>
+          <Modal.Header closeButton>
+            <Modal.Title className="fs-5">Preview</Modal.Title>
+          </Modal.Header>
+          <Modal.Body style={{ scrollbarWidth: 'none' }}>
             <div className="row g-3">
               <div className="col-12 col-lg-7 position-relative">
                 <div className="rounded-3 overflow-hidden ratio ratio-1x1">

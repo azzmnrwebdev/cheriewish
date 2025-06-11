@@ -37,7 +37,7 @@ const App = () => {
               className="btn fs-6 fw-semibold px-4 py-2 border-2 text-white rounded-pill mt-4"
               style={{ backgroundColor: "#f5596c", borderColor: "#f5596c" }}
             >
-              Shop Now
+              Belanja Sekarang
             </Link>
           </div>
         </Container>
@@ -52,14 +52,14 @@ const App = () => {
           <Container>
             <div className="d-flex justify-content-between align-items-center">
               <h1 className="mb-0 fw-bold title" style={{ color: "#f5596c" }}>
-                Our Product
+                Produk Kami
               </h1>
 
               <Link
                 to="/catalog"
                 className="btn-view-all text-decoration-none text-reset fw-semibold"
               >
-                View All
+                Lihat Semua
               </Link>
             </div>
 
@@ -158,10 +158,10 @@ const App = () => {
           <Container>
             <div className="d-flex flex-column justify-content-center align-items-center">
               <h1 className="fw-bold title text-white">
-                Team&nbsp;<span style={{ color: "#f5596c" }}>Cheriewish</span>
+                Tim&nbsp;<span style={{ color: "#f5596c" }}>Cheriewish</span>
               </h1>
               <p className="mb-0 sub-title px-3 px-sm-5">
-                Kami adalah tim yang bekerja bersama untuk menciptakan baju dan
+                Kami adalah tim yang bekerja bersama untuk menciptakan pakaian dan
                 aksesori yang unik, penuh gaya dan dibuat dengan sepenuh hati.
               </p>
             </div>
@@ -202,7 +202,7 @@ const App = () => {
                 style={{ marginBottom: "2rem" }}
               >
                 <h1 className="fw-bold title text-dark mb-3">
-                  Our&nbsp;<span style={{ color: "#f5596c" }}>Background</span>
+                  Tentang&nbsp;<span style={{ color: "#f5596c" }}>Kami</span>
                 </h1>
 
                 <p className="mb-0 sub-title text-start">
