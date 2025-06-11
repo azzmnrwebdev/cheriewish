@@ -4,7 +4,6 @@ import Navbar from "react-bootstrap/Navbar";
 import logo from "../assets/images/logo.png";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import Button from "react-bootstrap/Button";
 
 const NavbarComponent = () => {
   const navbarRef = useRef();
