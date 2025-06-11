@@ -16,7 +16,7 @@ const App = () => {
   return (
     <>
       <header>
-        <Container data-aos="fade-up">
+        <Container>
           <h1 className="title text-body-secondary mb-0 text-center d-sm-none">
             Elevate Your Wardrobe
             <br />
@@ -49,7 +49,7 @@ const App = () => {
           className="py-5"
           style={{ backgroundColor: "#fdbfd5" }}
         >
-          <Container data-aos="fade-up">
+          <Container>
             <div className="d-flex justify-content-between align-items-center">
               <h1 className="mb-0 fw-bold title" style={{ color: "#f5596c" }}>
                 Our Product
@@ -157,10 +157,10 @@ const App = () => {
         >
           <Container>
             <div className="d-flex flex-column justify-content-center align-items-center">
-              <h1 className="fw-bold title text-white" data-aos="fade-up">
+              <h1 className="fw-bold title text-white">
                 Team&nbsp;<span style={{ color: "#f5596c" }}>Cheriewish</span>
               </h1>
-              <p className="mb-0 sub-title px-3 px-sm-5" data-aos="fade-up">
+              <p className="mb-0 sub-title px-3 px-sm-5">
                 Kami adalah tim yang bekerja bersama untuk menciptakan baju dan
                 aksesori yang unik, penuh gaya dan dibuat dengan sepenuh hati.
               </p>
@@ -168,7 +168,7 @@ const App = () => {
 
             <div className="row justify-content-center row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 mt-2 g-3">
               {teams.map((member, index) => (
-                <div className="col" key={index} data-aos="fade-up">
+                <div className="col" key={index}>
                   <div className="card border-0 rounded-4 bg-transparent">
                     <div className="card-body p-4 d-flex flex-column justify-content-center align-items-center">
                       <div
@@ -200,7 +200,6 @@ const App = () => {
               <div
                 className="col-12 col-lg-6 order-lg-1 mb-lg-0"
                 style={{ marginBottom: "2rem" }}
-                data-aos="fade-up"
               >
                 <h1 className="fw-bold title text-dark mb-3">
                   Our&nbsp;<span style={{ color: "#f5596c" }}>Background</span>
@@ -232,10 +231,7 @@ const App = () => {
                 </Link> */}
               </div>
 
-              <div
-                className="col-12 col-lg-6 d-flex justify-content-center align-items-center"
-                data-aos="fade-up"
-              >
+              <div className="col-12 col-lg-6 d-flex justify-content-center align-items-center">
                 <div className="position-relative">
                   <img
                     src={imageAbout}

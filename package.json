@@ -12,7 +12,6 @@
   "dependencies": {
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@splidejs/react-splide": "^0.7.12",
-    "aos": "^2.3.4",
     "bootstrap": "^5.3.6",
     "bootstrap-icons": "^1.13.1",
     "dompurify": "^3.2.6",
