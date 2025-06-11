@@ -242,15 +242,31 @@ const Product = () => {
               </h6>
             </div>
 
-            {/* Button Shopee */}
-            <a
-              href={product.url_shopee}
-              target="_blank"
-              className="btn fs-6 fw-normal px-4 py-2 border-2 text-white"
-              style={{ backgroundColor: "#f5596c", borderColor: "#f5596c" }}
-            >
-              Beli Sekarang
-            </a>
+            {/* Button */}
+            <div className="d-flex gap-3">
+              {/* Button Shopee */}
+              <a
+                href={`https://wa.me/62895402742488?text=${encodeURIComponent(`Halo, saya ingin bertanya terkait produk *${product.name}* yang ada di website cheriewish, berikut pertanyaan saya.
+Nama: 
+Email: 
+Pertanyaan: `)}`}
+                target="_blank"
+                className="btn fs-6 fw-normal px-4 py-2 border-2 bg-transparent"
+                style={{ color: "#f5596c", borderColor: "#f5596c" }}
+              >
+                Ada pertanyaan ?
+              </a>
+
+              {/* Button Shopee */}
+              <a
+                href={product.url_shopee}
+                target="_blank"
+                className="btn fs-6 fw-normal px-4 py-2 border-2 text-white"
+                style={{ backgroundColor: "#f5596c", borderColor: "#f5596c" }}
+              >
+                Beli Sekarang
+              </a>
+            </div>
           </div>
         </div>
 
@@ -276,7 +292,7 @@ const Product = () => {
           <Modal.Header closeButton>
             <Modal.Title className="fs-5">Preview</Modal.Title>
           </Modal.Header>
-          <Modal.Body style={{ scrollbarWidth: 'none' }}>
+          <Modal.Body style={{ scrollbarWidth: "none" }}>
             <div className="row g-3">
               <div className="col-12 col-lg-7 position-relative">
                 <div className="rounded-3 overflow-hidden ratio ratio-1x1">
