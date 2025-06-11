@@ -1,8 +1,8 @@
+import { useState } from "react";
 import DOMPurify from "dompurify";
 import "../../assets/css/product.css";
 import { Container, Modal } from "react-bootstrap";
 import { Link, useLocation, useParams } from "react-router-dom";
-import { useState } from "react";
 
 const Product = () => {
   const { slug } = useParams();
