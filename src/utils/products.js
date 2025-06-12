@@ -169,8 +169,8 @@ const products = [
   },
   {
     id: 2,
-    name: "KIWOYO Bros/Pin Pita Besar Dobel Layer Bahan Kain Gaya Fashion Korea",
-    slug: "kiwoyo-bros-pin-pita-besar-dobel-layer-bahan-kain-gaya-fashion-korea",
+    name: "KIYOWO Bros/Pin Pita Besar Dobel Layer Bahan Kain Gaya Fashion Korea",
+    slug: "kiyowo-bros-pin-pita-besar-dobel-layer-bahan-kain-gaya-fashion-korea",
     size: null,
     price: 10000,
     material: null,
