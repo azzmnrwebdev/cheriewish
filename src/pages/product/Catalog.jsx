@@ -1,9 +1,29 @@
+import { useState } from "react";
 import "../../assets/css/catalog.css";
 import { Link } from "react-router-dom";
 import products from "../../utils/products";
 import { Container } from "react-bootstrap";
 
 const Catalog = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortOption, setSortOption] = useState("terbaru");
+
+  const filteredAndSortedProducts = products
+    .filter((product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .sort((a, b) => {
+      switch (sortOption) {
+        case "termahal":
+          return b.price - a.price;
+        case "termurah":
+          return a.price - b.price;
+        case "terbaru":
+        default:
+          return new Date(b.created_at) - new Date(a.created_at);
+      }
+    });
+
   return (
     <main id="catalog">
       <Container>
@@ -51,7 +71,11 @@ const Catalog = () => {
               <small className="text-secondary me-2 d-none d-md-block">
                 Sort By
               </small>
-              <select className="form-select">
+              <select
+                className="form-select"
+                value={sortOption}
+                onChange={(e) => setSortOption(e.target.value)}
+              >
                 <option value="terbaru">Terbaru</option>
                 <option value="termahal">Harga Termahal</option>
                 <option value="termurah">Harga Termurah</option>
@@ -62,14 +86,16 @@ const Catalog = () => {
 
         <input
           type="search"
-          className="form-control mt-3"
+          className="form-control mt-2 mt-md-3"
           id="search"
           placeholder="Cari produk apa?"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         ></input>
 
         {/* List Product */}
-        <div className="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 mt-2 mb-5">
-          {products.map((product, index) => (
+        <div className="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 mt-2 mb-5 g-2">
+          {filteredAndSortedProducts.map((product, index) => (
             <Link
               to={`/catalog/product-${product.slug}`}
               className="text-decoration-none"

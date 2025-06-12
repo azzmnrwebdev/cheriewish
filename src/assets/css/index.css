@@ -18,6 +18,30 @@ body {
   box-shadow: none !important;
 }
 
+.form-control::placeholder {
+  color: #8e8e8e !important;
+}
+
+.form-control,
+.form-select {
+  font-size: 16px !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  border-color: #f6f6f6 !important;
+  background-color: #f6f6f6 !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #343a40 !important;
+  outline: #343a40 solid 1px !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+  box-shadow: none !important;
+}
+
 /* Navbar */
 .navbar-brand {
   padding-top: 0 !important;
