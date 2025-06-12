@@ -12,9 +12,10 @@ const Layout = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
 
+    const isCatalogPage = /^\/catalog\/?$/.test(pathname);
     const isProductPage = /\/catalog\/[^/]+/.test(pathname);
 
-    if (isProductPage) {
+    if (isCatalogPage || isProductPage) {
       document.body.style.backgroundSize = "cover";
       document.body.style.backgroundRepeat = "no-repeat";
       document.body.style.backgroundPosition = "top center";

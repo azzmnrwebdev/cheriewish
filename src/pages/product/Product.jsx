@@ -68,7 +68,7 @@ const Product = () => {
           <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8">
             <path d="M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z" fill="#6c757d" />
           </svg>
-          <small className="text-secondary">{product.name}</small>
+          <small className="text-dark">{product.name}</small>
         </div>
 
         <div className="row g-4 mt-3">

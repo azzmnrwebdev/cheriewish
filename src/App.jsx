@@ -115,7 +115,7 @@ const App = () => {
                           {product.files.some(
                             (file) => file.type === "video"
                           ) && (
-                            <div className="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center bg-dark bg-opacity-50 rounded-3">
+                            <div className="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center bg-dark bg-opacity-25 rounded-3">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="48"
