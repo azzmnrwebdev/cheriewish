@@ -2,7 +2,7 @@ main#product {
   padding-top: 80px;
 }
 
-main#product .breadcrumb-custom {
+/* main#product .breadcrumb-custom {
   overflow: hidden;
 }
 
@@ -13,6 +13,15 @@ main#product .breadcrumb-custom > * {
 main#product .breadcrumb-custom small:last-child {
   flex-shrink: 1;
   min-width: 0;
+  line-clamp: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+} */
+
+main#product .breadcrumb-title {
   line-clamp: 1;
   overflow: hidden;
   display: -webkit-box;

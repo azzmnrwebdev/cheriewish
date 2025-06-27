@@ -4,8 +4,8 @@ import "@splidejs/react-splide/css";
 import products from "./utils/products";
 import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import profile from "./assets/images/profile.png";
-import imageAbout from "./assets/images/about.png";
+import ImageAbout from "./assets/images/about.png";
+import Profile from "./assets/images/teams/profile.png";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import IconShopee from "./assets/images/social-media/shopee.png";
 import IconTiktok from "./assets/images/social-media/tiktok.png";
@@ -181,13 +181,15 @@ const App = () => {
                         style={{ width: "150px", height: "150px" }}
                       >
                         <img
-                          src={member.image || profile}
+                          src={member.image || Profile}
                           width="100%"
                           alt={member.name}
                         />
                       </div>
                       <h1 className="title mt-3">{member.name}</h1>
-                      <p className="position text-body-secondary mb-0">{member.position}</p>
+                      <p className="position text-body-secondary mb-0">
+                        {member.position}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -310,7 +312,7 @@ const App = () => {
               <div className="col-12 col-lg-6 d-flex justify-content-center align-items-center">
                 <div className="position-relative">
                   <img
-                    src={imageAbout}
+                    src={ImageAbout}
                     className="rounded-4 position-relative"
                     alt="Cheriewish Image"
                     style={{ zIndex: 2 }}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import DOMPurify from "dompurify";
 import "../../assets/css/product.css";
 import { Container, Modal } from "react-bootstrap";
+import IconLeft from "../../assets/images/icons/left.svg";
 import { Link, useLocation, useParams } from "react-router-dom";
 
 const Product = () => {
@@ -47,7 +48,7 @@ const Product = () => {
     <main id="product">
       <Container>
         {/* BreadCrumbs */}
-        <div className="d-flex justify-content-start align-items-center gap-2 mt-3 breadcrumb-custom">
+        {/* <div className="d-flex justify-content-start align-items-center gap-2 mt-3 breadcrumb-custom">
           <Link
             to="/"
             className="text-decoration-none"
@@ -69,10 +70,28 @@ const Product = () => {
             <path d="M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z" fill="#6c757d" />
           </svg>
           <small className="text-dark">{product.name}</small>
-        </div>
+        </div> */}
 
-        <div className="row g-4 mt-3">
-          <div className="col-12 col-lg-5">
+        <Link
+          to="/catalog"
+          className="text-reset text-decoration-none d-inline-block"
+        >
+          <div className="d-flex justify-content-start align-items-center gap-3 mt-3">
+            <div
+              style={{ height: "30px", width: "30px", flexShrink: 0 }}
+              className="bg-white d-flex justify-content-center align-items-center rounded-3 shadow-sm"
+            >
+              <img src={IconLeft} alt="Icon" />
+            </div>
+
+            <h6 className="fw-semibold mb-0 breadcrumb-title">
+              Katalog Produk
+            </h6>
+          </div>
+        </Link>
+
+        <div className="row g-3 g-lg-4 mt-3">
+          <div className="col-12 col-lg-5 pe-lg-4">
             {/* Thumbnail */}
             <div
               className="thumbnail-wrapper rounded-3 overflow-hidden mb-2 ratio ratio-1x1"
@@ -183,7 +202,7 @@ const Product = () => {
                   <button
                     key={index}
                     type="button"
-                    className={`btn btn-color border-secondary-subtle p-2 rounded-1 d-flex justify-content-between align-items-center gap-2 ${
+                    className={`btn btn-color border-secondary p-2 rounded-1 d-flex justify-content-between align-items-center gap-2 ${
                       activeVariant === variant ? "active" : ""
                     }`}
                     onClick={() => handleVariantClick(variant)}
@@ -211,7 +230,7 @@ const Product = () => {
                     <button
                       key={index}
                       type="button"
-                      className="btn btn-size border-secondary-subtle px-4 py-2 rounded-1"
+                      className="btn btn-size border-secondary px-4 py-2 rounded-1"
                     >
                       {size}
                     </button>

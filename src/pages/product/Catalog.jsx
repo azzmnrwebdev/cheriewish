@@ -28,8 +28,8 @@ const Catalog = () => {
     <main id="catalog">
       <Container>
         <div className="d-flex flex-column justify-content-center align-items-center mt-5">
-          <h1 className="fw-bold title" style={{ color: "#f5596c" }}>
-            Katalog Produk
+          <h1 className="fw-bold title text-dark">
+            Katalog <span style={{ color: "#f5596c" }}>Produk</span>
           </h1>
 
           <p className="mb-0 sub-title text-body-secondary px-3 px-sm-5">
