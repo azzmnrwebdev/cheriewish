@@ -32,34 +32,19 @@ const Catalog = () => {
             Katalog Produk
           </h1>
 
-          <p className="mb-0 sub-title px-3 px-sm-5">
+          <p className="mb-0 sub-title text-body-secondary px-3 px-sm-5">
             Produk kami tersedia di Katalog. Kamu dapat memilih produk yang
             diinginkan.
           </p>
-        </div>
-
-        {/* BreadCrumbs */}
-        <div className="d-flex justify-content-start align-items-center gap-2 mt-5 breadcrumb-custom">
-          <Link
-            to="/"
-            className="text-decoration-none"
-            style={{ color: "#f5596c" }}
-          >
-            <small>Home</small>
-          </Link>
-          <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8">
-            <path d="M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z" fill="#6c757d" />
-          </svg>
-          <small className="text-dark">All Products</small>
         </div>
 
         {/* Banner */}
         {/* <div className="banner-ads rounded-4 mt-4"></div> */}
 
         {/* Filter */}
-        <div className="row align-items-center" style={{ marginTop: "2rem" }}>
+        <div className="row align-items-center mt-5">
           <div className="col-md-6">
-            <small className="text-secondary">
+            <small className="text-body-secondary">
               Menampilkan{" "}
               <strong className="text-dark">{products.length}</strong> hasil
               dari total{" "}
@@ -68,7 +53,7 @@ const Catalog = () => {
           </div>
           <div className="col-md-6 mt-3 mt-md-0">
             <div className="d-flex align-items-center justify-content-md-end">
-              <small className="text-secondary me-2 d-none d-md-block">
+              <small className="text-body-secondary me-2 d-none d-md-block">
                 Sort By
               </small>
               <select
