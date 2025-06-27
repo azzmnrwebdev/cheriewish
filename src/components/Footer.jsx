@@ -13,7 +13,7 @@ const FooterComponent = () => {
       }}
     >
       <footer className="container py-3 text-center">
-        <span className="text-body-secondary">
+        <span className="text-body">
           © 2024{" "}
           <span className="fw-bold" style={{ color: "#f5596c" }}>
             Cheriewish

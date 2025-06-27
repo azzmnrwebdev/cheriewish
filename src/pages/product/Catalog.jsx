@@ -33,7 +33,7 @@ const Catalog = () => {
             Katalog <span style={{ color: "#f5596c" }}>Produk</span>
           </h1>
 
-          <p className="mb-0 sub-title text-body-secondary px-3 px-sm-5">
+          <p className="mb-0 sub-title text-body px-3 px-sm-5">
             Produk kami tersedia di Katalog. Kamu dapat memilih produk yang
             diinginkan.
           </p>
@@ -45,7 +45,7 @@ const Catalog = () => {
         {/* Filter */}
         <div className="row align-items-center mt-5">
           <div className="col-md-6">
-            <small className="text-body-secondary">
+            <small className="text-body">
               Menampilkan{" "}
               <strong className="text-dark">{products.length}</strong> hasil
               dari total{" "}
@@ -54,7 +54,7 @@ const Catalog = () => {
           </div>
           <div className="col-md-6 mt-3 mt-md-0">
             <div className="d-flex align-items-center justify-content-md-end">
-              <small className="text-body-secondary me-2 d-none d-md-block">
+              <small className="text-body me-2 d-none d-md-block">
                 Sort By
               </small>
               <select

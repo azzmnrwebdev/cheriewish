@@ -67,7 +67,7 @@ const App = () => {
               </Link>
             </div>
 
-            <p className="mb-0 sub-title text-start text-body-secondary mt-2">
+            <p className="mb-0 sub-title text-start text-body mt-2">
               Pilihan produk terpercaya untuk gaya hidup modern.
             </p>
 
@@ -164,7 +164,7 @@ const App = () => {
               <h1 className="fw-bold title text-dark">
                 Tim&nbsp;<span style={{ color: "#f5596c" }}>Cheriewish</span>
               </h1>
-              <p className="mb-0 sub-title text-body-secondary px-3 px-sm-5">
+              <p className="mb-0 sub-title text-body px-3 px-sm-5">
                 Kami adalah tim yang bekerja bersama untuk menciptakan pakaian
                 dan aksesori yang unik, penuh gaya dan dibuat dengan sepenuh
                 hati.
@@ -187,7 +187,7 @@ const App = () => {
                         />
                       </div>
                       <h1 className="title mt-3">{member.name}</h1>
-                      <p className="position text-body-secondary mb-0">
+                      <p className="position text-body mb-0">
                         {member.position}
                       </p>
                     </div>
@@ -212,7 +212,7 @@ const App = () => {
                   Tentang&nbsp;<span style={{ color: "#f5596c" }}>Kami</span>
                 </h1>
 
-                <p className="mb-0 sub-title text-start text-body-secondary lh-lg">
+                <p className="mb-0 sub-title text-start text-body lh-lg">
                   {/* Cheriewish merupakan brand fashion yang dirancang khusus untuk
                   wanita dengan tubuh <i>petite</i> dan cocok bagi yang
                   berhijab. Selain itu, Cheriewish juga berfokus pada gaya
