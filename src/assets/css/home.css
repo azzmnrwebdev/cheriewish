@@ -28,7 +28,7 @@ section .title {
 
 section .sub-title {
   font-size: 14px;
-  color: #3e3f66;
+  /* color: #212529; */
   text-align: center;
 }
 
@@ -71,20 +71,23 @@ section#team .card .position {
 }
 
 /* Section Our Background */
-/* section#about .circle-container {
-  width: 320px;
-  margin: auto;
-  height: 320px;
-  display: flex;
-  border-radius: 50%;
-  align-items: center;
-  justify-content: center;
-  background-color: red;
-} */
-
 section#about img {
   height: auto;
   max-width: 100%;
+}
+
+section#about .icon-wrapper {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fce9f1;
+}
+
+section#about .icon-wrapper:hover {
+  border-color: #f5596c;
+  transition: all 0.3s ease-in-out;
 }
 
 /* Break Points */

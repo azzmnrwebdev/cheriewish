@@ -7,6 +7,10 @@ import { Container } from "react-bootstrap";
 import profile from "./assets/images/profile.png";
 import imageAbout from "./assets/images/about.png";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import IconShopee from "./assets/images/social-media/shopee.png";
+import IconTiktok from "./assets/images/social-media/tiktok.png";
+import IconWhatsapp from "./assets/images/social-media/whatsapp.png";
+import IconInstagram from "./assets/images/social-media/instagram.png";
 
 const App = () => {
   const latestProducts = products
@@ -197,7 +201,7 @@ const App = () => {
           style={{ backgroundColor: "#fce9f1" }}
         >
           <Container>
-            <div className="row align-items-lg-center g-0 g-lg-4">
+            <div className="row align-items-lg-start g-0 g-lg-4">
               <div
                 className="col-12 col-lg-6 order-lg-1 mb-lg-0"
                 style={{ marginBottom: "2rem" }}
@@ -206,8 +210,8 @@ const App = () => {
                   Tentang&nbsp;<span style={{ color: "#f5596c" }}>Kami</span>
                 </h1>
 
-                <p className="mb-0 sub-title text-start lh-lg">
-                  Cheriewish merupakan brand fashion yang dirancang khusus untuk
+                <p className="mb-0 sub-title text-start text-body-secondary lh-lg">
+                  {/* Cheriewish merupakan brand fashion yang dirancang khusus untuk
                   wanita dengan tubuh <i>petite</i> dan cocok bagi yang
                   berhijab. Selain itu, Cheriewish juga berfokus pada gaya
                   feminin <i>coquette</i> namun tetap terlihat casual. Brand ini
@@ -228,8 +232,67 @@ const App = () => {
                   pakaian stylish, feminin, dan nyaman dipakai sehari-hari.
                   Dengan menggabungkan kreativitas dan keterampilan bisnis, kami
                   berharap dapat memberikan kontribusi positif bagi perkembangan
-                  industri lokal.
+                  industri lokal. */}
+                  Cheriewish merupakan brand fashion yang dirancang khusus untuk
+                  wanita dengan tubuh petite dan cocok bagi yang berhijab.
+                  Selain itu, Cheriewish juga berfokus pada gaya feminin
+                  coquette namun tetap terlihat casual. Melalui Cheriewish, kami
+                  berupaya menjawab kebutuhan fashion wanita Muslimah dengan
+                  tubuh petite yang menginginkan pakaian stylish, feminin, dan
+                  nyaman dipakai sehari-hari. Dengan menggabungkan kreativitas
+                  dan keterampilan bisnis, kami berharap dapat memberikan
+                  kontribusi positif bagi perkembangan industri lokal.
                 </p>
+
+                {/* Social Media */}
+                <div className="d-flex flex-wrap gap-3 mt-3">
+                  <a href="https://id.shp.ee/4Lyv1me" target="_blank">
+                    <div className="icon-wrapper bg-white rounded-circle">
+                      <img
+                        src={IconShopee}
+                        width="32"
+                        height="32"
+                        alt="Icon Shopee"
+                      />
+                    </div>
+                  </a>
+                  <a
+                    href="https://www.tiktok.com/@cheriewish.id?_t=ZS-8x03XgB0ccC&_r=1"
+                    target="_blank"
+                  >
+                    <div className="icon-wrapper bg-white rounded-circle">
+                      <img
+                        src={IconTiktok}
+                        width="32"
+                        height="32"
+                        alt="Icon Shopee"
+                      />
+                    </div>
+                  </a>
+                  <a
+                    href="https://www.instagram.com/cheriewish.id?igsh=MTNtMXYyaTBhcm02Yg=="
+                    target="_blank"
+                  >
+                    <div className="icon-wrapper bg-white rounded-circle">
+                      <img
+                        src={IconInstagram}
+                        width="32"
+                        height="32"
+                        alt="Icon Shopee"
+                      />
+                    </div>
+                  </a>
+                  <a href="https://wa.me/62895402742488" target="_blank">
+                    <div className="icon-wrapper bg-white rounded-circle">
+                      <img
+                        src={IconWhatsapp}
+                        width="32"
+                        height="32"
+                        alt="Icon Shopee"
+                      />
+                    </div>
+                  </a>
+                </div>
 
                 {/* <Link
                   to="/about"
