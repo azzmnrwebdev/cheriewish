@@ -4,7 +4,8 @@ import LoadingScreen from "./components/Loading";
 import NavbarComponent from "./components/Navbar";
 import FooterComponent from "./components/Footer";
 import { Outlet, useLocation } from "react-router-dom";
-import backgroundImage from "./assets/images/background2.png";
+import BackgroundImage2 from "./assets/images/background2.png";
+import BackgroundImage3 from "./assets/images/background3.png";
 
 const Layout = () => {
   const { pathname } = useLocation();
@@ -14,12 +15,18 @@ const Layout = () => {
 
     const isCatalogPage = /^\/catalog\/?$/.test(pathname);
     const isProductPage = /\/catalog\/[^/]+/.test(pathname);
+    const isGalleryPage = /^\/gallery\/?$/.test(pathname);
 
     if (isCatalogPage || isProductPage) {
       document.body.style.backgroundSize = "cover";
       document.body.style.backgroundRepeat = "no-repeat";
       document.body.style.backgroundPosition = "top center";
-      document.body.style.backgroundImage = `url(${backgroundImage})`;
+      document.body.style.backgroundImage = `url(${BackgroundImage2})`;
+    } else if (isGalleryPage) {
+      document.body.style.backgroundSize = "cover";
+      document.body.style.backgroundRepeat = "no-repeat";
+      document.body.style.backgroundPosition = "top center";
+      document.body.style.backgroundImage = `url(${BackgroundImage3})`;
     } else {
       document.body.style.backgroundImage = "";
       document.body.style.backgroundSize = "";
