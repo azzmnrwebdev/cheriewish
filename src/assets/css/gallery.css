@@ -16,11 +16,6 @@ section#gallery .sub-title {
   text-align: center;
 }
 
-section#gallery .text-filter {
-  font-size: 16px;
-  font-weight: 500;
-}
-
 section#gallery .card-columns .card {
   margin-bottom: 1.25rem;
 }
