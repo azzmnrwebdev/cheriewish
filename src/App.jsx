@@ -21,7 +21,7 @@ const App = () => {
     <>
       <header>
         <Container>
-          <h1 className="title text-body-secondary mb-0 text-center d-sm-none">
+          <h1 className="title text-dark mb-0 text-center d-sm-none">
             Tingkatkan Gaya
             <br />
             Busanamu dengan
@@ -67,7 +67,7 @@ const App = () => {
               </Link>
             </div>
 
-            <p className="mb-0 sub-title text-start mt-2">
+            <p className="mb-0 sub-title text-start text-body-secondary mt-2">
               Pilihan produk terpercaya untuk gaya hidup modern.
             </p>
 
