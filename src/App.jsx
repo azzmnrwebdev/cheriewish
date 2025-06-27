@@ -161,10 +161,10 @@ const App = () => {
         >
           <Container>
             <div className="d-flex flex-column justify-content-center align-items-center">
-              <h1 className="fw-bold title text-white">
+              <h1 className="fw-bold title text-dark">
                 Tim&nbsp;<span style={{ color: "#f5596c" }}>Cheriewish</span>
               </h1>
-              <p className="mb-0 sub-title px-3 px-sm-5">
+              <p className="mb-0 sub-title text-body-secondary px-3 px-sm-5">
                 Kami adalah tim yang bekerja bersama untuk menciptakan pakaian
                 dan aksesori yang unik, penuh gaya dan dibuat dengan sepenuh
                 hati.
@@ -187,7 +187,7 @@ const App = () => {
                         />
                       </div>
                       <h1 className="title mt-3">{member.name}</h1>
-                      <p className="position mb-0">{member.position}</p>
+                      <p className="position text-body-secondary mb-0">{member.position}</p>
                     </div>
                   </div>
                 </div>
